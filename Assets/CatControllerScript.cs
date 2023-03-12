@@ -8,8 +8,14 @@ public class CatControllerScript : MonoBehaviour
     private bool fishBite = false;
     private float fishTimer = 0f;
     private float catchWarningTime;
+<<<<<<< HEAD:Assets/CatControllerScript.cs
     private bool alerted = false;
+=======
+    private bool caught = false;
+    private bool prealert = false;
+>>>>>>> 01e2649 (The DBD Circle Prototype):Assets/CharacterController.cs
     private float alertTimer = 0f;
+    private bool alerted = false;
 
     [SerializeField]
     GameObject alert;
@@ -21,6 +27,10 @@ public class CatControllerScript : MonoBehaviour
     float initDelayTime = 5f;
     [SerializeField]
     float alertLength = 1f;
+    [SerializeField]
+    GameObject timingCircle;
+    [SerializeField]
+    BitingCircleScript tCScript;
 
     // Start is called before the first frame update
     void Start()
@@ -40,44 +50,81 @@ public class CatControllerScript : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.Space) && casting)
         {
             //if there's a fish, it's caught
+<<<<<<< HEAD:Assets/CatControllerScript.cs
             if (fishTimer < catchWarningTime + reactionTime && fishBite)
             {
+=======
+            if (tCScript.isTouching) {
+>>>>>>> 01e2649 (The DBD Circle Prototype):Assets/CharacterController.cs
                 Debug.Log("Caught!");
+                uncast();
             }
-            uncast();
+            else if (!tCScript.isTouching) {
+                Debug.Log("It got away!");
+                recast();
+            }
+            
+            unspin();
+            /*else if (fishTimer < catchWarningTime+reactionTime && fishBite) {
+                Debug.Log("Caught!");
+            }*/
+            
         }
         // if the timer goes to long the fish goes away
+<<<<<<< HEAD:Assets/CatControllerScript.cs
         if (fishTimer > catchWarningTime + reactionTime)
         {
             fishBite = false;
             Debug.Log("U suc");
         }
 
+=======
+        /*if (fishTimer > catchWarningTime+reactionTime) {
+            fishBite = false;
+            Debug.Log("U suc");
+        }*/
+        
+>>>>>>> 01e2649 (The DBD Circle Prototype):Assets/CharacterController.cs
 
         // casting timer
         if (casting)
         {
             fishTimer += Time.deltaTime;
-            Debug.Log(fishTimer);
         }
         // alert timer
+<<<<<<< HEAD:Assets/CatControllerScript.cs
         if (alerted)
         {
+=======
+        if (prealert) {
+>>>>>>> 01e2649 (The DBD Circle Prototype):Assets/CharacterController.cs
             alertTimer += Time.deltaTime;
         }
 
 
         // handles alert timer and deactivation
+<<<<<<< HEAD:Assets/CatControllerScript.cs
         if (fishTimer > catchWarningTime && !alerted)
         {
             alert.SetActive(true);
+=======
+        if (fishTimer > catchWarningTime && !prealert) {
+            spin();
+>>>>>>> 01e2649 (The DBD Circle Prototype):Assets/CharacterController.cs
             fishBite = true;
-            alerted = true;
+            prealert = true;
         }
+<<<<<<< HEAD:Assets/CatControllerScript.cs
         if (alertTimer > alertLength)
         {
+=======
+
+        /*if (alertTimer > alertLength) {
+>>>>>>> 01e2649 (The DBD Circle Prototype):Assets/CharacterController.cs
             alert.SetActive(false);
-        }
+            prealert = false;
+        }*/
+
     }
 
     void cast()
@@ -85,9 +132,21 @@ public class CatControllerScript : MonoBehaviour
         Debug.Log("Casting");
         casting = true;
         alertTimer = 0f;
-        alerted = false;
+        prealert = false;
         hook.SetActive(true);
+<<<<<<< HEAD:Assets/CatControllerScript.cs
         catchWarningTime = initDelayTime + Random.Range(1f, 5f);
+=======
+        calcFishTime();
+    }
+
+    void recast() {
+        fishBite = false;
+        fishTimer = 0f;
+        alertTimer = 0f;
+        prealert = false;
+        calcFishTime();
+>>>>>>> 01e2649 (The DBD Circle Prototype):Assets/CharacterController.cs
     }
 
     void uncast()
@@ -99,4 +158,20 @@ public class CatControllerScript : MonoBehaviour
         hook.SetActive(false);
 
     }
+<<<<<<< HEAD:Assets/CatControllerScript.cs
 }
+=======
+
+    void spin() {
+        timingCircle.SetActive(true);
+    }
+
+    void unspin(){
+        timingCircle.SetActive(false);
+    }
+
+    void calcFishTime() {
+        catchWarningTime = initDelayTime + Random.Range(1f,5f);
+    }
+}
+>>>>>>> 01e2649 (The DBD Circle Prototype):Assets/CharacterController.cs
