@@ -5,10 +5,10 @@ using UnityEngine;
 public class CatControllerScript : MonoBehaviour
 {
     private bool casting = false;
-    private bool fishBite = false;
+    //private bool fishBite = false;
     private float fishTimer = 0f;
     private float catchWarningTime;
-    private bool caught = false;
+    //private bool caught = false;
     private bool prealert = false;
     private float alertTimer = 0f;
     private bool alerted = false;
@@ -17,12 +17,12 @@ public class CatControllerScript : MonoBehaviour
     GameObject alert;
     [SerializeField]
     GameObject hook;
-    [SerializeField]
-    float reactionTime = 2f;
+    //[SerializeField]
+    //float reactionTime = 2f;
     [SerializeField]
     float initDelayTime = 5f;
-    [SerializeField]
-    float alertLength = 1f;
+    //[SerializeField]
+    //float alertLength = 1f;
     [SerializeField]
     GameObject timingCircle;
     [SerializeField]
