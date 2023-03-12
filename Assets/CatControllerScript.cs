@@ -46,13 +46,16 @@ public class CatControllerScript : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.Space) && casting)
         {
             //if there's a fish, it's caught
-            if (tCScript.isTouching) {
+            if (tCScript.isTouching && alerted) {
                 Debug.Log("Caught!");
                 uncast();
             }
-            else if (!tCScript.isTouching) {
+            else if (!tCScript.isTouching && alerted) {
                 Debug.Log("It got away!");
                 recast();
+            }
+            else if (!alerted) {
+                uncast();
             }
             
             unspin();
@@ -123,10 +126,12 @@ public class CatControllerScript : MonoBehaviour
 
     void spin() {
         timingCircle.SetActive(true);
+        alerted = true;
     }
 
     void unspin(){
         timingCircle.SetActive(false);
+        alerted = false;
     }
 
     void calcFishTime() {
