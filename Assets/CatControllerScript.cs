@@ -5,7 +5,7 @@ using UnityEngine;
 public class CatControllerScript : MonoBehaviour
 {
     private bool casting = false;
-    //private bool fishBite = false;
+    private bool fishBite = false;
     private float fishTimer = 0f;
     private float catchWarningTime;
     //private bool caught = false;
