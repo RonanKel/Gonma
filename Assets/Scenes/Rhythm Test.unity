@@ -300,11 +300,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   note: {fileID: 4513937415968605467, guid: 315761ae4d95a462581601d940f353cc, type: 3}
   music: {fileID: 1448947366}
-  noteOrigin: {x: 0, y: 0, z: 0}
-  poorLength: 0
-  beatLine:
-    serializedVersion: 2
-    m_Bits: 0
 --- !u!4 &777988119
 Transform:
   m_ObjectHideFlags: 0
