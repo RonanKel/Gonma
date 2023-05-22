@@ -25,13 +25,15 @@ public class NoteSpawnerScript : MonoBehaviour
     void Update()
     {
 
-        //poor = Physics2D.Raycast(transform.position + noteOrigin, Vector2.left, poorLength, beatLine);
-
         timer -= Time.deltaTime;
         if (timer < 0) {
             Instantiate(note, transform);
             timer = 5f;
         }
+    }
+
+    void SpawnNote() {
+        Instantiate(note, transform);
     }
 
 }

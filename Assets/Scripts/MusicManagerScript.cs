@@ -6,8 +6,9 @@ public class MusicManagerScript : MonoBehaviour
 {
     [SerializeField] AudioSource audio;
     [SerializeField] float songBPM;
-    [SerializeField] bool onHook;
-    private float secPerBear;
+    public bool onHook;
+    [SerializeField] NoteSpawnerScript noteSpawnerScript;
+    private float secPerBeat;
     private float sSongPos;
     private float bSongPos;
 
@@ -22,9 +23,9 @@ public class MusicManagerScript : MonoBehaviour
     
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        secPerBear = songBPM / 60;
+        secPerBeat = 60 / songBPM;
 
         
     }
@@ -33,6 +34,7 @@ public class MusicManagerScript : MonoBehaviour
     void Update()
     {
         sSongPos = (float) AudioSettings.dspTime;
+        bSongPos = sSongPos * secPerBeat;
         
     }
 

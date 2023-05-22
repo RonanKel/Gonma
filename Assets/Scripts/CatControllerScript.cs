@@ -12,7 +12,7 @@ public class CatControllerScript : MonoBehaviour
     private bool prealert = false;
     private float alertTimer = 0f;
     private bool alerted = false;
-    public bool onHook = false;
+    private bool onHook;
 
     [SerializeField]
     MusicManagerScript musicManager;
@@ -40,6 +40,9 @@ public class CatControllerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        onHook = musicManager.onHook;
+
         if (!onHook) {
 
         

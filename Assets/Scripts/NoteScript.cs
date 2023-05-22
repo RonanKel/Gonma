@@ -6,15 +6,26 @@ public class NoteScript : MonoBehaviour
 {
 
     [SerializeField] float speed;
-    private MusicManagerScript mmScript;
-
-    [SerializeField] Vector3 noteOrigin;
-    [SerializeField] float poorLength;
     [SerializeField] LayerMask beatLine;
     [SerializeField] LayerMask failBox;
+    private MusicManagerScript mmScript;
 
+    [Header("Poor Condition")]
     private bool poor;
-    private bool poorLose;
+    [SerializeField] Vector3 poorNoteOrigin;
+    [SerializeField] float poorLength;
+
+    [Header("Nice Condition")]
+    private bool nice;
+    [SerializeField] Vector3 niceNoteOrigin;
+    [SerializeField] float niceLength;
+
+    [Header("Perfect Condition")]
+    private bool perfect;
+    [SerializeField] Vector3 perfectNoteOrigin;
+    [SerializeField] float perfectLength;
+
+    private bool lose;
 
     // Start is called before the first frame update
     void Start()
@@ -28,8 +39,11 @@ public class NoteScript : MonoBehaviour
     void Update()
     {
 
-        poor = Physics2D.Raycast(transform.position + noteOrigin, Vector2.left, poorLength, beatLine);
-        poorLose = Physics2D.Raycast(transform.position + noteOrigin, Vector2.left, poorLength, failBox);
+        poor = Physics2D.Raycast(transform.position + poorNoteOrigin, Vector2.left, poorLength, beatLine);
+        nice = Physics2D.Raycast(transform.position + niceNoteOrigin, Vector2.left, niceLength, beatLine);
+        perfect = Physics2D.Raycast(transform.position + perfectNoteOrigin, Vector2.left, perfectLength, beatLine);
+
+        lose = Physics2D.Raycast(transform.position + poorNoteOrigin, Vector2.left, poorLength, failBox);
 
         transform.position -= new Vector3(speed * Time.deltaTime, 0, 0);
 
@@ -37,12 +51,20 @@ public class NoteScript : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if (Input.GetKeyDown("space") && poor) {
+        if (Input.GetKeyDown("space") && perfect) {
             Destroy(gameObject);
-            Debug.Log("nice");
+            Debug.Log("Perfect!");
+        }
+        else if (Input.GetKeyDown("space") && nice) {
+            Destroy(gameObject);
+            Debug.Log("Nice!");
+        }
+        else if (Input.GetKeyDown("space") && poor) {
+            Destroy(gameObject);
+            Debug.Log("Poor!");
         }
 
-        if (poorLose) {
+        if (lose) {
             Destroy(gameObject);
             mmScript.EndMusicGame();
 
@@ -52,8 +74,18 @@ public class NoteScript : MonoBehaviour
 
     void OnDrawGizmos()
     {
+    
         Gizmos.color = Color.red;
-        Gizmos.DrawLine(transform.position + noteOrigin, ((transform.position + noteOrigin) + (Vector3.left * (poorLength))));
+        Gizmos.DrawLine(transform.position + poorNoteOrigin, ((transform.position + poorNoteOrigin) + (Vector3.left * (poorLength))));
+
+        Gizmos.color = Color.blue;
+        Gizmos.DrawLine(transform.position + niceNoteOrigin, ((transform.position + niceNoteOrigin) + (Vector3.left * (niceLength))));
+
+        Gizmos.color = Color.green;
+        Gizmos.DrawLine(transform.position + perfectNoteOrigin, ((transform.position + perfectNoteOrigin) + (Vector3.left * (perfectLength))));
+
+
+
     }
 
     
