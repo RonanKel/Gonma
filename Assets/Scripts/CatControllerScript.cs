@@ -12,7 +12,10 @@ public class CatControllerScript : MonoBehaviour
     private bool prealert = false;
     private float alertTimer = 0f;
     private bool alerted = false;
+    public bool onHook = false;
 
+    [SerializeField]
+    MusicManagerScript musicManager;
     [SerializeField]
     GameObject alert;
     [SerializeField]
@@ -37,62 +40,68 @@ public class CatControllerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // casts
-        if (Input.GetKeyDown(KeyCode.Space) && !casting)
-        {
-            cast();
-        }
-        // if its clicked again it reels it in
-        else if (Input.GetKeyDown(KeyCode.Space) && casting)
-        {
-            //if there's a fish, it's caught
-            if (tCScript.isTouching && alerted) {
-                Debug.Log("Caught!");
-                uncast();
+        if (!onHook) {
+
+        
+            // casts
+            if (Input.GetKeyDown(KeyCode.Space) && !casting)
+            {
+                cast();
             }
-            else if (!tCScript.isTouching && alerted) {
-                Debug.Log("It got away!");
-                recast();
+            // if its clicked again it reels it in
+            else if (Input.GetKeyDown(KeyCode.Space) && casting)
+            {
+                //if there's a fish, it's caught
+                if (tCScript.isTouching && alerted) {
+                    Debug.Log("Caught!");
+                    musicManager.StartMusicGame();
+                    onHook = true;
+                    uncast();
+                }
+                else if (!tCScript.isTouching && alerted) {
+                    Debug.Log("It got away!");
+                    recast();
+                }
+                else if (!alerted) {
+                    uncast();
+                }
+                
+                unspin();
+                /*else if (fishTimer < catchWarningTime+reactionTime && fishBite) {
+                    Debug.Log("Caught!");
+                }*/
+                
             }
-            else if (!alerted) {
-                uncast();
-            }
-            
-            unspin();
-            /*else if (fishTimer < catchWarningTime+reactionTime && fishBite) {
-                Debug.Log("Caught!");
+            // if the timer goes to long the fish goes away
+            /*if (fishTimer > catchWarningTime+reactionTime) {
+                fishBite = false;
+                Debug.Log("U suc");
             }*/
             
-        }
-        // if the timer goes to long the fish goes away
-        /*if (fishTimer > catchWarningTime+reactionTime) {
-            fishBite = false;
-            Debug.Log("U suc");
-        }*/
-        
 
-        // casting timer
-        if (casting)
-        {
-            fishTimer += Time.deltaTime;
-        }
-        // alert timer
-        if (prealert) {
-            alertTimer += Time.deltaTime;
-        }
+            // casting timer
+            if (casting)
+            {
+                fishTimer += Time.deltaTime;
+            }
+            // alert timer
+            if (prealert) {
+                alertTimer += Time.deltaTime;
+            }
 
 
-        // handles alert timer and deactivation
-        if (fishTimer > catchWarningTime && !prealert) {
-            spin();
-            fishBite = true;
-            prealert = true;
-        }
+            // handles alert timer and deactivation
+            if (fishTimer > catchWarningTime && !prealert) {
+                spin();
+                fishBite = true;
+                prealert = true;
+            }
 
-        /*if (alertTimer > alertLength) {
-            alert.SetActive(false);
-            prealert = false;
-        }*/
+            /*if (alertTimer > alertLength) {
+                alert.SetActive(false);
+                prealert = false;
+            }*/
+        }
 
     }
 
