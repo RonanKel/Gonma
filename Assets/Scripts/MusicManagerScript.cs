@@ -12,8 +12,6 @@ public class MusicManagerScript : MonoBehaviour
     private float sSongPos;
     private float bSongPos;
 
-    
-
     [SerializeField]
     GameObject beatLine;
     [SerializeField]
@@ -25,21 +23,27 @@ public class MusicManagerScript : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        secPerBeat = 60 / songBPM;
+        secPerBeat = songBPM / 60;
 
-        
     }
 
     // Update is called once per frame
     void Update()
     {
-        sSongPos = (float) AudioSettings.dspTime;
-        bSongPos = sSongPos * secPerBeat;
+        if (audio.isPlaying) {
+            sSongPos = (float) audio.time;
+            bSongPos = sSongPos * secPerBeat;
+        
+            //Debug.Log(bSongPos);
+        }
         
     }
 
+    [ContextMenu("StartMusicGame")]
     public void StartMusicGame() {
         onHook = true;
+
+        audio.Play();
 
         Debug.Log("Time to jam");
 
@@ -48,7 +52,7 @@ public class MusicManagerScript : MonoBehaviour
         notebkgd.SetActive(true);
         
     }
-
+    [ContextMenu("EndMusicGame")]
     public void EndMusicGame() {
         onHook = false;
 
@@ -58,6 +62,4 @@ public class MusicManagerScript : MonoBehaviour
         noteSpawner.SetActive(false);
         notebkgd.SetActive(false);
     }
-
-
 }

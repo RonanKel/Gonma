@@ -534,8 +534,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 8300000, guid: ba992296e652c439181b5a80619fad13, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -632,8 +632,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 816065ff9ddcf49768e45bb8179237f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audio: {fileID: 0}
-  songBPM: 0
+  audio: {fileID: 748165350}
+  songBPM: 90
   onHook: 0
   noteSpawnerScript: {fileID: 2105946383}
   beatLine: {fileID: 1914950348}
