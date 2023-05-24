@@ -36,7 +36,6 @@ public class NoteSpawnerScript : MonoBehaviour
         /* This makes it so that after spawning, a note will reach the beat line
         within 4 beats of whatever bpm */
         speed = ((transform.position.x - beatLinePos.x) / (spb * 4));
-        Debug.Log(spb);
         thisNote = Instantiate(note, transform);
         thisNote.GetComponent<NoteScript>().speed = speed;
 
