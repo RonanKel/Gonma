@@ -200,7 +200,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 175874074}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.02, y: -2.98, z: -0.029197218}
+  m_LocalPosition: {x: 5.02, y: -3.5, z: -0.029197218}
   m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -586,7 +586,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audio: {fileID: 748165350}
-  songBPM: 90
+  bpm: 90
   onHook: 0
   noteSpawnerScript: {fileID: 2105946383}
   beatLine: {fileID: 1914950348}

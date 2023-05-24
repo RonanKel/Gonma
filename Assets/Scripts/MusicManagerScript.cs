@@ -5,12 +5,16 @@ using UnityEngine;
 public class MusicManagerScript : MonoBehaviour
 {
     [SerializeField] AudioSource audio;
-    [SerializeField] float songBPM;
+    [SerializeField] float bpm = 90;
     public bool onHook;
     [SerializeField] NoteSpawnerScript noteSpawnerScript;
-    private float secPerBeat;
+    private float bps;
+    private float spb;
     private float sSongPos;
     private float bSongPos;
+    private float noteSpeed;
+
+    private float timer = 0f;
 
     [SerializeField]
     GameObject beatLine;
@@ -23,7 +27,8 @@ public class MusicManagerScript : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        secPerBeat = songBPM / 60;
+        bps = bpm / 60f;
+        spb = 60f / bpm;
 
     }
 
@@ -32,9 +37,13 @@ public class MusicManagerScript : MonoBehaviour
     {
         if (audio.isPlaying) {
             sSongPos = (float) audio.time;
-            bSongPos = sSongPos * secPerBeat;
-        
-            //Debug.Log(bSongPos);
+            bSongPos = sSongPos * bps;
+
+            timer -= Time.deltaTime;
+            if (timer < 0) {
+                noteSpawnerScript.SpawnNote(beatLine.transform.position, spb);
+                timer = 5f;
+        }
         }
         
     }
@@ -42,6 +51,7 @@ public class MusicManagerScript : MonoBehaviour
     [ContextMenu("StartMusicGame")]
     public void StartMusicGame() {
         onHook = true;
+        timer = 0f;
 
         audio.Play();
 
@@ -55,6 +65,8 @@ public class MusicManagerScript : MonoBehaviour
     [ContextMenu("EndMusicGame")]
     public void EndMusicGame() {
         onHook = false;
+
+        audio.Stop();
 
         Debug.Log("U lose Bro");
 

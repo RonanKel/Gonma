@@ -5,7 +5,7 @@ using UnityEngine;
 public class NoteScript : MonoBehaviour
 {
 
-    [SerializeField] float speed;
+    public float speed;
     [SerializeField] LayerMask beatLine;
     [SerializeField] LayerMask failBox;
     private MusicManagerScript mmScript;

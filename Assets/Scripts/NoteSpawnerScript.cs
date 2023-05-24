@@ -8,6 +8,10 @@ public class NoteSpawnerScript : MonoBehaviour
     [SerializeField] GameObject note;
     [SerializeField] MusicManagerScript music;
     private float timer = 0f;
+
+    private float speed;
+    private GameObject thisNote;
+
     /*private bool poor;
     [SerializeField] Vector3 noteOrigin;
     [SerializeField] float poorLength;
@@ -25,15 +29,16 @@ public class NoteSpawnerScript : MonoBehaviour
     void Update()
     {
 
-        timer -= Time.deltaTime;
-        if (timer < 0) {
-            Instantiate(note, transform);
-            timer = 5f;
-        }
     }
 
-    void SpawnNote() {
-        Instantiate(note, transform);
-    }
+    public void SpawnNote(Vector3 beatLinePos, float spb) {
 
+        /* This makes it so that after spawning, a note will reach the beat line
+        within 4 beats of whatever bpm */
+        speed = ((transform.position.x - beatLinePos.x) / (spb * 4));
+        Debug.Log(spb);
+        thisNote = Instantiate(note, transform);
+        thisNote.GetComponent<NoteScript>().speed = speed;
+
+    }
 }
