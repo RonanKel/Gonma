@@ -24,7 +24,7 @@ public class MusicManagerScript : MonoBehaviour
     [SerializeField]
     GameObject notebkgd;
 
-    float[] beatMap = {1f,2f,3f,4f,5f,7f,8f,8.5f,9f,9.5f,10f,10.5f,11f,11.5f,12f,10000000f, 10000000f};
+    float[] beatMap = {0f,1f,2f,3f,4f,6f,8f,8.5f,9f,9.5f,10f,10.5f,11f,11.5f,12f, 10000000f, 10000000f};
     
 
     // Start is called before the first frame update
@@ -75,6 +75,8 @@ public class MusicManagerScript : MonoBehaviour
         onHook = false;
 
         beatCount = 0;
+
+        noteSpawnerScript.CleanUp();
 
         audio.Stop();
 

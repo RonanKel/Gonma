@@ -40,4 +40,14 @@ public class NoteSpawnerScript : MonoBehaviour
         thisNote.GetComponent<NoteScript>().speed = speed;
 
     }
+
+    public void CleanUp() {
+
+        /* This will get rid of all the notes that have been generated 
+        thus reseting the song */
+
+        for (int i = 0; i < transform.childCount; i++) {
+            Destroy(transform.GetChild(i).gameObject);
+        }
+    }
 }
