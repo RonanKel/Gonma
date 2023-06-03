@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 942864180018040205}
   - component: {fileID: -638469407937609453}
   m_Layer: 6
-  m_Name: Note
+  m_Name: Gold Note
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: 4adeaf2d2b1c7417e89f026626d8264f, type: 3}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.9056604, g: 0.8744346, b: 0.16660735, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -121,6 +121,7 @@ MonoBehaviour:
   failBox:
     serializedVersion: 2
     m_Bits: 128
+  inputKey: q
   poorNoteOrigin: {x: 0.75, y: 0, z: 0}
   poorLength: 1.5
   niceNoteOrigin: {x: 0.5, y: 0, z: 0}

@@ -7,7 +7,7 @@ public class NoteSpawnerScript : MonoBehaviour
 
     [SerializeField] GameObject note;
     [SerializeField] MusicManagerScript music;
-    private float timer = 0f;
+    //private float timer = 0f;
 
     private float speed;
     private GameObject thisNote;

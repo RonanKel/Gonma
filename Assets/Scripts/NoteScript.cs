@@ -8,6 +8,7 @@ public class NoteScript : MonoBehaviour
     public float speed;
     [SerializeField] LayerMask beatLine;
     [SerializeField] LayerMask failBox;
+    [SerializeField] string inputKey;
     private MusicManagerScript mmScript;
 
     [Header("Poor Condition")]
@@ -51,15 +52,15 @@ public class NoteScript : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if (Input.GetKeyDown("space") && perfect) {
+        if (Input.GetKeyDown(inputKey) && perfect) {
             Destroy(gameObject);
             Debug.Log("Perfect!");
         }
-        else if (Input.GetKeyDown("space") && nice) {
+        else if (Input.GetKeyDown(inputKey) && nice) {
             Destroy(gameObject);
             Debug.Log("Nice!");
         }
-        else if (Input.GetKeyDown("space") && poor) {
+        else if (Input.GetKeyDown(inputKey) && poor) {
             Destroy(gameObject);
             Debug.Log("Poor!");
         }

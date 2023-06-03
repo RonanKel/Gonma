@@ -5,7 +5,7 @@ using UnityEngine;
 public class CatControllerScript : MonoBehaviour
 {
     private bool casting = false;
-    private bool fishBite = false;
+    //private bool fishBite = false;
     private float fishTimer = 0f;
     private float catchWarningTime;
     //private bool caught = false;
@@ -96,7 +96,7 @@ public class CatControllerScript : MonoBehaviour
             // handles alert timer and deactivation
             if (fishTimer > catchWarningTime && !prealert) {
                 spin();
-                fishBite = true;
+                //fishBite = true;
                 prealert = true;
             }
 
@@ -119,7 +119,7 @@ public class CatControllerScript : MonoBehaviour
     }
 
     void recast() {
-        fishBite = false;
+        //fishBite = false;
         fishTimer = 0f;
         alertTimer = 0f;
         prealert = false;
@@ -130,7 +130,7 @@ public class CatControllerScript : MonoBehaviour
     {
         Debug.Log("Uncasting");
         fishTimer = 0f;
-        fishBite = false;
+        //fishBite = false;
         casting = false;
         hook.SetActive(false);
 
