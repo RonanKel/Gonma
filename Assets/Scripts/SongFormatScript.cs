@@ -134,7 +134,7 @@ public class TealNote : Note
 
 
 
-public class StreamSongBuilderScript : MonoBehaviour
+public class SongFormatScript : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
@@ -147,5 +147,4 @@ public class StreamSongBuilderScript : MonoBehaviour
     {
         
     }
-
 }

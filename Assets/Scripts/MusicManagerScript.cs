@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 
@@ -8,6 +9,7 @@ public class MusicManagerScript : MonoBehaviour
     [SerializeField] AudioSource music;
     [SerializeField] float bpm = 90;
     public bool onHook;
+    private MinHeap songHeap;
     
     private float bps;
     private float spb;
@@ -15,8 +17,7 @@ public class MusicManagerScript : MonoBehaviour
     private float sSongPos;
     private float bSongPos;
     private float noteSpeed;
-
-    //private float timer = 0f;
+    private SongFormatScript songFormatScript;
 
     // Things to hide and un-hide when starting or ending the rhythm game
     private GameObject goldBeatLine;
@@ -44,6 +45,8 @@ public class MusicManagerScript : MonoBehaviour
 
     void Awake()
     {
+        songFormatScript = GetComponent<SongFormatScript>();
+
         goldBeatLine = GameObject.Find("/---BeatLines---/GoldBeatLine");
         magentaBeatLine = GameObject.Find("/---BeatLines---/MagentaBeatLine");
         tealBeatLine = GameObject.Find("/---BeatLines---/TealBeatLine");
@@ -92,6 +95,7 @@ public class MusicManagerScript : MonoBehaviour
         music.Play();
 
         Debug.Log("Time To Jam!!!");
+        BuildNoteHeap();
 
         goldBeatLine.SetActive(true);
         magentaBeatLine.SetActive(true);
@@ -128,5 +132,21 @@ public class MusicManagerScript : MonoBehaviour
         tealNoteSpawner.SetActive(false);
 
         noteBackground.SetActive(false);
+    }
+
+    public void BuildNoteHeap() 
+    {
+        string filePath = "Assets/Levels/" + "TurtleLevel.txt";
+        string line;
+
+        songHeap = new MinHeap();
+
+        StreamReader reader = new StreamReader(filePath);
+
+        while ((line = reader.ReadLine()) != null) {
+            string[] data = line.Split();
+            Note note = new Note(float.Parse(data[0]), data[1]);
+            songHeap.Insert(note);
+        }
     }
 }

@@ -1,0 +1,5 @@
+0 gold
+1 teal
+2 magenta
+3 teal
+4 gold
