@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class MinHeap 
 {
-    private List<Note> heap;
+    public List<Note> heap;
 
     public MinHeap()
     {
@@ -22,10 +22,15 @@ public class MinHeap
         heap.Add(item);
     }
 
+    public Note Peek()
+    {
+        return heap[0];
+    }
+
     public Note ExtractMin()
     {
         if (heap.Count == 0) {
-            // End the Game?
+            Debug.Log("the song heap is empty!");
         }
 
         Note minItem = heap[0];
@@ -59,14 +64,13 @@ public class MinHeap
         int smallest = index;
         int leftChild = 2 * index + 1;
         int rightChild = 2 * index + 2;
-        int compareResult = heap[leftChild].Compare(heap[smallest]);
 
-        if (leftChild < heap.Count && compareResult < 0)
+        if (leftChild < heap.Count && heap[leftChild].Compare(heap[smallest]) < 0)
         {
             smallest = leftChild;
         }
 
-        if (rightChild < heap.Count && compareResult < 0)
+        if (rightChild < heap.Count && heap[rightChild].Compare(heap[smallest]) < 0)
         {
             smallest = rightChild;
         }

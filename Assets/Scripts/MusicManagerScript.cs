@@ -9,14 +9,15 @@ public class MusicManagerScript : MonoBehaviour
     [SerializeField] AudioSource music;
     [SerializeField] float bpm = 90;
     public bool onHook;
-    private MinHeap songHeap;
+    private MinHeap beatMap;
     
     private float bps;
     private float spb;
-    private int beatCount = 0;
-    private float sSongPos;
-    private float bSongPos;
+    //private int beatCount = 0;
+    private double sSongPos;
+    private double bSongPos;
     private float noteSpeed;
+    private Note curr;
     private SongFormatScript songFormatScript;
 
     // Things to hide and un-hide when starting or ending the rhythm game
@@ -34,7 +35,7 @@ public class MusicManagerScript : MonoBehaviour
 
     private GameObject noteBackground;
 
-    float[] beatMap = {0f,1f,2f,3f,4f,6f,8f,8.5f,9f,9.5f,10f,10.5f,11f,11.5f,12f, 10000000f, 10000000f};
+    //float[] beatMap = {0f,1f,2f,3f,4f,6f,8f,8.5f,9f,9.5f,10f,10.5f,11f,11.5f,12f, 10000000f, 10000000f};
     
 
     // Start is called before the first frame update
@@ -73,16 +74,28 @@ public class MusicManagerScript : MonoBehaviour
             sSongPos = (float) music.time;
             bSongPos = sSongPos * bps;
 
-            
-            if (bSongPos > beatMap[beatCount]) {
-                goldNoteSS.SpawnNote(goldBeatLine.transform.position, spb);
-                if (beatCount < 15) {
-                    beatCount++;
+            if (beatMap.Count > 0) {
+                if (bSongPos >= beatMap.heap[0].beatPos) {
+                    curr = beatMap.ExtractMin();
+                    switch(curr.color) {
+                        case "gold":
+                            goldNoteSS.SpawnNote(goldBeatLine.transform.position, spb);
+                            Debug.Log(bSongPos);
+                            break;
+                        case "teal":
+                            tealNoteSS.SpawnNote(tealBeatLine.transform.position, spb);
+                            break;
+                        case "magenta":
+                            magentaNoteSS.SpawnNote(magentaBeatLine.transform.position, spb);
+                            break;
+                        default:
+                            Debug.Log("Faulty Note. color: "+ curr.color+". position: "+curr.beatPos);
+                            break;
+                    }
                 }
             }
-            else if (beatCount == 15) {
-                Invoke("EndMusicGame", 4f);
-                beatCount++;
+            else {
+                Invoke("EndMusicGame", 6);
             }
         }
     }
@@ -113,7 +126,7 @@ public class MusicManagerScript : MonoBehaviour
     public void EndMusicGame() {
         onHook = false;
 
-        beatCount = 0;
+        //beatCount = 0;
 
         goldNoteSS.CleanUp();
         magentaNoteSS.CleanUp();
@@ -121,7 +134,7 @@ public class MusicManagerScript : MonoBehaviour
 
         music.Stop();
 
-        Debug.Log("It's Over");
+        //Debug.Log("It's Over");
 
         goldBeatLine.SetActive(false);
         magentaBeatLine.SetActive(false);
@@ -139,14 +152,14 @@ public class MusicManagerScript : MonoBehaviour
         string filePath = "Assets/Levels/" + "TurtleLevel.txt";
         string line;
 
-        songHeap = new MinHeap();
+        beatMap = new MinHeap();
 
         StreamReader reader = new StreamReader(filePath);
 
         while ((line = reader.ReadLine()) != null) {
             string[] data = line.Split();
             Note note = new Note(float.Parse(data[0]), data[1]);
-            songHeap.Insert(note);
+            beatMap.Insert(note);
         }
     }
 }
