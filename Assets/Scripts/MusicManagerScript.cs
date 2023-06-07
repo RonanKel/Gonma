@@ -9,6 +9,9 @@ public class MusicManagerScript : MonoBehaviour
     [SerializeField] AudioSource music;
     [SerializeField] float bpm = 90;
     [SerializeField] string level = "TurtleLevel";
+    [SerializeField] Sprite singingCat;
+    [SerializeField] Sprite standingCat;
+    [SerializeField] SpriteRenderer catSpriteRenderer; 
     public bool onHook;
     private MinHeap goldBeatMap;
     private MinHeap tealBeatMap;
@@ -129,6 +132,7 @@ public class MusicManagerScript : MonoBehaviour
     [ContextMenu("StartMusicGame")]
     public void StartMusicGame() {
         onHook = true;
+        catSpriteRenderer.sprite = singingCat;
         //timer = 0f;
 
         music.Play();
@@ -151,6 +155,7 @@ public class MusicManagerScript : MonoBehaviour
     [ContextMenu("EndMusicGame")]
     public void EndMusicGame() {
         onHook = false;
+        catSpriteRenderer.sprite = standingCat;
 
         //beatCount = 0;
 

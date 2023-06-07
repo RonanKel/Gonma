@@ -719,6 +719,9 @@ MonoBehaviour:
   music: {fileID: 748165350}
   bpm: 90
   level: TurtleLevel
+  singingCat: {fileID: 21300000, guid: bad444f8127c34293965852db327f776, type: 3}
+  standingCat: {fileID: 21300000, guid: 4a1821c4421b5494094d3b6d0f9f1eed, type: 3}
+  catSpriteRenderer: {fileID: 817575377}
   onHook: 1
 --- !u!4 &748165352
 Transform:
@@ -806,8 +809,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -5177388603050735206, guid: 8884154dfe85442a3a3578be807dbcdf, type: 3}
-  m_Color: {r: 0.1792453, g: 0.12767, b: 0.12767, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 4a1821c4421b5494094d3b6d0f9f1eed, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -825,8 +828,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 817575376}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.6655486, y: -2.4396565, z: 2.8494844}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -0.91, y: -1.88, z: 2.8494844}
+  m_LocalScale: {x: 0.5111888, y: 0.5111888, z: 0.5111888}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 931414211}
@@ -1992,7 +1995,7 @@ GameObject:
   - component: {fileID: 2001084118}
   - component: {fileID: 2001084119}
   m_Layer: 0
-  m_Name: Righ Tree
+  m_Name: Right Tree
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
