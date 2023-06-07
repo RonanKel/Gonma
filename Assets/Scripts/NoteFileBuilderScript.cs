@@ -52,4 +52,3 @@ public class NoteFileBuilderScript : MonoBehaviour
         Debug.Log("Notes added!");
     }
 }
-

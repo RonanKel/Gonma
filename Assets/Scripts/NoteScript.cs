@@ -46,7 +46,7 @@ public class NoteScript : MonoBehaviour
 
         lose = Physics2D.Raycast(transform.position + poorNoteOrigin, Vector2.left, poorLength, failBox);
 
-        transform.position -= new Vector3(speed * Time.deltaTime, 0, 0);
+        transform.Translate(Vector3.left * speed * Time.deltaTime);
 
         if (transform.position.x < -30) {
             Destroy(gameObject);
@@ -67,7 +67,7 @@ public class NoteScript : MonoBehaviour
 
         if (lose) {
             Destroy(gameObject);
-            mmScript.EndMusicGame();
+            Debug.Log("Miss!");
 
         }
         

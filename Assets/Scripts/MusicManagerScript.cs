@@ -8,8 +8,11 @@ public class MusicManagerScript : MonoBehaviour
 {
     [SerializeField] AudioSource music;
     [SerializeField] float bpm = 90;
+    [SerializeField] string level = "TurtleLevel";
     public bool onHook;
-    private MinHeap beatMap;
+    private MinHeap goldBeatMap;
+    private MinHeap tealBeatMap;
+    private MinHeap magentaBeatMap;
     
     private float bps;
     private float spb;
@@ -34,6 +37,7 @@ public class MusicManagerScript : MonoBehaviour
     private NoteSpawnerScript tealNoteSS;
 
     private GameObject noteBackground;
+    private GameObject fish;
 
     //float[] beatMap = {0f,1f,2f,3f,4f,6f,8f,8.5f,9f,9.5f,10f,10.5f,11f,11.5f,12f, 10000000f, 10000000f};
     
@@ -61,6 +65,7 @@ public class MusicManagerScript : MonoBehaviour
         tealNoteSS = tealNoteSpawner.GetComponent<NoteSpawnerScript>();
 
         noteBackground = GameObject.Find("---Notes Stuff---/Notes Backdrop");
+        fish = GameObject.Find("---Scene Management---/Fish");
 
         bps = bpm / 60f;
         spb = 60f / bpm;
@@ -74,7 +79,28 @@ public class MusicManagerScript : MonoBehaviour
             sSongPos = (float) music.time;
             bSongPos = sSongPos * bps;
 
-            if (beatMap.Count > 0) {
+            if (goldBeatMap.Count > 0 && bSongPos >= goldBeatMap.heap[0].beatPos) {
+                    while (goldBeatMap.Count > 0 && bSongPos >= goldBeatMap.heap[0].beatPos) {
+                        curr = goldBeatMap.ExtractMin();
+                        goldNoteSS.SpawnNote(goldBeatLine.transform.position, spb);
+                    }
+            }
+
+            if (tealBeatMap.Count > 0 && bSongPos >= tealBeatMap.heap[0].beatPos) {
+                    while (tealBeatMap.Count > 0 && bSongPos >= tealBeatMap.heap[0].beatPos) {
+                        curr = tealBeatMap.ExtractMin();
+                        tealNoteSS.SpawnNote(tealBeatLine.transform.position, spb);
+                    }
+            }
+
+            if (magentaBeatMap.Count > 0 && bSongPos >= magentaBeatMap.heap[0].beatPos) {
+                    while (magentaBeatMap.Count > 0 && bSongPos >= magentaBeatMap.heap[0].beatPos) {
+                        curr = magentaBeatMap.ExtractMin();
+                        magentaNoteSS.SpawnNote(magentaBeatLine.transform.position, spb);
+                    }
+            }
+
+            /*if (beatMap.Count > 0) {
                 if (bSongPos >= beatMap.heap[0].beatPos) {
                     curr = beatMap.ExtractMin();
                     switch(curr.color) {
@@ -88,15 +114,15 @@ public class MusicManagerScript : MonoBehaviour
                         case "magenta":
                             magentaNoteSS.SpawnNote(magentaBeatLine.transform.position, spb);
                             break;
-                        default:
-                            Debug.Log("Faulty Note. color: "+ curr.color+". position: "+curr.beatPos);
-                            break;
+                        
                     }
                 }
             }
             else {
                 Invoke("EndMusicGame", 6);
-            }
+            }*/
+        } else {
+            EndMusicGame();
         }
     }
 
@@ -119,7 +145,7 @@ public class MusicManagerScript : MonoBehaviour
         tealNoteSpawner.SetActive(true);
 
         noteBackground.SetActive(true);
-        
+        fish.SetActive(true);
     }
 
     [ContextMenu("EndMusicGame")]
@@ -145,21 +171,40 @@ public class MusicManagerScript : MonoBehaviour
         tealNoteSpawner.SetActive(false);
 
         noteBackground.SetActive(false);
+        fish.SetActive(false);
     }
 
     public void BuildNoteHeap() 
     {
-        string filePath = "Assets/Levels/" + "TurtleLevel.txt";
+        string filePath = "Assets/Levels/" + level + ".txt";
         string line;
 
-        beatMap = new MinHeap();
+        goldBeatMap = new MinHeap();
+        tealBeatMap = new MinHeap();
+        magentaBeatMap = new MinHeap();
 
         StreamReader reader = new StreamReader(filePath);
 
         while ((line = reader.ReadLine()) != null) {
             string[] data = line.Split();
-            Note note = new Note(float.Parse(data[0]), data[1]);
-            beatMap.Insert(note);
+
+            switch(data[1]) {
+                case "gold":
+                    GoldNote goldNote = new GoldNote(float.Parse(data[0]) - 1);
+                    goldBeatMap.Insert(goldNote);
+                    break;
+                case "teal":
+                    TealNote tealNote = new TealNote(float.Parse(data[0]) - 1);
+                    tealBeatMap.Insert(tealNote);
+                    break;
+                case "magenta":
+                    MagentaNote magentaNote = new MagentaNote(float.Parse(data[0]) - 1);
+                    magentaBeatMap.Insert(magentaNote);
+                    break;
+                default:
+                    Debug.Log("Faulty Note. color: "+ data[1] +". position: "+ data[0]);
+                    break;
+            }
         }
     }
 }
