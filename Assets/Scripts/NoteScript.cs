@@ -54,14 +54,17 @@ public class NoteScript : MonoBehaviour
 
         if (Input.GetKeyDown(inputKey) && perfect) {
             Destroy(gameObject);
+            mmScript.score += 3;
             Debug.Log("Perfect!");
         }
         else if (Input.GetKeyDown(inputKey) && nice) {
             Destroy(gameObject);
+            mmScript.score += 2;
             Debug.Log("Nice!");
         }
         else if (Input.GetKeyDown(inputKey) && poor) {
             Destroy(gameObject);
+            mmScript.score++;
             Debug.Log("Poor!");
         }
 
@@ -84,8 +87,6 @@ public class NoteScript : MonoBehaviour
 
         Gizmos.color = Color.green;
         Gizmos.DrawLine(transform.position + perfectNoteOrigin, ((transform.position + perfectNoteOrigin) + (Vector3.left * (perfectLength))));
-
-
 
     }
 

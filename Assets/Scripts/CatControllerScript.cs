@@ -45,7 +45,6 @@ public class CatControllerScript : MonoBehaviour
 
         if (!onHook) {
 
-        
             // casts
             if (Input.GetKeyDown(KeyCode.Space) && !casting)
             {

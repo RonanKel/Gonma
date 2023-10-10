@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using SongFormatScript;
 
 
 public class MusicManagerScript : MonoBehaviour
@@ -13,9 +14,13 @@ public class MusicManagerScript : MonoBehaviour
     [SerializeField] Sprite standingCat;
     [SerializeField] SpriteRenderer catSpriteRenderer; 
     public bool onHook;
+    public int score;
     private MinHeap goldBeatMap;
     private MinHeap tealBeatMap;
     private MinHeap magentaBeatMap;
+    private int noteCount;
+    private int winningScore;
+    private bool gameRan = false;
     
     private float bps;
     private float spb;
@@ -24,7 +29,6 @@ public class MusicManagerScript : MonoBehaviour
     private double bSongPos;
     private float noteSpeed;
     private Note curr;
-    private SongFormatScript songFormatScript;
 
     // Things to hide and un-hide when starting or ending the rhythm game
     private GameObject goldBeatLine;
@@ -48,13 +52,12 @@ public class MusicManagerScript : MonoBehaviour
     // Start is called before the first frame update
     void Start() 
     {
+        winningScore = -1; // to make it not give victory when starting the game
         EndMusicGame();
     }
 
     void Awake()
     {
-        songFormatScript = GetComponent<SongFormatScript>();
-
         goldBeatLine = GameObject.Find("/---BeatLines---/GoldBeatLine");
         magentaBeatLine = GameObject.Find("/---BeatLines---/MagentaBeatLine");
         tealBeatLine = GameObject.Find("/---BeatLines---/TealBeatLine");
@@ -86,6 +89,7 @@ public class MusicManagerScript : MonoBehaviour
                     while (goldBeatMap.Count > 0 && bSongPos >= goldBeatMap.heap[0].beatPos) {
                         curr = goldBeatMap.ExtractMin();
                         goldNoteSS.SpawnNote(goldBeatLine.transform.position, spb);
+                        
                     }
             }
 
@@ -103,29 +107,9 @@ public class MusicManagerScript : MonoBehaviour
                     }
             }
 
-            /*if (beatMap.Count > 0) {
-                if (bSongPos >= beatMap.heap[0].beatPos) {
-                    curr = beatMap.ExtractMin();
-                    switch(curr.color) {
-                        case "gold":
-                            goldNoteSS.SpawnNote(goldBeatLine.transform.position, spb);
-                            Debug.Log(bSongPos);
-                            break;
-                        case "teal":
-                            tealNoteSS.SpawnNote(tealBeatLine.transform.position, spb);
-                            break;
-                        case "magenta":
-                            magentaNoteSS.SpawnNote(magentaBeatLine.transform.position, spb);
-                            break;
-                        
-                    }
-                }
-            }
-            else {
-                Invoke("EndMusicGame", 6);
-            }*/
-        } else {
+        } else if (!music.isPlaying && gameRan) {
             EndMusicGame();
+            gameRan = false;
         }
     }
 
@@ -133,7 +117,8 @@ public class MusicManagerScript : MonoBehaviour
     public void StartMusicGame() {
         onHook = true;
         catSpriteRenderer.sprite = singingCat;
-        //timer = 0f;
+        score = 0;
+        gameRan = true;
 
         music.Play();
 
@@ -156,6 +141,17 @@ public class MusicManagerScript : MonoBehaviour
     public void EndMusicGame() {
         onHook = false;
         catSpriteRenderer.sprite = standingCat;
+        
+        if (winningScore < 0) {}
+        else if (score >= winningScore) {
+            Debug.Log("You Win!");
+            Debug.Log("score: "+ score);
+        }
+        else {
+            Debug.Log("You Lose...");
+            Debug.Log("score: "+ score);
+        }
+        
 
         //beatCount = 0;
 
@@ -183,6 +179,7 @@ public class MusicManagerScript : MonoBehaviour
     {
         string filePath = "Assets/Levels/" + level + ".txt";
         string line;
+        noteCount = 0;
 
         goldBeatMap = new MinHeap();
         tealBeatMap = new MinHeap();
@@ -191,6 +188,7 @@ public class MusicManagerScript : MonoBehaviour
         StreamReader reader = new StreamReader(filePath);
 
         while ((line = reader.ReadLine()) != null) {
+            noteCount++;
             string[] data = line.Split();
 
             switch(data[1]) {
@@ -207,9 +205,12 @@ public class MusicManagerScript : MonoBehaviour
                     magentaBeatMap.Insert(magentaNote);
                     break;
                 default:
-                    Debug.Log("Faulty Note. color: "+ data[1] +". position: "+ data[0]);
+                    Debug.Log("Faulty Note. color: " + data[1] + ". position: " + data[0]);
                     break;
             }
         }
+
+        winningScore = (int)(noteCount * 1.2);
+
     }
 }

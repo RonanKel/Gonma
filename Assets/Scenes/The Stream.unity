@@ -600,7 +600,6 @@ GameObject:
   - component: {fileID: 748165352}
   - component: {fileID: 748165351}
   - component: {fileID: 748165350}
-  - component: {fileID: 748165353}
   m_Layer: 0
   m_Name: RhythmRobot
   m_TagString: Untagged
@@ -723,6 +722,7 @@ MonoBehaviour:
   standingCat: {fileID: 21300000, guid: 4a1821c4421b5494094d3b6d0f9f1eed, type: 3}
   catSpriteRenderer: {fileID: 817575377}
   onHook: 1
+  score: 0
 --- !u!4 &748165352
 Transform:
   m_ObjectHideFlags: 0
@@ -738,18 +738,6 @@ Transform:
   m_Father: {fileID: 856740193}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &748165353
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 748165349}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16c85a24427034f05b9385ad093cac46, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &817575376
 GameObject:
   m_ObjectHideFlags: 0
@@ -957,6 +945,37 @@ Transform:
   - {fileID: 1549460856}
   m_Father: {fileID: 0}
   m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1063014382
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1063014383}
+  m_Layer: 0
+  m_Name: MinHeap
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1063014383
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1063014382}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1101064660
 GameObject:
