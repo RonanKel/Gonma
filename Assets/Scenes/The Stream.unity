@@ -717,7 +717,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   music: {fileID: 748165350}
   bpm: 90
-  level: TurtleLevel
+  levels:
+  - {fileID: 11400000, guid: 09f9bc91d9673476cbd279f094daee36, type: 2}
+  - {fileID: 11400000, guid: 20f67db2102da46e6909e7e66e9f27d3, type: 2}
   singingCat: {fileID: 21300000, guid: bad444f8127c34293965852db327f776, type: 3}
   standingCat: {fileID: 21300000, guid: 4a1821c4421b5494094d3b6d0f9f1eed, type: 3}
   catSpriteRenderer: {fileID: 817575377}
@@ -797,7 +799,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 4a1821c4421b5494094d3b6d0f9f1eed, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bad444f8127c34293965852db327f776, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1006,7 +1008,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2aa93c6373fa5437bb1b8d71dda80c9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  songName: TurtleLevel
+  songName: BarTest
   notes: []
 --- !u!4 &1101064662
 Transform:
@@ -1069,6 +1071,7 @@ GameObject:
   - component: {fileID: 1390368215}
   - component: {fileID: 1390368218}
   - component: {fileID: 1390368217}
+  - component: {fileID: 1390368219}
   m_Layer: 3
   m_Name: MagentaBeatLine
   m_TagString: Untagged
@@ -1190,6 +1193,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1390368219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1390368214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50950a124cf86491f9f1c2498a5d9999, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  noteMask:
+    serializedVersion: 2
+    m_Bits: 64
+  inputKey: q
 --- !u!1 &1395234092
 GameObject:
   m_ObjectHideFlags: 0
@@ -1286,6 +1305,7 @@ GameObject:
   - component: {fileID: 1474823381}
   - component: {fileID: 1474823384}
   - component: {fileID: 1474823383}
+  - component: {fileID: 1474823385}
   m_Layer: 3
   m_Name: TealBeatLine
   m_TagString: Untagged
@@ -1407,6 +1427,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1474823385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1474823380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50950a124cf86491f9f1c2498a5d9999, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  noteMask:
+    serializedVersion: 2
+    m_Bits: 64
+  inputKey: w
 --- !u!1 &1523110191
 GameObject:
   m_ObjectHideFlags: 0
@@ -1419,7 +1455,7 @@ GameObject:
   - component: {fileID: 1523110193}
   - component: {fileID: 1523110192}
   m_Layer: 7
-  m_Name: NoteFuckUpZone
+  m_Name: FailBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1771,6 +1807,7 @@ GameObject:
   - component: {fileID: 1914950349}
   - component: {fileID: 1914950352}
   - component: {fileID: 1914950351}
+  - component: {fileID: 1914950353}
   m_Layer: 3
   m_Name: GoldBeatLine
   m_TagString: Untagged
@@ -1892,6 +1929,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1914950353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1914950348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50950a124cf86491f9f1c2498a5d9999, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  noteMask:
+    serializedVersion: 2
+    m_Bits: 64
+  inputKey: e
 --- !u!1 &1928696747
 GameObject:
   m_ObjectHideFlags: 0

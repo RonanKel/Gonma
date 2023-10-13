@@ -9,7 +9,7 @@ public class MusicManagerScript : MonoBehaviour
 {
     [SerializeField] AudioSource music;
     [SerializeField] float bpm = 90;
-    [SerializeField] string level = "TurtleLevel";
+    [SerializeField] Level[] levels; 
     [SerializeField] Sprite singingCat;
     [SerializeField] Sprite standingCat;
     [SerializeField] SpriteRenderer catSpriteRenderer; 
@@ -21,6 +21,8 @@ public class MusicManagerScript : MonoBehaviour
     private int noteCount;
     private int winningScore;
     private bool gameRan = false;
+    private Level level;
+    private int lvlCount;
     
     private float bps;
     private float spb;
@@ -47,11 +49,31 @@ public class MusicManagerScript : MonoBehaviour
     private GameObject fish;
 
     //float[] beatMap = {0f,1f,2f,3f,4f,6f,8f,8.5f,9f,9.5f,10f,10.5f,11f,11.5f,12f, 10000000f, 10000000f};
+
+
+    void PickLevel()
+    {
+        if (lvlCount >= 0) {
+            int lvlNum = Random.Range(0, lvlCount - 1);
+            Debug.Log(lvlNum);
+            level = levels[lvlNum];
+            // replace the level with the last one
+            levels[lvlNum] = levels[lvlCount-1];
+            levels[lvlCount-1] = level;
+            lvlCount--;
+
+            music.clip = level.song;
+            fish.GetComponent<SpriteRenderer>().sprite = level.fishSprite;
+            
+        }
+    }
+
     
 
     // Start is called before the first frame update
     void Start() 
     {
+        lvlCount = levels.Length;
         winningScore = -1; // to make it not give victory when starting the game
         EndMusicGame();
     }
@@ -115,6 +137,7 @@ public class MusicManagerScript : MonoBehaviour
 
     [ContextMenu("StartMusicGame")]
     public void StartMusicGame() {
+        PickLevel();
         onHook = true;
         catSpriteRenderer.sprite = singingCat;
         score = 0;
@@ -177,7 +200,7 @@ public class MusicManagerScript : MonoBehaviour
 
     public void BuildNoteHeap() 
     {
-        string filePath = "Assets/Levels/" + level + ".txt";
+        string filePath = level.GetLevelData();
         string line;
         noteCount = 0;
 
@@ -211,6 +234,5 @@ public class MusicManagerScript : MonoBehaviour
         }
 
         winningScore = (int)(noteCount * 1.2);
-
     }
 }

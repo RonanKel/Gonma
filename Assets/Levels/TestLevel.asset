@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65af20d9f2f954ac0b1b96e7672e93d7, type: 3}
+  m_Name: TestLevel
+  m_EditorClassIdentifier: 
+  name: BarTest
+  fishSprite: {fileID: 21300000, guid: 4a1821c4421b5494094d3b6d0f9f1eed, type: 3}
+  song: {fileID: 8300000, guid: ba992296e652c439181b5a80619fad13, type: 3}
