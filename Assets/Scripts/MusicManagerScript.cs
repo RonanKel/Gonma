@@ -13,6 +13,8 @@ public class MusicManagerScript : MonoBehaviour
     [SerializeField] Sprite singingCat;
     [SerializeField] Sprite standingCat;
     [SerializeField] SpriteRenderer catSpriteRenderer; 
+
+    [SerializeField] float delay = 0;
     public bool onHook;
     public int score;
     private MinHeap goldBeatMap;
@@ -108,7 +110,7 @@ public class MusicManagerScript : MonoBehaviour
             bSongPos = sSongPos * bps;
 
             if (goldBeatMap.Count > 0 && bSongPos >= goldBeatMap.heap[0].beatPos) {
-                    while (goldBeatMap.Count > 0 && bSongPos >= goldBeatMap.heap[0].beatPos) {
+                    while (goldBeatMap.Count > 0 && bSongPos >= goldBeatMap.heap[0].beatPos + delay) {
                         curr = goldBeatMap.ExtractMin();
                         goldNoteSS.SpawnNote(goldBeatLine.transform.position, spb);
                         
@@ -116,14 +118,14 @@ public class MusicManagerScript : MonoBehaviour
             }
 
             if (tealBeatMap.Count > 0 && bSongPos >= tealBeatMap.heap[0].beatPos) {
-                    while (tealBeatMap.Count > 0 && bSongPos >= tealBeatMap.heap[0].beatPos) {
+                    while (tealBeatMap.Count > 0 && bSongPos >= tealBeatMap.heap[0].beatPos + delay) {
                         curr = tealBeatMap.ExtractMin();
                         tealNoteSS.SpawnNote(tealBeatLine.transform.position, spb);
                     }
             }
 
             if (magentaBeatMap.Count > 0 && bSongPos >= magentaBeatMap.heap[0].beatPos) {
-                    while (magentaBeatMap.Count > 0 && bSongPos >= magentaBeatMap.heap[0].beatPos) {
+                    while (magentaBeatMap.Count > 0 && bSongPos >= magentaBeatMap.heap[0].beatPos + delay) {
                         curr = magentaBeatMap.ExtractMin();
                         magentaNoteSS.SpawnNote(magentaBeatLine.transform.position, spb);
                     }
