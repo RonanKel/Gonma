@@ -7,6 +7,10 @@ public class BeatLineScript : MonoBehaviour
     [SerializeField] LayerMask noteMask;
     [SerializeField] string inputKey;
 
+    [SerializeField] float poorLength = 1.5f;
+    [SerializeField] float niceLength = 1f;
+    [SerializeField] float perfectLength = .4f;
+
     private RaycastHit2D poor;
     private RaycastHit2D nice;
     private RaycastHit2D perfect;
@@ -23,9 +27,9 @@ public class BeatLineScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        poor = Physics2D.Raycast(transform.position + new Vector3(-.75f, 0f, 0f), Vector2.right, 1.5f, noteMask);
-        nice = Physics2D.Raycast(transform.position + new Vector3(-.5f, 0f, 0f), Vector2.right, 1f, noteMask);
-        perfect = Physics2D.Raycast(transform.position + new Vector3(-.2f, 0f, 0f), Vector2.right, .4f, noteMask);
+        poor = Physics2D.Raycast(transform.position + new Vector3(-(poorLength/2), 0f, 0f), Vector2.right, poorLength, noteMask);
+        nice = Physics2D.Raycast(transform.position + new Vector3(-(niceLength/2), 0f, 0f), Vector2.right, niceLength, noteMask);
+        perfect = Physics2D.Raycast(transform.position + new Vector3(-(perfectLength/2), 0f, 0f), Vector2.right, perfectLength, noteMask);
 
         if (Input.GetKeyDown(inputKey) && perfect) {
             Destroy(perfect.transform.gameObject);
@@ -53,13 +57,13 @@ public class BeatLineScript : MonoBehaviour
     {
     
         Gizmos.color = Color.red;
-        Gizmos.DrawLine(transform.position + new Vector3(-.75f, 0f, 0f) , ((transform.position + new Vector3(-.75f, 0f, 0f)) + (Vector3.right * 1.5f)));
+        Gizmos.DrawLine(transform.position + new Vector3(-(poorLength/2), 0f, 0f) , ((transform.position + new Vector3(-(poorLength/2), 0f, 0f)) + (Vector3.right * poorLength)));
 
         Gizmos.color = Color.blue;
-        Gizmos.DrawLine(transform.position + new Vector3(-.5f, 0f, 0f), ((transform.position + new Vector3(-.5f, 0f, 0f) + (Vector3.right * 1f))));
+        Gizmos.DrawLine(transform.position + new Vector3(-(niceLength/2), 0f, 0f), ((transform.position + new Vector3(-(niceLength/2), 0f, 0f) + (Vector3.right * niceLength))));
 
         Gizmos.color = Color.green;
-        Gizmos.DrawLine(transform.position + new Vector3(-.2f, 0f, 0f), ((transform.position + new Vector3(-.2f, 0f, 0f)) + (Vector3.right * .4f)));
+        Gizmos.DrawLine(transform.position + new Vector3(-(perfectLength/2), 0f, 0f), ((transform.position + new Vector3(-(perfectLength/2), 0f, 0f)) + (Vector3.right * perfectLength)));
 
     }
 }

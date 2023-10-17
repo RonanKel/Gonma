@@ -1209,6 +1209,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   inputKey: q
+  poorLength: 1
+  niceLength: 0.5
+  perfectLength: 0.2
 --- !u!1 &1395234092
 GameObject:
   m_ObjectHideFlags: 0
@@ -1443,6 +1446,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   inputKey: w
+  poorLength: 1
+  niceLength: 0.5
+  perfectLength: 0.2
 --- !u!1 &1523110191
 GameObject:
   m_ObjectHideFlags: 0
@@ -1945,6 +1951,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   inputKey: e
+  poorLength: 1
+  niceLength: 0.5
+  perfectLength: 0.2
 --- !u!1 &1928696747
 GameObject:
   m_ObjectHideFlags: 0
