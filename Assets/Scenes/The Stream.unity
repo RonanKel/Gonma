@@ -723,7 +723,7 @@ MonoBehaviour:
   singingCat: {fileID: 21300000, guid: bad444f8127c34293965852db327f776, type: 3}
   standingCat: {fileID: 21300000, guid: 4a1821c4421b5494094d3b6d0f9f1eed, type: 3}
   catSpriteRenderer: {fileID: 817575377}
-  delay: 0.27
+  delay: 0.64
   onHook: 1
   score: 0
 --- !u!4 &748165352

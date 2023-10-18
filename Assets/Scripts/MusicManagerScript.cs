@@ -13,8 +13,9 @@ public class MusicManagerScript : MonoBehaviour
     [SerializeField] Sprite singingCat;
     [SerializeField] Sprite standingCat;
     [SerializeField] SpriteRenderer catSpriteRenderer; 
+    [SerializeField, Range(0f, 5f)] 
+    float delay = 0;
 
-    [SerializeField] float delay = 0;
     public bool onHook;
     public int score;
     private MinHeap goldBeatMap;
