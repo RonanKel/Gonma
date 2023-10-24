@@ -719,11 +719,10 @@ MonoBehaviour:
   bpm: 90
   levels:
   - {fileID: 11400000, guid: 09f9bc91d9673476cbd279f094daee36, type: 2}
-  - {fileID: 11400000, guid: 20f67db2102da46e6909e7e66e9f27d3, type: 2}
   singingCat: {fileID: 21300000, guid: bad444f8127c34293965852db327f776, type: 3}
   standingCat: {fileID: 21300000, guid: 4a1821c4421b5494094d3b6d0f9f1eed, type: 3}
   catSpriteRenderer: {fileID: 817575377}
-  delay: 0.64
+  delay: 0
   onHook: 1
   score: 0
 --- !u!4 &748165352
@@ -1009,7 +1008,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2aa93c6373fa5437bb1b8d71dda80c9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  songName: BarTest
+  songName: TurtleLevel
   notes: []
 --- !u!4 &1101064662
 Transform:
@@ -1449,7 +1448,7 @@ MonoBehaviour:
   inputKey: w
   poorLength: 1
   niceLength: 0.5
-  perfectLength: 0.2
+  perfectLength: 0.208
 --- !u!1 &1523110191
 GameObject:
   m_ObjectHideFlags: 0

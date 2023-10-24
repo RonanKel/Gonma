@@ -10,6 +10,7 @@ public class NoteProperties
 {
     public float beatPos;
     public string color;
+    public string type;
 }
 
 public class NoteFileBuilderScript : MonoBehaviour
@@ -37,12 +38,12 @@ public class NoteFileBuilderScript : MonoBehaviour
 
     public void AddNotesToFile() 
     {
-        string filePath = "Assets/Levels/" + songName + ".txt";
+        string filePath = "Assets/LevelData/" + songName + ".txt";
 
         StreamWriter writer = new StreamWriter(filePath, true);
 
         foreach (NoteProperties note in notes) {
-            writer.WriteLine(note.beatPos + " " + note.color);
+            writer.WriteLine(note.beatPos + " " + note.color + " " + note.type);
         }
 
         writer.Close();

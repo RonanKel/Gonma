@@ -115,6 +115,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 4
+  type: 
   failBox:
     serializedVersion: 2
     m_Bits: 128
+  amplitude: 2
+  frequency: 2.37

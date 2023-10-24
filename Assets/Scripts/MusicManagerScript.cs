@@ -113,7 +113,7 @@ public class MusicManagerScript : MonoBehaviour
             if (goldBeatMap.Count > 0 && bSongPos >= goldBeatMap.heap[0].beatPos) {
                     while (goldBeatMap.Count > 0 && bSongPos >= goldBeatMap.heap[0].beatPos + delay) {
                         curr = goldBeatMap.ExtractMin();
-                        goldNoteSS.SpawnNote(goldBeatLine.transform.position, spb);
+                        goldNoteSS.SpawnNote(goldBeatLine.transform.position, spb, curr.type);
                         
                     }
             }
@@ -121,14 +121,14 @@ public class MusicManagerScript : MonoBehaviour
             if (tealBeatMap.Count > 0 && bSongPos >= tealBeatMap.heap[0].beatPos) {
                     while (tealBeatMap.Count > 0 && bSongPos >= tealBeatMap.heap[0].beatPos + delay) {
                         curr = tealBeatMap.ExtractMin();
-                        tealNoteSS.SpawnNote(tealBeatLine.transform.position, spb);
+                        tealNoteSS.SpawnNote(tealBeatLine.transform.position, spb, curr.type);
                     }
             }
 
             if (magentaBeatMap.Count > 0 && bSongPos >= magentaBeatMap.heap[0].beatPos) {
                     while (magentaBeatMap.Count > 0 && bSongPos >= magentaBeatMap.heap[0].beatPos + delay) {
                         curr = magentaBeatMap.ExtractMin();
-                        magentaNoteSS.SpawnNote(magentaBeatLine.transform.position, spb);
+                        magentaNoteSS.SpawnNote(magentaBeatLine.transform.position, spb, curr.type);
                     }
             }
 
@@ -217,22 +217,43 @@ public class MusicManagerScript : MonoBehaviour
             noteCount++;
             string[] data = line.Split();
 
-            switch(data[1]) {
-                case "gold":
-                    GoldNote goldNote = new GoldNote(float.Parse(data[0]) - 1);
-                    goldBeatMap.Insert(goldNote);
-                    break;
-                case "teal":
-                    TealNote tealNote = new TealNote(float.Parse(data[0]) - 1);
-                    tealBeatMap.Insert(tealNote);
-                    break;
-                case "magenta":
-                    MagentaNote magentaNote = new MagentaNote(float.Parse(data[0]) - 1);
-                    magentaBeatMap.Insert(magentaNote);
-                    break;
-                default:
-                    Debug.Log("Faulty Note. color: " + data[1] + ". position: " + data[0]);
-                    break;
+            if (data.Length == 3) {
+                switch(data[1]) {
+                    case "gold":
+                        GoldNote goldNote = new GoldNote(float.Parse(data[0]) - 1, data[2]);
+                        goldBeatMap.Insert(goldNote);
+                        break;
+                    case "teal":
+                        TealNote tealNote = new TealNote(float.Parse(data[0]) - 1, data[2]);
+                        tealBeatMap.Insert(tealNote);
+                        break;
+                    case "magenta":
+                        MagentaNote magentaNote = new MagentaNote(float.Parse(data[0]) - 1, data[2]);
+                        magentaBeatMap.Insert(magentaNote);
+                        break;
+                    default:
+                        Debug.Log("Faulty Note. color: " + data[1] + ". position: " + data[0]);
+                        break;
+                }
+            }
+            else{
+                switch(data[1]) {
+                    case "gold":
+                        GoldNote goldNote = new GoldNote(float.Parse(data[0]) - 1, "");
+                        goldBeatMap.Insert(goldNote);
+                        break;
+                    case "teal":
+                        TealNote tealNote = new TealNote(float.Parse(data[0]) - 1, "");
+                        tealBeatMap.Insert(tealNote);
+                        break;
+                    case "magenta":
+                        MagentaNote magentaNote = new MagentaNote(float.Parse(data[0]) - 1, "");
+                        magentaBeatMap.Insert(magentaNote);
+                        break;
+                    default:
+                        Debug.Log("Faulty Note. color: " + data[1] + ". position: " + data[0]);
+                        break;
+                }
             }
         }
 

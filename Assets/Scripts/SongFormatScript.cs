@@ -90,9 +90,9 @@ namespace SongFormatScript
             heap[index2] = temp;
         }
 
-        public void AddNote(float beatPos, string noteColor) 
+        public void AddNote(float beatPos, string noteColor, string noteType) 
         {
-            Note note = new Note(beatPos, noteColor);
+            Note note = new Note(beatPos, noteColor, noteType);
             Insert(note);
         }
     }
@@ -101,11 +101,13 @@ namespace SongFormatScript
     {  
         public float beatPos;
         public string color; // 0 = gold, 1 = magenta, 2 = teal
+        public string type;
         
-        public Note(float thisBeatPos, string noteColor)
+        public Note(float thisBeatPos, string noteColor, string noteType)
         {
             beatPos = thisBeatPos;
             color = noteColor;
+            type = noteType;
         }
 
         public int Compare(Note other)
@@ -124,16 +126,16 @@ namespace SongFormatScript
 
     public class GoldNote : Note
     {
-        public GoldNote(float beatPos) : base(beatPos, "gold") {}
+        public GoldNote(float beatPos, string type) : base(beatPos, "gold", type) {}
     }
 
     public class MagentaNote : Note
     {
-        public MagentaNote(float beatPos) : base(beatPos, "magenta") {}
+        public MagentaNote(float beatPos, string type) : base(beatPos, "magenta", type) {}
     }
 
     public class TealNote : Note
     {
-        public TealNote(float beatPos) : base(beatPos, "teal") {}
+        public TealNote(float beatPos, string type) : base(beatPos, "teal", type) {}
     }
 }
