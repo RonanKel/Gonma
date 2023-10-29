@@ -15,9 +15,9 @@ public class MusicManagerScript : MonoBehaviour
     [SerializeField] SpriteRenderer catSpriteRenderer; 
     public bool onHook;
     public int score;
-    private MinHeap goldBeatMap;
-    private MinHeap tealBeatMap;
-    private MinHeap magentaBeatMap;
+    private MinHeap beatMap;
+    //private MinHeap tealBeatMap;
+    //private MinHeap magentaBeatMap;
     private int noteCount;
     private int winningScore;
     private bool gameRan = false;
@@ -32,15 +32,15 @@ public class MusicManagerScript : MonoBehaviour
 
     // Things to hide and un-hide when starting or ending the rhythm game
     private GameObject goldBeatLine;
-    private GameObject magentaBeatLine;
-    private GameObject tealBeatLine;
+    //private GameObject magentaBeatLine;
+    //private GameObject tealBeatLine;
     
-    private GameObject goldNoteSpawner;
-    private GameObject magentaNoteSpawner;
+    //private GameObject goldNoteSpawner;
+    //private GameObject magentaNoteSpawner;
     private GameObject tealNoteSpawner;
 
-    private NoteSpawnerScript goldNoteSS;
-    private NoteSpawnerScript magentaNoteSS;
+    //private NoteSpawnerScript goldNoteSS;
+    //private NoteSpawnerScript magentaNoteSS;
     private NoteSpawnerScript tealNoteSS;
 
     private GameObject noteBackground;
@@ -58,16 +58,16 @@ public class MusicManagerScript : MonoBehaviour
 
     void Awake()
     {
-        goldBeatLine = GameObject.Find("/---BeatLines---/GoldBeatLine");
-        magentaBeatLine = GameObject.Find("/---BeatLines---/MagentaBeatLine");
-        tealBeatLine = GameObject.Find("/---BeatLines---/TealBeatLine");
+        goldBeatLine = GameObject.Find("GoldBeatLine");
+        //magentaBeatLine = GameObject.Find("/---BeatLines---/MagentaBeatLine");
+        //tealBeatLine = GameObject.Find("/---BeatLines---/TealBeatLine");
 
-        goldNoteSpawner = GameObject.Find("/---NoteSpawners---/GoldNoteSpawner");
-        magentaNoteSpawner = GameObject.Find("/---NoteSpawners---/MagentaNoteSpawner");
-        tealNoteSpawner = GameObject.Find("/---NoteSpawners---/TealNoteSpawner");
+        //goldNoteSpawner = GameObject.Find("/---NoteSpawners---/GoldNoteSpawner");
+        //magentaNoteSpawner = GameObject.Find("/---NoteSpawners---/MagentaNoteSpawner");
+        tealNoteSpawner = GameObject.Find("TealNoteSpawner");
 
-        goldNoteSS = goldNoteSpawner.GetComponent<NoteSpawnerScript>();
-        magentaNoteSS = magentaNoteSpawner.GetComponent<NoteSpawnerScript>();
+        //goldNoteSS = goldNoteSpawner.GetComponent<NoteSpawnerScript>();
+        //magentaNoteSS = magentaNoteSpawner.GetComponent<NoteSpawnerScript>();
         tealNoteSS = tealNoteSpawner.GetComponent<NoteSpawnerScript>();
 
         noteBackground = GameObject.Find("---Notes Stuff---/Notes Backdrop");
@@ -85,25 +85,11 @@ public class MusicManagerScript : MonoBehaviour
             sSongPos = (float) music.time;
             bSongPos = sSongPos * bps;
 
-            if (goldBeatMap.Count > 0 && bSongPos >= goldBeatMap.heap[0].beatPos) {
-                    while (goldBeatMap.Count > 0 && bSongPos >= goldBeatMap.heap[0].beatPos) {
-                        curr = goldBeatMap.ExtractMin();
-                        goldNoteSS.SpawnNote(goldBeatLine.transform.position, spb);
+            if (beatMap.Count > 0 && bSongPos >= beatMap.heap[0].beatPos) {
+                    while (beatMap.Count > 0 && bSongPos >= beatMap.heap[0].beatPos) {
+                        curr = beatMap.ExtractMin();
+                        tealNoteSS.SpawnNote(goldBeatLine.transform.position, spb, curr.color, curr.xOffset, curr.key);
                         
-                    }
-            }
-
-            if (tealBeatMap.Count > 0 && bSongPos >= tealBeatMap.heap[0].beatPos) {
-                    while (tealBeatMap.Count > 0 && bSongPos >= tealBeatMap.heap[0].beatPos) {
-                        curr = tealBeatMap.ExtractMin();
-                        tealNoteSS.SpawnNote(tealBeatLine.transform.position, spb);
-                    }
-            }
-
-            if (magentaBeatMap.Count > 0 && bSongPos >= magentaBeatMap.heap[0].beatPos) {
-                    while (magentaBeatMap.Count > 0 && bSongPos >= magentaBeatMap.heap[0].beatPos) {
-                        curr = magentaBeatMap.ExtractMin();
-                        magentaNoteSS.SpawnNote(magentaBeatLine.transform.position, spb);
                     }
             }
 
@@ -126,11 +112,11 @@ public class MusicManagerScript : MonoBehaviour
         BuildNoteHeap();
 
         goldBeatLine.SetActive(true);
-        magentaBeatLine.SetActive(true);
-        tealBeatLine.SetActive(true);
+        //magentaBeatLine.SetActive(true);
+        //tealBeatLine.SetActive(true);
 
-        goldNoteSpawner.SetActive(true);
-        magentaNoteSpawner.SetActive(true);
+        //goldNoteSpawner.SetActive(true);
+        //magentaNoteSpawner.SetActive(true);
         tealNoteSpawner.SetActive(true);
 
         noteBackground.SetActive(true);
@@ -155,8 +141,8 @@ public class MusicManagerScript : MonoBehaviour
 
         //beatCount = 0;
 
-        goldNoteSS.CleanUp();
-        magentaNoteSS.CleanUp();
+        //goldNoteSS.CleanUp();
+        //magentaNoteSS.CleanUp();
         tealNoteSS.CleanUp();
 
         music.Stop();
@@ -164,11 +150,11 @@ public class MusicManagerScript : MonoBehaviour
         //Debug.Log("It's Over");
 
         goldBeatLine.SetActive(false);
-        magentaBeatLine.SetActive(false);
-        tealBeatLine.SetActive(false);
+        //magentaBeatLine.SetActive(false);
+        //tealBeatLine.SetActive(false);
 
-        goldNoteSpawner.SetActive(false);
-        magentaNoteSpawner.SetActive(false);
+        //goldNoteSpawner.SetActive(false);
+        //magentaNoteSpawner.SetActive(false);
         tealNoteSpawner.SetActive(false);
 
         noteBackground.SetActive(false);
@@ -181,9 +167,9 @@ public class MusicManagerScript : MonoBehaviour
         string line;
         noteCount = 0;
 
-        goldBeatMap = new MinHeap();
-        tealBeatMap = new MinHeap();
-        magentaBeatMap = new MinHeap();
+        beatMap = new MinHeap();
+        //tealBeatMap = new MinHeap();
+        //magentaBeatMap = new MinHeap();
 
         StreamReader reader = new StreamReader(filePath);
 
@@ -191,7 +177,11 @@ public class MusicManagerScript : MonoBehaviour
             noteCount++;
             string[] data = line.Split();
 
-            switch(data[1]) {
+            Note note = new Note(float.Parse(data[0]), float.Parse(data[1]), float.Parse(data[2]), float.Parse(data[3]), float.Parse(data[4]), data[5]);
+            beatMap.Insert(note);
+
+
+            /*switch(data[1]) {
                 case "gold":
                     GoldNote goldNote = new GoldNote(float.Parse(data[0]) - 1);
                     goldBeatMap.Insert(goldNote);
@@ -207,7 +197,7 @@ public class MusicManagerScript : MonoBehaviour
                 default:
                     Debug.Log("Faulty Note. color: " + data[1] + ". position: " + data[0]);
                     break;
-            }
+            }*/
         }
 
         winningScore = (int)(noteCount * 1.2);

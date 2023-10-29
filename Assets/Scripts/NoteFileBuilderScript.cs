@@ -9,7 +9,11 @@ using UnityEditor;
 public class NoteProperties 
 {
     public float beatPos;
-    public string color;
+    public float r;
+    public float g;
+    public float b;
+    public float xOffset;
+    public string key;
 }
 
 public class NoteFileBuilderScript : MonoBehaviour
@@ -42,7 +46,7 @@ public class NoteFileBuilderScript : MonoBehaviour
         StreamWriter writer = new StreamWriter(filePath, true);
 
         foreach (NoteProperties note in notes) {
-            writer.WriteLine(note.beatPos + " " + note.color);
+            writer.WriteLine(note.beatPos + " " + note.r + " " + note.g + " " + note.b + " " + note.xOffset + " " + note.key);
         }
 
         writer.Close();

@@ -1,16 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class NoteScript : MonoBehaviour
 {
 
     public float speed;
+    public Color color;
+    public float xOffset;
+    public string inputKey;
+
+    private TextMeshPro key;
+
+    private SpriteRenderer sprite;
+
     [SerializeField] LayerMask beatLine;
     [SerializeField] LayerMask failBox;
-    [SerializeField] string inputKey;
+    
     private MusicManagerScript mmScript;
-
     [Header("Poor Condition")]
     private bool poor;
     [SerializeField] Vector3 poorNoteOrigin;
@@ -31,8 +39,18 @@ public class NoteScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
+        key = transform.GetChild(0).GetComponent<TextMeshPro>();
+
+        key.text = inputKey;
+
+        sprite = transform.GetComponent<SpriteRenderer>();
+        sprite.color = color;
+
+        transform.position = new Vector3(transform.position.x, transform.position.y + xOffset, transform.position.z);
         mmScript = GameObject.Find("RhythmRobot").GetComponent<MusicManagerScript>();
+
+        Debug.Log(inputKey);
 
     }
 
@@ -88,7 +106,5 @@ public class NoteScript : MonoBehaviour
         Gizmos.color = Color.green;
         Gizmos.DrawLine(transform.position + perfectNoteOrigin, ((transform.position + perfectNoteOrigin) + (Vector3.left * (perfectLength))));
 
-    }
-
-    
+    }    
 }
