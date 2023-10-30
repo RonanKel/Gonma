@@ -49,9 +49,6 @@ public class NoteScript : MonoBehaviour
 
         transform.position = new Vector3(transform.position.x, transform.position.y + xOffset, transform.position.z);
         mmScript = GameObject.Find("RhythmRobot").GetComponent<MusicManagerScript>();
-
-        Debug.Log(inputKey);
-
     }
 
     // Update is called once per frame
