@@ -998,18 +998,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   songName: TurtleLevel
   notes:
-  - beatPos: 3
+  - beatPos: 0
     r: 0
-    g: 255
+    g: 0
     b: 0
-    xOffset: 1
-    key: e
-  - beatPos: 3
-    r: 0
-    g: 255
-    b: 0
-    xOffset: 1
-    key: e
+    xOffset: 0
+    key: 
 --- !u!4 &1101064662
 Transform:
   m_ObjectHideFlags: 0
