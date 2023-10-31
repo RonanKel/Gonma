@@ -1,0 +1,25 @@
+1 gold sine
+1 magenta sine
+1 teal sine
+3 gold sine
+4 gold sine
+4 magenta sine
+6 teal 
+7 teal sine
+8 magenta 
+8 teal 
+8 gold sine
+11 teal sine
+11 magenta sine
+13 teal sine
+13 gold 
+13 magenta 
+14 gold 
+15 teal sine
+16 magenta 
+17 gold 
+18 gold 
+19 magenta sine
+20 teal 
+21 gold 
+22 magenta 
