@@ -10,7 +10,6 @@ public class BeatLineScript : MonoBehaviour
     [SerializeField] float poorLength = 1.5f;
     [SerializeField] float niceLength = 1f;
     [SerializeField] float perfectLength = .4f;
-
     private RaycastHit2D poor;
     private RaycastHit2D nice;
     private RaycastHit2D perfect;
