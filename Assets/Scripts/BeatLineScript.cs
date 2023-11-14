@@ -5,24 +5,25 @@ using UnityEngine;
 public class BeatLineScript : MonoBehaviour
 {
     [SerializeField] float force;
+    private float verticalInput;
 
-    private Rigidbody2D rb;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-        rb = transform.GetComponent<Rigidbody2D>();
-        
-    }
 
     // Update is called once per frame
     void Update()
     {
+        verticalInput = Input.GetAxis("Vertical");
+    }
+    void FixedUpdate()
+    {
 
-        if (Input.GetMouseButton(0) || Input.GetAxis("Jump") > 0) { //0 is left 1 is right and 3 is middle
-            rb.AddForce(transform.up * force); //move with force up.
-        }
+       Vector2 movement = new Vector2(0, verticalInput);
+
+        movement *= force * .001f;
+        
+        // Add the movement vector to the current position
+        Vector3 newPosition = transform.position + new Vector3(movement.x, movement.y, 0);
+
+        transform.Translate(newPosition - transform.position);
         
     }
 }
