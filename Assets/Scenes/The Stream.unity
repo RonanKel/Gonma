@@ -1206,8 +1206,8 @@ MonoBehaviour:
   alert: {fileID: 0}
   hook: {fileID: 175874074}
   initDelayTime: 5
-  timingCircle: {fileID: 1549460853}
-  tCScript: {fileID: 1549460855}
+  timingCircle: {fileID: 870538885}
+  tCScript: {fileID: 870538887}
   fish_caught_event:
     m_PersistentCalls:
       m_Calls:
@@ -1680,6 +1680,7 @@ Transform:
   - {fileID: 817575378}
   - {fileID: 175874076}
   - {fileID: 870538886}
+  - {fileID: 1549460856}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &938649039
@@ -4720,4 +4721,3 @@ SceneRoots:
   - {fileID: 1101064662}
   - {fileID: 1063014383}
   - {fileID: 2090294997}
-  - {fileID: 1549460856}

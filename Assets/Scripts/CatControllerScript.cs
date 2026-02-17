@@ -17,8 +17,8 @@ public class CatControllerScript : MonoBehaviour
 
     [SerializeField]
     MusicManagerScript musicManager;
-    [SerializeField]
-    GameObject alert;
+    // [SerializeField]
+    // GameObject alert;
     [SerializeField]
     GameObject hook;
     //[SerializeField]
