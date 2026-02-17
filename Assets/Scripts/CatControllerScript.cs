@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class CatControllerScript : MonoBehaviour
 {
@@ -31,6 +32,10 @@ public class CatControllerScript : MonoBehaviour
     [SerializeField]
     Masher tCScript;
 
+    public UnityEvent fish_caught_event = new UnityEvent();
+    public UnityEvent cast_event = new UnityEvent();
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -41,6 +46,8 @@ public class CatControllerScript : MonoBehaviour
     void Update()
     {
 
+        
+
         onHook = musicManager.onHook;
 
         if (!onHook) {
@@ -49,6 +56,7 @@ public class CatControllerScript : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space) && !casting)
             {
                 cast();
+                
             }
             // if its clicked again it reels it in
             else if (Input.GetKeyDown(KeyCode.Space) && casting)
@@ -103,6 +111,7 @@ public class CatControllerScript : MonoBehaviour
     void cast()
     {
         Debug.Log("Casting");
+        cast_event.Invoke();
         casting = true;
         alertTimer = 0f;
         prealert = false;
