@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using TMPro;
 public class BeatLineScript : MonoBehaviour
 {
     [SerializeField] LayerMask noteMask;
     [SerializeField] string inputKey;
+
+    [SerializeField] TextMeshProUGUI statusText;
 
     [SerializeField] float poorLength = 1.5f;
     [SerializeField] float niceLength = 1f;
@@ -32,21 +34,29 @@ public class BeatLineScript : MonoBehaviour
         perfect = Physics2D.Raycast(transform.position + new Vector3(-(perfectLength/2), 0f, 0f), Vector2.right, perfectLength, noteMask);
 
         if (Input.GetKeyDown(inputKey) && perfect) {
+            statusText.color = Color.green;
+            statusText.text = "Perfect!";
             Destroy(perfect.transform.gameObject);
             mmScript.score += 3;
             Debug.Log("Perfect!");
         }
         else if (Input.GetKeyDown(inputKey) && nice) {
+            statusText.color = Color.yellow;
+            statusText.text = "Nice!";
             Destroy(nice.transform.gameObject);
             mmScript.score += 2;
             Debug.Log("Nice!");
         }
         else if (Input.GetKeyDown(inputKey) && poor) {
+            statusText.color = Color.orange;
+            statusText.text = "Poor!";
             Destroy(poor.transform.gameObject);
             mmScript.score++;
             Debug.Log("Poor!");
         }
         else if (Input.GetKeyDown(inputKey)){
+            statusText.color = Color.red;
+            statusText.text = "Miss!";
             mmScript.score -= 1;
             Debug.Log("Miss!");
         }

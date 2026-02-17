@@ -30,7 +30,7 @@ public class CatControllerScript : MonoBehaviour
     [SerializeField]
     GameObject timingCircle;
     [SerializeField]
-    BitingCircleScript tCScript;
+    Masher tCScript;
 
     public UnityEvent fish_caught_event = new UnityEvent();
     public UnityEvent cast_event = new UnityEvent();
@@ -61,37 +61,25 @@ public class CatControllerScript : MonoBehaviour
             // if its clicked again it reels it in
             else if (Input.GetKeyDown(KeyCode.Space) && casting)
             {
-                //if there's a fish, it's caught
-                if (tCScript.isTouching && alerted)
-                {
-                    Debug.Log("Caught!");
-                    fish_caught_event.Invoke();
-                    musicManager.StartMusicGame();
-                    // emit event
-                    onHook = true;
+                if (!alerted) {
                     uncast();
                 }
-                else if (!tCScript.isTouching && alerted)
-                {
-                    Debug.Log("It got away!");
-                    recast();
-                }
-                else if (!alerted)
-                {
-                    uncast();
-                }
-
-                unspin();
-                /*else if (fishTimer < catchWarningTime+reactionTime && fishBite) {
-                    Debug.Log("Caught!");
-                }*/
-
+                unQTE();
+                
             }
-            // if the timer goes to long the fish goes away
-            /*if (fishTimer > catchWarningTime+reactionTime) {
-                fishBite = false;
-                Debug.Log("U suc");
-            }*/
+
+            if (tCScript.done && alerted && tCScript.result){
+                Debug.Log("Caught!");
+                musicManager.StartMusicGame();
+                onHook = true;
+                unQTE();
+                uncast();
+            }
+            else if (tCScript.done && !tCScript.result && alerted){
+                Debug.Log("It got away!");
+                unQTE();
+                uncast();
+            }
             
 
             // casting timer
@@ -107,7 +95,7 @@ public class CatControllerScript : MonoBehaviour
 
             // handles alert timer and deactivation
             if (fishTimer > catchWarningTime && !prealert) {
-                spin();
+                QTE();
                 //fishBite = true;
                 prealert = true;
             }
@@ -149,12 +137,12 @@ public class CatControllerScript : MonoBehaviour
 
     }
 
-    void spin() {
+    void QTE() {
         timingCircle.SetActive(true);
         alerted = true;
     }
 
-    void unspin(){
+    void unQTE(){
         timingCircle.SetActive(false);
         alerted = false;
     }
