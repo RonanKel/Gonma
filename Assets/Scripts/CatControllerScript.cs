@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class CatControllerScript : MonoBehaviour
 {
@@ -31,6 +32,10 @@ public class CatControllerScript : MonoBehaviour
     [SerializeField]
     BitingCircleScript tCScript;
 
+    public UnityEvent fish_caught_event = new UnityEvent();
+    public UnityEvent cast_event = new UnityEvent();
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -41,6 +46,8 @@ public class CatControllerScript : MonoBehaviour
     void Update()
     {
 
+        
+
         onHook = musicManager.onHook;
 
         if (!onHook) {
@@ -49,30 +56,36 @@ public class CatControllerScript : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space) && !casting)
             {
                 cast();
+                
             }
             // if its clicked again it reels it in
             else if (Input.GetKeyDown(KeyCode.Space) && casting)
             {
                 //if there's a fish, it's caught
-                if (tCScript.isTouching && alerted) {
+                if (tCScript.isTouching && alerted)
+                {
                     Debug.Log("Caught!");
+                    fish_caught_event.Invoke();
                     musicManager.StartMusicGame();
+                    // emit event
                     onHook = true;
                     uncast();
                 }
-                else if (!tCScript.isTouching && alerted) {
+                else if (!tCScript.isTouching && alerted)
+                {
                     Debug.Log("It got away!");
                     recast();
                 }
-                else if (!alerted) {
+                else if (!alerted)
+                {
                     uncast();
                 }
-                
+
                 unspin();
                 /*else if (fishTimer < catchWarningTime+reactionTime && fishBite) {
                     Debug.Log("Caught!");
                 }*/
-                
+
             }
             // if the timer goes to long the fish goes away
             /*if (fishTimer > catchWarningTime+reactionTime) {
@@ -110,6 +123,7 @@ public class CatControllerScript : MonoBehaviour
     void cast()
     {
         Debug.Log("Casting");
+        cast_event.Invoke();
         casting = true;
         alertTimer = 0f;
         prealert = false;
