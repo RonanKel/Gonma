@@ -37,6 +37,8 @@ public class NoteSpawnerScript : MonoBehaviour
         within 4 beats of whatever bpm */
         speed = ((transform.position.x - beatLinePos.x) / (spb * 4));
         thisNote = Instantiate(note, transform);
+        Renderer renderer = thisNote.GetComponent<Renderer>();
+        renderer.sortingOrder = 2;
         thisNote.GetComponent<NoteScript>().speed = speed;
 
     }

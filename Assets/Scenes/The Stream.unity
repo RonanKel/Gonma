@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 95274600}
   - component: {fileID: 95274599}
   - component: {fileID: 95274598}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1203,7 +1203,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   musicManager: {fileID: 748165351}
-  alert: {fileID: 0}
   hook: {fileID: 175874074}
   initDelayTime: 5
   timingCircle: {fileID: 870538885}
@@ -1333,7 +1332,7 @@ GameObject:
   - component: {fileID: 857214004}
   - component: {fileID: 857214006}
   - component: {fileID: 857214005}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: YText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3005,7 +3004,7 @@ GameObject:
   - component: {fileID: 1620269330}
   - component: {fileID: 1620269332}
   - component: {fileID: 1620269331}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: CText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3674,7 +3673,7 @@ GameObject:
   - component: {fileID: 1765670583}
   - component: {fileID: 1765670585}
   - component: {fileID: 1765670584}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: MText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
