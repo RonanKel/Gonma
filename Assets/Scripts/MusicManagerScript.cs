@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using SongFormatScript;
-
-
+using TMPro;
 public class MusicManagerScript : MonoBehaviour
 {
     [SerializeField] AudioSource music;
@@ -48,6 +47,12 @@ public class MusicManagerScript : MonoBehaviour
     private NoteSpawnerScript magentaNoteSS;
     private NoteSpawnerScript tealNoteSS;
 
+
+    private GameObject goldNoteText;
+    private GameObject magentaNoteText;
+    private GameObject tealNoteText;
+    private GameObject comboText;
+
     private GameObject noteBackground;
     private GameObject fish;
 
@@ -90,6 +95,11 @@ public class MusicManagerScript : MonoBehaviour
         goldNoteSpawner = GameObject.Find("/---NoteSpawners---/GoldNoteSpawner");
         magentaNoteSpawner = GameObject.Find("/---NoteSpawners---/MagentaNoteSpawner");
         tealNoteSpawner = GameObject.Find("/---NoteSpawners---/TealNoteSpawner");
+
+        goldNoteText = GameObject.Find("/---FeedBackText---/YText");
+        magentaNoteText = GameObject.Find("/---FeedBackText---/MText");
+        tealNoteText = GameObject.Find("/---FeedBackText---/CText");
+        comboText = GameObject.Find("/---FeedBackText---/Combo");
 
         goldNoteSS = goldNoteSpawner.GetComponent<NoteSpawnerScript>();
         magentaNoteSS = magentaNoteSpawner.GetComponent<NoteSpawnerScript>();
@@ -159,6 +169,11 @@ public class MusicManagerScript : MonoBehaviour
         magentaNoteSpawner.SetActive(true);
         tealNoteSpawner.SetActive(true);
 
+        goldNoteText.SetActive(true);
+        magentaNoteText.SetActive(true);
+        tealNoteText.SetActive(true);
+        comboText.SetActive(true);
+
         noteBackground.SetActive(true);
         fish.SetActive(true);
     }
@@ -196,6 +211,12 @@ public class MusicManagerScript : MonoBehaviour
         goldNoteSpawner.SetActive(false);
         magentaNoteSpawner.SetActive(false);
         tealNoteSpawner.SetActive(false);
+
+        goldNoteText.SetActive(false);
+        magentaNoteText.SetActive(false);
+        tealNoteText.SetActive(false);
+        comboText.GetComponent<TextMeshProUGUI>().text = "Combo: 0";
+        comboText.SetActive(false);
 
         noteBackground.SetActive(false);
         fish.SetActive(false);

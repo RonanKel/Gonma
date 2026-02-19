@@ -37,36 +37,36 @@ public class BeatLineScript : MonoBehaviour
         perfect = Physics2D.Raycast(transform.position + new Vector3(-(perfectLength/2), 0f, 0f), Vector2.right, perfectLength, noteMask);
 
         if (Input.GetKeyDown(inputKey) && perfect) {
+            Destroy(perfect.transform.gameObject);
+            mmScript.score += 3;
             // FADE IN .1 GREEN, FADE OUT .5
             statusText.CrossFadeAlpha(1, .01f, false);
             statusText.color = new Color(0, 1, 0, 1f);
             statusText.CrossFadeAlpha(0, .5f, false);
             statusText.text = "Perfect!";
             comboFun(3);
-            Destroy(perfect.transform.gameObject);
-            mmScript.score += 3;
             // Debug.Log("Perfect!");
         }
         else if (Input.GetKeyDown(inputKey) && nice) {
+            Destroy(nice.transform.gameObject);
+            mmScript.score += 2;
             // FADE IN .1 YELLOW, FADE OUT .5
             statusText.CrossFadeAlpha(1, .01f, false);
             statusText.color = new Color(1, 1, 0, 1f);
             statusText.CrossFadeAlpha(0, .5f, false);
             statusText.text = "Nice!";
             comboFun(2);
-            Destroy(nice.transform.gameObject);
-            mmScript.score += 2;
             // Debug.Log("Nice!");
         }
         else if (Input.GetKeyDown(inputKey) && poor) {
+            Destroy(poor.transform.gameObject);
+            mmScript.score++;
             // FADE IN .1 ORANGE, FADE OUT .5
             statusText.CrossFadeAlpha(1, .01f, false);
             statusText.color = new Color(1, .64f, 0, 1f);
             statusText.CrossFadeAlpha(0, .5f, false);
             statusText.text = "Poor!";
             comboFun(1);
-            Destroy(poor.transform.gameObject);
-            mmScript.score++;
             // Debug.Log("Poor!");
         }
         else if (Input.GetKeyDown(inputKey)){
@@ -105,11 +105,21 @@ void comboFun(int score)
             string st2 ="";
             foreach(var match in matches){
                 st2 += match;
+                // Debug.Log(st2);
             }
-            i = int.Parse(st2);
-            // Debug.Log("" + i);
-            ++i;
-            comboText.text = "Combo: " + i;
+            if (st2 == "")
+            {
+                comboText.text = "Combo: 1";
+            }
+            else
+            {
+                i = int.Parse(st2);
+                // Debug.Log("" + i);
+                ++i;
+                comboText.text = "Combo: " + i;
+            }
+            StartCoroutine(TextPop());
+            
 
         }else{
             i = 0;
@@ -117,7 +127,17 @@ void comboFun(int score)
         }
     }  
 
+IEnumerator TextPop()
+    {
 
+        comboText.fontSize = comboText.fontSize + 5;
+        // Debug.Log("TEST");
+        for(int framecnt = 0; framecnt < 100; framecnt++) {
+                yield return new WaitForEndOfFrame();
+            }
+        comboText.fontSize = comboText.fontSize - 5;
+            
+        }
 
 }
 
