@@ -8,7 +8,14 @@ public class MenuControllerScript : MonoBehaviour
     public void StartGameButton() {
         SceneManager.LoadScene("The Stream");
     }
-    public void QuitGameButton() {
+
+    public void OpenOptionsButton()
+    {
+
+    }
+
+    public void QuitGameButton()
+    {
         Application.Quit();
     }
 }
