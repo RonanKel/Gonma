@@ -21,6 +21,8 @@ public class CatControllerScript : MonoBehaviour
     // GameObject alert;
     [SerializeField]
     GameObject hook;
+    [SerializeField]
+    GameObject pole;
     //[SerializeField]
     //float reactionTime = 2f;
     [SerializeField]
@@ -119,6 +121,7 @@ public class CatControllerScript : MonoBehaviour
         alertTimer = 0f;
         prealert = false;
         hook.SetActive(true);
+        pole.SetActive(true);
         calcFishTime();
     }
 
@@ -138,6 +141,7 @@ public class CatControllerScript : MonoBehaviour
         //fishBite = false;
         casting = false;
         hook.SetActive(false);
+        pole.SetActive(false);
 
     }
 
