@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-
+using TMPro;
 public class NoteScript : MonoBehaviour
 {
 
@@ -10,6 +10,8 @@ public class NoteScript : MonoBehaviour
     [SerializeField] LayerMask failBox;
     private MusicManagerScript mmScript;
     private SFXManager sfxScript;
+
+    private TextMeshProUGUI combo;
 
     private bool lose;
 
@@ -20,6 +22,7 @@ public class NoteScript : MonoBehaviour
     {
         mmScript = GameObject.Find("RhythmRobot").GetComponent<MusicManagerScript>();
         sfxScript = GameObject.Find("SFXManager").GetComponent<SFXManager>();
+        combo = GameObject.Find("Combo").GetComponent<TextMeshProUGUI>();
         fail.AddListener(sfxScript.GetComponent<SFXManager>().Play);
     }
 
@@ -34,6 +37,7 @@ public class NoteScript : MonoBehaviour
         {
             Destroy(gameObject);
             mmScript.score--;
+            combo.text = "Combo: 0";
             Debug.Log("Passed!");
             fail.Invoke("fail");
         }
