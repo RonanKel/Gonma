@@ -1,23 +1,34 @@
 // Jacks Dumb code for mashing
 
 using UnityEngine;
+using UnityEngine.Events;
 using System.Collections;
 using System.Collections.Generic;
+
 
 public class Masher : MonoBehaviour
 {
 [SerializeField] GameObject MasherCircle;
 [SerializeField] GameObject IndicatorCircle;
 [SerializeField] float StartingScale;
+[SerializeField] AudioSource ReelSFX;
 
 private Vector3 posChange, negChange;
 
 [HideInInspector] public bool done = false;
 [HideInInspector] public bool result;
+
+public UnityEvent hooked_event = new UnityEvent();
+public UnityEvent reel_event = new UnityEvent();
+public UnityEvent win_event = new UnityEvent();
+public UnityEvent lose_event = new UnityEvent();
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        hooked_event.Invoke();
+        ReelSFX.Play();
     }
 
     // FixedUpdate is called once per REAL frame
@@ -30,9 +41,12 @@ private Vector3 posChange, negChange;
     // Update is called once per frame
     void Update()
     {
-        if (!done){
+        if (!done)
+        {
             OnMouseOver(0.1f);
+            ReelSFX.pitch = 1 + IndicatorCircle.transform.localScale.x;
         }
+        
     }
 
 
@@ -63,11 +77,15 @@ private Vector3 posChange, negChange;
         if (!done){
             Decay(-0.005f);
             // I know this is dumb
-            if (IndicatorCircle.transform.localScale.x < Vector3.zero.x){
+            if (IndicatorCircle.transform.localScale.x < Vector3.zero.x)
+            {
                 lose();
+                ReelSFX.Stop();
             }
-            if (IndicatorCircle.transform.localScale.x > MasherCircle.transform.localScale.x){
+            if (IndicatorCircle.transform.localScale.x > MasherCircle.transform.localScale.x)
+            {
                 win();
+                ReelSFX.Stop();
             }
             }
 
@@ -75,21 +93,28 @@ private Vector3 posChange, negChange;
 
 
 
-    void win() {
+    void win()
+    {
         done = true;
         result = true;
+        win_event.Invoke();
     }
 
-    void lose() {
+    void lose()
+    {
         done = true;
         result = false;
+        lose_event.Invoke();
     }
 
 
     void OnMouseOver(float gain){
-        if(Input.GetMouseButtonDown(0)){
+        if (Input.GetMouseButtonDown(0))
+        {
             posChange = new Vector3(gain, gain, gain);
             IndicatorCircle.transform.localScale += posChange;
+            reel_event.Invoke();
+            
         }
         
    }

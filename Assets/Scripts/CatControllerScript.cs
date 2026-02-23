@@ -34,6 +34,7 @@ public class CatControllerScript : MonoBehaviour
 
     public UnityEvent fish_caught_event = new UnityEvent();
     public UnityEvent cast_event = new UnityEvent();
+    public UnityEvent uncast_event = new UnityEvent();
 
 
     // Start is called before the first frame update
@@ -61,10 +62,12 @@ public class CatControllerScript : MonoBehaviour
             // if its clicked again it reels it in
             else if (Input.GetKeyDown(KeyCode.Space) && casting)
             {
-                if (!alerted) {
+                if (!alerted)
+                {
                     uncast();
+                    unQTE();
                 }
-                unQTE();
+                
                 
             }
 
@@ -130,6 +133,7 @@ public class CatControllerScript : MonoBehaviour
     void uncast()
     {
         Debug.Log("Uncasting");
+        uncast_event.Invoke();
         fishTimer = 0f;
         //fishBite = false;
         casting = false;
