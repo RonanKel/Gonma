@@ -4,6 +4,8 @@ using System.IO;
 using UnityEngine;
 using SongFormatScript;
 using TMPro;
+using UnityEngine.Events;
+
 public class MusicManagerScript : MonoBehaviour
 {
     [SerializeField] AudioSource music;
@@ -57,6 +59,9 @@ public class MusicManagerScript : MonoBehaviour
     private GameObject fish;
 
     //float[] beatMap = {0f,1f,2f,3f,4f,6f,8f,8.5f,9f,9.5f,10f,10.5f,11f,11.5f,12f, 10000000f, 10000000f};
+
+    public UnityEvent win_song_event = new UnityEvent();
+    public UnityEvent lose_song_event = new UnityEvent();
 
 
     void PickLevel()
@@ -186,10 +191,12 @@ public class MusicManagerScript : MonoBehaviour
         if (winningScore < 0) {}
         else if (score >= winningScore) {
             Debug.Log("You Win!");
+            win_song_event.Invoke();
             Debug.Log("score: "+ score);
         }
         else {
             Debug.Log("You Lose...");
+            lose_song_event.Invoke();
             Debug.Log("score: "+ score);
         }
         
