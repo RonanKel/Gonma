@@ -40,10 +40,11 @@ public class BeatLineScript : MonoBehaviour
             Destroy(perfect.transform.gameObject);
             mmScript.score += 3;
             // FADE IN .1 GREEN, FADE OUT .5
-            statusText.CrossFadeAlpha(1, .01f, false);
-            statusText.color = new Color(0, 1, 0, 1f);
-            statusText.CrossFadeAlpha(0, .5f, false);
             statusText.text = "Perfect!";
+            statusText.color = new Color(0, 1, 0, 1f);
+
+            statusText.canvasRenderer.SetAlpha(1f);
+            statusText.CrossFadeAlpha(0f, .5f, false);
             comboFun(3);
             // Debug.Log("Perfect!");
         }
@@ -51,10 +52,11 @@ public class BeatLineScript : MonoBehaviour
             Destroy(nice.transform.gameObject);
             mmScript.score += 2;
             // FADE IN .1 YELLOW, FADE OUT .5
-            statusText.CrossFadeAlpha(1, .01f, false);
-            statusText.color = new Color(1, 1, 0, 1f);
-            statusText.CrossFadeAlpha(0, .5f, false);
             statusText.text = "Nice!";
+            statusText.color = new Color(1, 1, 0, 1f);
+
+            statusText.canvasRenderer.SetAlpha(1f);
+            statusText.CrossFadeAlpha(0f, .5f, false);
             comboFun(2);
             // Debug.Log("Nice!");
         }
@@ -62,19 +64,21 @@ public class BeatLineScript : MonoBehaviour
             Destroy(poor.transform.gameObject);
             mmScript.score++;
             // FADE IN .1 ORANGE, FADE OUT .5
-            statusText.CrossFadeAlpha(1, .01f, false);
-            statusText.color = new Color(1, .64f, 0, 1f);
-            statusText.CrossFadeAlpha(0, .5f, false);
             statusText.text = "Poor!";
+            statusText.color = new Color(1f, 0.64f, 0f, 1f);
+
+            statusText.canvasRenderer.SetAlpha(1f);
+            statusText.CrossFadeAlpha(0f, .5f, false);
             comboFun(1);
             // Debug.Log("Poor!");
         }
         else if (Input.GetKeyDown(inputKey)){
             // FADE IN .1 RED, FADE OUT .5
-            statusText.CrossFadeAlpha(1, .01f, false);
-            statusText.color = new Color(1, 0, 0);
-            statusText.CrossFadeAlpha(0, .5f, false);
             statusText.text = "Miss!";
+            statusText.color = new Color(1, 0, 0, 1f);
+
+            statusText.canvasRenderer.SetAlpha(1f);
+            statusText.CrossFadeAlpha(0f, .5f, false);
             comboFun(0);
             mmScript.score -= 1;
             // Debug.Log("Miss!");

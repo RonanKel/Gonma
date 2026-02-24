@@ -12,7 +12,7 @@ public class Level : ScriptableObject
     public AudioClip song;
 
     public string GetLevelData () {
-        return "Assets/LevelData/" + name + ".txt";
+        return "LevelData/" + name + ".txt";
     }
 
 }

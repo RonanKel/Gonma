@@ -161,10 +161,11 @@ public class MusicManagerScript : MonoBehaviour
         score = 0;
         gameRan = true;
 
-        music.Play();
+        
 
         Debug.Log("Time To Jam!!!");
         BuildNoteHeap();
+        music.Play();
 
         goldBeatLine.SetActive(true);
         magentaBeatLine.SetActive(true);
@@ -231,7 +232,7 @@ public class MusicManagerScript : MonoBehaviour
 
     public void BuildNoteHeap() 
     {
-        string filePath = level.GetLevelData();
+        string filePath = Path.Combine(Application.streamingAssetsPath, level.GetLevelData());
         string line;
         noteCount = 0;
 
@@ -240,6 +241,7 @@ public class MusicManagerScript : MonoBehaviour
         magentaBeatMap = new MinHeap();
 
         StreamReader reader = new StreamReader(filePath);
+        Debug.Log(filePath);
 
         while ((line = reader.ReadLine()) != null) {
             noteCount++;
