@@ -37,4 +37,23 @@ public class SFXManager : MonoBehaviour
     {
         sfx_dictionary[sfx_name].Stop();
     }
+
+    public void PausePlaying()
+    {
+        for (int i = 0; i < sfx_name_list.Count; i++)
+        {
+            if (sfx_dictionary[sfx_name_list[i]].isPlaying == true)
+            {
+                sfx_dictionary[sfx_name_list[i]].Pause();
+            }
+        }
+    }
+
+    public void PlayPaused()
+    {
+        for (int i = 0; i < sfx_name_list.Count; i++)
+        {
+            sfx_dictionary[sfx_name_list[i]].UnPause();
+        }
+    }
 }

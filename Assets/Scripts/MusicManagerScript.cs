@@ -10,11 +10,11 @@ public class MusicManagerScript : MonoBehaviour
 {
     [SerializeField] AudioSource music;
     [SerializeField] float bpm = 90;
-    [SerializeField] Level[] levels; 
+    [SerializeField] Level[] levels;
     [SerializeField] Sprite singingCat;
     [SerializeField] Sprite standingCat;
-    [SerializeField] SpriteRenderer catSpriteRenderer; 
-    [SerializeField, Range(0f, 5f)] 
+    [SerializeField] SpriteRenderer catSpriteRenderer;
+    [SerializeField, Range(0f, 5f)]
     float delay = 0;
 
     public bool onHook;
@@ -27,7 +27,10 @@ public class MusicManagerScript : MonoBehaviour
     private bool gameRan = false;
     private Level level;
     private int lvlCount;
-    
+
+    private bool paused = false;
+    double paused_time;
+
     private float bps;
     private float spb;
     //private int beatCount = 0;
@@ -40,7 +43,7 @@ public class MusicManagerScript : MonoBehaviour
     private GameObject goldBeatLine;
     private GameObject magentaBeatLine;
     private GameObject tealBeatLine;
-    
+
     private GameObject goldNoteSpawner;
     private GameObject magentaNoteSpawner;
     private GameObject tealNoteSpawner;
@@ -66,25 +69,26 @@ public class MusicManagerScript : MonoBehaviour
 
     void PickLevel()
     {
-        if (lvlCount >= 0) {
+        if (lvlCount >= 0)
+        {
             int lvlNum = Random.Range(0, lvlCount - 1);
             Debug.Log(lvlNum);
             level = levels[lvlNum];
             // replace the level with the last one
-            levels[lvlNum] = levels[lvlCount-1];
-            levels[lvlCount-1] = level;
+            levels[lvlNum] = levels[lvlCount - 1];
+            levels[lvlCount - 1] = level;
             lvlCount--;
 
             music.clip = level.song;
             fish.GetComponent<SpriteRenderer>().sprite = level.fishSprite;
-            
+
         }
     }
 
-    
+
 
     // Start is called before the first frame update
-    void Start() 
+    void Start()
     {
         lvlCount = levels.Length;
         winningScore = -1; // to make it not give victory when starting the game
@@ -115,53 +119,63 @@ public class MusicManagerScript : MonoBehaviour
 
         bps = bpm / 60f;
         spb = 60f / bpm;
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (music.isPlaying) {
-            sSongPos = (float) music.time;
+        if (music.isPlaying)
+        {
+            sSongPos = (float)music.time;
             bSongPos = sSongPos * bps;
 
-            if (goldBeatMap.Count > 0 && bSongPos >= goldBeatMap.heap[0].beatPos) {
-                    while (goldBeatMap.Count > 0 && bSongPos >= goldBeatMap.heap[0].beatPos + delay) {
-                        curr = goldBeatMap.ExtractMin();
-                        goldNoteSS.SpawnNote(goldBeatLine.transform.position, spb);
-                        
-                    }
+            if (goldBeatMap.Count > 0 && bSongPos >= goldBeatMap.heap[0].beatPos)
+            {
+                while (goldBeatMap.Count > 0 && bSongPos >= goldBeatMap.heap[0].beatPos + delay)
+                {
+                    curr = goldBeatMap.ExtractMin();
+                    goldNoteSS.SpawnNote(goldBeatLine.transform.position, spb);
+
+                }
             }
 
-            if (tealBeatMap.Count > 0 && bSongPos >= tealBeatMap.heap[0].beatPos) {
-                    while (tealBeatMap.Count > 0 && bSongPos >= tealBeatMap.heap[0].beatPos + delay) {
-                        curr = tealBeatMap.ExtractMin();
-                        tealNoteSS.SpawnNote(tealBeatLine.transform.position, spb);
-                    }
+            if (tealBeatMap.Count > 0 && bSongPos >= tealBeatMap.heap[0].beatPos)
+            {
+                while (tealBeatMap.Count > 0 && bSongPos >= tealBeatMap.heap[0].beatPos + delay)
+                {
+                    curr = tealBeatMap.ExtractMin();
+                    tealNoteSS.SpawnNote(tealBeatLine.transform.position, spb);
+                }
             }
 
-            if (magentaBeatMap.Count > 0 && bSongPos >= magentaBeatMap.heap[0].beatPos) {
-                    while (magentaBeatMap.Count > 0 && bSongPos >= magentaBeatMap.heap[0].beatPos + delay) {
-                        curr = magentaBeatMap.ExtractMin();
-                        magentaNoteSS.SpawnNote(magentaBeatLine.transform.position, spb);
-                    }
+            if (magentaBeatMap.Count > 0 && bSongPos >= magentaBeatMap.heap[0].beatPos)
+            {
+                while (magentaBeatMap.Count > 0 && bSongPos >= magentaBeatMap.heap[0].beatPos + delay)
+                {
+                    curr = magentaBeatMap.ExtractMin();
+                    magentaNoteSS.SpawnNote(magentaBeatLine.transform.position, spb);
+                }
             }
 
-        } else if (!music.isPlaying && gameRan) {
+        }
+        else if (!music.isPlaying && gameRan && !paused)
+        {
             EndMusicGame();
             gameRan = false;
         }
     }
 
     [ContextMenu("StartMusicGame")]
-    public void StartMusicGame() {
+    public void StartMusicGame()
+    {
         PickLevel();
         onHook = true;
         catSpriteRenderer.sprite = singingCat;
         score = 0;
         gameRan = true;
 
-        
+
 
         Debug.Log("Time To Jam!!!");
         BuildNoteHeap();
@@ -185,22 +199,25 @@ public class MusicManagerScript : MonoBehaviour
     }
 
     [ContextMenu("EndMusicGame")]
-    public void EndMusicGame() {
+    public void EndMusicGame()
+    {
         onHook = false;
         catSpriteRenderer.sprite = standingCat;
-        
-        if (winningScore < 0) {}
-        else if (score >= winningScore) {
+
+        if (winningScore < 0) { }
+        else if (score >= winningScore)
+        {
             Debug.Log("You Win!");
             win_song_event.Invoke();
-            Debug.Log("score: "+ score);
+            Debug.Log("score: " + score);
         }
-        else {
+        else
+        {
             Debug.Log("You Lose...");
             lose_song_event.Invoke();
-            Debug.Log("score: "+ score);
+            Debug.Log("score: " + score);
         }
-        
+
 
         //beatCount = 0;
 
@@ -230,7 +247,7 @@ public class MusicManagerScript : MonoBehaviour
         fish.SetActive(false);
     }
 
-    public void BuildNoteHeap() 
+    public void BuildNoteHeap()
     {
         string filePath = Path.Combine(Application.streamingAssetsPath, level.GetLevelData());
         string line;
@@ -243,11 +260,13 @@ public class MusicManagerScript : MonoBehaviour
         StreamReader reader = new StreamReader(filePath);
         Debug.Log(filePath);
 
-        while ((line = reader.ReadLine()) != null) {
+        while ((line = reader.ReadLine()) != null)
+        {
             noteCount++;
             string[] data = line.Split();
 
-            switch(data[1]) {
+            switch (data[1])
+            {
                 case "gold":
                     GoldNote goldNote = new GoldNote(float.Parse(data[0]) - 1);
                     goldBeatMap.Insert(goldNote);
@@ -267,5 +286,22 @@ public class MusicManagerScript : MonoBehaviour
         }
 
         winningScore = (int)(noteCount * 1.2);
+    }
+
+    public void Pause()
+    {
+        paused = true;
+        paused_time = music.time;
+        music.Pause();
+
+
+
+    }
+
+    public void UnPause()
+    {
+        music.time = (float)paused_time;
+        music.UnPause();
+        paused = false;
     }
 }
