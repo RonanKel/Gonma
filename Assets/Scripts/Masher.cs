@@ -109,7 +109,7 @@ public UnityEvent lose_event = new UnityEvent();
 
 
     void OnMouseOver(float gain){
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space))
         {
             posChange = new Vector3(gain, gain, gain);
             IndicatorCircle.transform.localScale += posChange;
