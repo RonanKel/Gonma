@@ -1138,8 +1138,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf04ea55ca0d671409f1d6ef21b51905, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  winText: {fileID: 0}
-  loseText: {fileID: 0}
+  winText: {fileID: 1187774487}
+  loseText: {fileID: 2010350881}
   scoreText: {fileID: 154024348}
   highScoreText: {fileID: 341276113}
   longestStreakText: {fileID: 1253912904}
