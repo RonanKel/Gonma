@@ -37,6 +37,7 @@ public class NoteScript : MonoBehaviour
         {
             Destroy(gameObject);
             mmScript.score--;
+            mmScript.miss_count++;
             combo.text = "Combo: 0";
             Debug.Log("Passed!");
             fail.Invoke("fail");

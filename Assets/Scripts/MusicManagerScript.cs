@@ -19,6 +19,8 @@ public class MusicManagerScript : MonoBehaviour
 
     public bool onHook;
     public int score;
+    public int miss_count;
+    
     private MinHeap goldBeatMap;
     private MinHeap tealBeatMap;
     private MinHeap magentaBeatMap;
@@ -51,6 +53,8 @@ public class MusicManagerScript : MonoBehaviour
     private NoteSpawnerScript goldNoteSS;
     private NoteSpawnerScript magentaNoteSS;
     private NoteSpawnerScript tealNoteSS;
+
+    [SerializeField] private VictoryCardManagerScript vcScript;
 
 
     private GameObject goldNoteText;
@@ -176,6 +180,7 @@ public class MusicManagerScript : MonoBehaviour
         onHook = true;
         catSpriteRenderer.sprite = singingCat;
         score = 0;
+        miss_count = 0;
         gameRan = true;
 
 
@@ -212,6 +217,7 @@ public class MusicManagerScript : MonoBehaviour
         onHook = true;
         catSpriteRenderer.sprite = singingCat;
         score = 0;
+        miss_count = 0;
         gameRan = true;
 
 
@@ -256,6 +262,8 @@ public class MusicManagerScript : MonoBehaviour
             lose_song_event.Invoke();
             Debug.Log("score: " + score);
         }
+
+        vcScript.SendData(0, 0, 0f, miss_count);
 
 
         //beatCount = 0;

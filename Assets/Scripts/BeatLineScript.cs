@@ -81,6 +81,7 @@ public class BeatLineScript : MonoBehaviour
             statusText.CrossFadeAlpha(0f, .5f, false);
             comboFun(0);
             mmScript.score -= 1;
+            mmScript.miss_count++;
             // Debug.Log("Miss!");
         }
         

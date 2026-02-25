@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Events;
+using TMPro;
 
 
 
@@ -92,6 +93,11 @@ public class MenuControllerScript : MonoBehaviour
         if (victoryCard != null) {
             victoryCard.SetActive(false);
         }
+    }
+
+    public void ChangeUIIntToText(TextMeshProUGUI textObject, int num)
+    {
+        textObject.text = num.ToString();
     }
 
     public void OpenOptionsButton()
