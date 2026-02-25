@@ -3,22 +3,25 @@ using TMPro;
 
 public class VictoryCardManagerScript : MonoBehaviour
 {
-
+    [SerializeField] TextMeshProUGUI winText;
+    [SerializeField] TextMeshProUGUI loseText;
     [SerializeField] TextMeshProUGUI scoreText;
     [SerializeField] TextMeshProUGUI highScoreText;
     [SerializeField] TextMeshProUGUI longestStreakText;
     [SerializeField] TextMeshProUGUI accuracyText;
     [SerializeField] TextMeshProUGUI missesText;
 
-    private int _score;
-    private int _highScore;
-    private int _longestStreak;
-    private float _accuracy;
-    private int _misses;
+    private bool _win = false;
+    private int _score = 0;
+    private int _highScore = 0;
+    private int _longestStreak = 0;
+    private float _accuracy = 0f;
+    private int _misses = 0;
 
 
-    public void SendData(int score, int longestStreak, float accuracy, int misses)
+    public void SendData(bool win, int score, int longestStreak, float accuracy, int misses)
     {
+        _win = win;
         _score = score;
         _longestStreak = longestStreak;
         _accuracy = accuracy;
@@ -28,10 +31,21 @@ public class VictoryCardManagerScript : MonoBehaviour
 
     void UpdateInfo()
     {
-        if (scoreText != null && _score != null)
+        if (winText != null && loseText != null && _win != null)
         {
-            scoreText.text = _score.ToString();
+            if (_win) {
+                winText.gameObject.SetActive(true);
+                loseText.gameObject.SetActive(false);
+            }
+            else {
+                winText.gameObject.SetActive(false);
+                loseText.gameObject.SetActive(true);
+            }
         }
+        if (scoreText != null && _score != null)
+            {
+                scoreText.text = _score.ToString();
+            }
         if (highScoreText != null && _highScore != null)
         {
             highScoreText.text = _highScore.ToString();

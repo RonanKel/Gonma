@@ -252,21 +252,25 @@ public class MusicManagerScript : MonoBehaviour
         onHook = false;
         catSpriteRenderer.sprite = standingCat;
 
+        bool win = false;
+
         if (winningScore < 0) { }
         else if (score >= winningScore)
         {
             Debug.Log("You Win!");
             win_song_event.Invoke();
             Debug.Log("score: " + score);
+            win = true;
         }
         else
         {
             Debug.Log("You Lose...");
             lose_song_event.Invoke();
             Debug.Log("score: " + score);
+            win = false;
         }
 
-        vcScript.SendData(score, longest_streak, 0f, miss_count);
+        vcScript.SendData(win, score, longest_streak, 0f, miss_count);
 
 
         //beatCount = 0;
