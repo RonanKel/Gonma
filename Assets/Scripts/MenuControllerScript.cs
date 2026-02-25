@@ -9,10 +9,13 @@ using UnityEngine.Events;
 public class MenuControllerScript : MonoBehaviour
 {
 
+    [SerializeField] GameObject pauseMenu;
+    [SerializeField] GameObject victoryCard;
+
     public UnityEvent paused = new UnityEvent();
     public UnityEvent resumed = new UnityEvent();
 
-    [SerializeField] GameObject pauseMenu;
+    
 
     void Update()
     {
@@ -75,6 +78,20 @@ public class MenuControllerScript : MonoBehaviour
             {
                 Debug.LogError("No pause menu assinged to variable in MenuManager");
             }
+    }
+
+    public void OpenVictoryCard()
+    {
+        if (victoryCard != null) {
+            victoryCard.SetActive(true);
+        }
+    }
+
+    public void CloseVictoryCard()
+    {
+        if (victoryCard != null) {
+            victoryCard.SetActive(false);
+        }
     }
 
     public void OpenOptionsButton()

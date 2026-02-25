@@ -87,6 +87,7 @@ public class MusicManagerScript : MonoBehaviour
 
 
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -169,7 +170,45 @@ public class MusicManagerScript : MonoBehaviour
     [ContextMenu("StartMusicGame")]
     public void StartMusicGame()
     {
+
         PickLevel();
+
+        onHook = true;
+        catSpriteRenderer.sprite = singingCat;
+        score = 0;
+        gameRan = true;
+
+
+
+        Debug.Log("Time To Jam!!!");
+        BuildNoteHeap();
+        music.Play();
+
+        goldBeatLine.SetActive(true);
+        magentaBeatLine.SetActive(true);
+        tealBeatLine.SetActive(true);
+
+        goldNoteSpawner.SetActive(true);
+        magentaNoteSpawner.SetActive(true);
+        tealNoteSpawner.SetActive(true);
+
+        goldNoteText.SetActive(true);
+        magentaNoteText.SetActive(true);
+        tealNoteText.SetActive(true);
+        comboText.SetActive(true);
+
+        noteBackground.SetActive(true);
+        fish.SetActive(true);
+    }
+
+    public void ReplayLastMusicGame()
+    {
+        int lvlNum = lvlCount;
+        Debug.Log(lvlNum);
+        level = levels[lvlNum];
+        music.clip = level.song;
+        fish.GetComponent<SpriteRenderer>().sprite = level.fishSprite;
+
         onHook = true;
         catSpriteRenderer.sprite = singingCat;
         score = 0;
