@@ -20,6 +20,7 @@ public class MusicManagerScript : MonoBehaviour
     public bool onHook;
     public int score;
     public int miss_count;
+    public int longest_streak;
     
     private MinHeap goldBeatMap;
     private MinHeap tealBeatMap;
@@ -181,6 +182,7 @@ public class MusicManagerScript : MonoBehaviour
         catSpriteRenderer.sprite = singingCat;
         score = 0;
         miss_count = 0;
+        longest_streak = 0;
         gameRan = true;
 
 
@@ -218,6 +220,7 @@ public class MusicManagerScript : MonoBehaviour
         catSpriteRenderer.sprite = singingCat;
         score = 0;
         miss_count = 0;
+        longest_streak = 0;
         gameRan = true;
 
 
@@ -263,7 +266,7 @@ public class MusicManagerScript : MonoBehaviour
             Debug.Log("score: " + score);
         }
 
-        vcScript.SendData(score, 0, 0f, miss_count);
+        vcScript.SendData(score, longest_streak, 0f, miss_count);
 
 
         //beatCount = 0;

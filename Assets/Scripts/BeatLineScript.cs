@@ -122,6 +122,10 @@ void comboFun(int score)
                 // Debug.Log("" + i);
                 ++i;
                 comboText.text = "Combo: " + i;
+                if (i > mmScript.longest_streak)
+                {
+                    mmScript.longest_streak = i;
+                }
             }
             StartCoroutine(TextPop());
             
