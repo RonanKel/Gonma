@@ -1140,6 +1140,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   winText: {fileID: 1187774487}
   loseText: {fileID: 2010350881}
+  trinketUI: {fileID: 1954943115}
   scoreText: {fileID: 154024348}
   highScoreText: {fileID: 341276113}
   longestStreakText: {fileID: 1253912904}

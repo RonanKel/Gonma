@@ -15,3 +15,4 @@ MonoBehaviour:
   name: TurtleLevel
   fishSprite: {fileID: 21300000, guid: a881bc9b8fe4043278e6edffb4cc5820, type: 3}
   song: {fileID: 8300000, guid: ba992296e652c439181b5a80619fad13, type: 3}
+  trinketSprite: {fileID: 5428157334817736624, guid: 9d05a5f09e5cd7b408a8ab817062bfd2, type: 3}

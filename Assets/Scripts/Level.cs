@@ -11,6 +11,8 @@ public class Level : ScriptableObject
 
     public AudioClip song;
 
+    public Sprite trinketSprite;
+
     public string GetLevelData () {
         return "LevelData/" + name + ".txt";
     }

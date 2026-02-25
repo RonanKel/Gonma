@@ -1,10 +1,12 @@
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class VictoryCardManagerScript : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI winText;
     [SerializeField] TextMeshProUGUI loseText;
+    [SerializeField] Image trinketUI;
     [SerializeField] TextMeshProUGUI scoreText;
     [SerializeField] TextMeshProUGUI highScoreText;
     [SerializeField] TextMeshProUGUI longestStreakText;
@@ -12,6 +14,7 @@ public class VictoryCardManagerScript : MonoBehaviour
     [SerializeField] TextMeshProUGUI missesText;
 
     private bool _win = false;
+    private Sprite _trinketSprite;
     private int _score = 0;
     private int _highScore = 0;
     private int _longestStreak = 0;
@@ -19,10 +22,11 @@ public class VictoryCardManagerScript : MonoBehaviour
     private int _misses = 0;
 
 
-    public void SendData(bool win, int score, int highScore, int longestStreak, float accuracy, int misses)
+    public void SendData(bool win, Sprite trinketSprite, int score, int highScore, int longestStreak, float accuracy, int misses)
     {
         _win = win;
         _score = score;
+        _trinketSprite = trinketSprite;
         _highScore = highScore;
         _longestStreak = longestStreak;
         _accuracy = accuracy;
@@ -43,10 +47,14 @@ public class VictoryCardManagerScript : MonoBehaviour
                 loseText.gameObject.SetActive(true);
             }
         }
+        if (trinketUI != null && _trinketSprite != null)
+        {
+            trinketUI.sprite = _trinketSprite;
+        }
         if (scoreText != null && _score != null)
-            {
-                scoreText.text = _score.ToString();
-            }
+        {
+            scoreText.text = _score.ToString();
+        }
         if (highScoreText != null && _highScore != null)
         {
             highScoreText.text = _highScore.ToString();
