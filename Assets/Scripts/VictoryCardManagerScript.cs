@@ -11,6 +11,7 @@ public class VictoryCardManagerScript : MonoBehaviour
     [SerializeField] TextMeshProUGUI missesText;
 
     private int _score;
+    private int _highScore;
     private int _longestStreak;
     private float _accuracy;
     private int _misses;
@@ -27,9 +28,26 @@ public class VictoryCardManagerScript : MonoBehaviour
 
     void UpdateInfo()
     {
-        if (missesText != null)
+        if (scoreText != null && _score != null)
+        {
+            scoreText.text = _score.ToString();
+        }
+        if (highScoreText != null && _highScore != null)
+        {
+            highScoreText.text = _highScore.ToString();
+        }
+        if (longestStreakText != null && _longestStreak != null)
+        {
+            longestStreakText.text = _longestStreak.ToString();
+        }
+        if (accuracyText != null && _accuracy != null)
+        {
+            accuracyText.text = _accuracy.ToString();
+        }
+        if (missesText != null && _misses != null)
         {
             missesText.text = _misses.ToString();
         }
+        
     }
 }

@@ -263,7 +263,7 @@ public class MusicManagerScript : MonoBehaviour
             Debug.Log("score: " + score);
         }
 
-        vcScript.SendData(0, 0, 0f, miss_count);
+        vcScript.SendData(score, 0, 0f, miss_count);
 
 
         //beatCount = 0;
