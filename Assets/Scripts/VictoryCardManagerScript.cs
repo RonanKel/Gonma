@@ -13,6 +13,10 @@ public class VictoryCardManagerScript : MonoBehaviour
     [SerializeField] TextMeshProUGUI accuracyText;
     [SerializeField] TextMeshProUGUI missesText;
 
+    [SerializeField] Image badge1;
+    [SerializeField] Image badge2;
+    [SerializeField] Image badge3;
+
     private bool _win = false;
     private Sprite _trinketSprite;
     private int _score = 0;
@@ -65,12 +69,41 @@ public class VictoryCardManagerScript : MonoBehaviour
         }
         if (accuracyText != null && _accuracy != null)
         {
-            accuracyText.text = _accuracy.ToString();
+            accuracyText.text = ((int)(_accuracy * 100)).ToString() + "%";
         }
         if (missesText != null && _misses != null)
         {
             missesText.text = _misses.ToString();
         }
-        
+        if (badge1 != null) {
+            if (_win)
+            {
+                badge1.gameObject.SetActive(true);
+            }
+            else
+            {
+                badge1.gameObject.SetActive(false);
+            }
+        }
+        if (badge2 != null) {
+            if (_misses <= 0 && _win)
+            {
+                badge2.gameObject.SetActive(true);
+            }
+            else
+            {
+                badge2.gameObject.SetActive(false);
+            }
+        }
+        if (badge3 != null) {
+            if (_accuracy >= 1 && _win)
+            {
+                badge3.gameObject.SetActive(true);
+            }
+            else
+            {
+                badge3.gameObject.SetActive(false);
+            }
+        }
     }
 }

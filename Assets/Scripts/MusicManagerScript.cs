@@ -21,6 +21,8 @@ public class MusicManagerScript : MonoBehaviour
     public int score;
     public int miss_count;
     public int longest_streak;
+    public int perfect_count;
+    public int non_perfect_count;
     
     private MinHeap goldBeatMap;
     private MinHeap tealBeatMap;
@@ -183,6 +185,8 @@ public class MusicManagerScript : MonoBehaviour
         score = 0;
         miss_count = 0;
         longest_streak = 0;
+        perfect_count = 0;
+        non_perfect_count = 0;
         gameRan = true;
 
 
@@ -221,6 +225,8 @@ public class MusicManagerScript : MonoBehaviour
         score = 0;
         miss_count = 0;
         longest_streak = 0;
+        perfect_count = 0;
+        non_perfect_count = 0;
         gameRan = true;
 
 
@@ -283,7 +289,9 @@ public class MusicManagerScript : MonoBehaviour
                     PlayerPrefs.SetInt(level.name, score);
                 }
             }
-            vcScript.SendData(win, level.trinketSprite, score, PlayerPrefs.GetInt(level.name), longest_streak, 0f, miss_count);
+            float accuracy =  (float)perfect_count / (float)(miss_count + non_perfect_count + perfect_count);
+            Debug.Log(accuracy);
+            vcScript.SendData(win, level.trinketSprite, score, PlayerPrefs.GetInt(level.name), longest_streak, accuracy, miss_count);
         }
 
         

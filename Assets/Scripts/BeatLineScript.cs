@@ -39,6 +39,7 @@ public class BeatLineScript : MonoBehaviour
         if (Input.GetKeyDown(inputKey) && perfect) {
             Destroy(perfect.transform.gameObject);
             mmScript.score += 3;
+            mmScript.perfect_count++;
             // FADE IN .1 GREEN, FADE OUT .5
             statusText.text = "Perfect!";
             statusText.color = new Color(0, 1, 0, 1f);
@@ -51,6 +52,7 @@ public class BeatLineScript : MonoBehaviour
         else if (Input.GetKeyDown(inputKey) && nice) {
             Destroy(nice.transform.gameObject);
             mmScript.score += 2;
+            mmScript.non_perfect_count++;
             // FADE IN .1 YELLOW, FADE OUT .5
             statusText.text = "Nice!";
             statusText.color = new Color(1, 1, 0, 1f);
@@ -63,6 +65,7 @@ public class BeatLineScript : MonoBehaviour
         else if (Input.GetKeyDown(inputKey) && poor) {
             Destroy(poor.transform.gameObject);
             mmScript.score++;
+            mmScript.non_perfect_count++;
             // FADE IN .1 ORANGE, FADE OUT .5
             statusText.text = "Poor!";
             statusText.color = new Color(1f, 0.64f, 0f, 1f);
