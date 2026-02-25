@@ -19,10 +19,11 @@ public class VictoryCardManagerScript : MonoBehaviour
     private int _misses = 0;
 
 
-    public void SendData(bool win, int score, int longestStreak, float accuracy, int misses)
+    public void SendData(bool win, int score, int highScore, int longestStreak, float accuracy, int misses)
     {
         _win = win;
         _score = score;
+        _highScore = highScore;
         _longestStreak = longestStreak;
         _accuracy = accuracy;
         _misses = misses;

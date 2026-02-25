@@ -270,7 +270,20 @@ public class MusicManagerScript : MonoBehaviour
             win = false;
         }
 
-        vcScript.SendData(win, score, longest_streak, 0f, miss_count);
+        // save high score
+        if (!PlayerPrefs.HasKey(level.name))
+        {
+            PlayerPrefs.SetInt(level.name, score);
+        }
+        else
+        {
+            if (score > PlayerPrefs.GetInt(level.name))
+            {
+                PlayerPrefs.SetInt(level.name, score);
+            }
+        }
+
+        vcScript.SendData(win, score, PlayerPrefs.GetInt(level.name), longest_streak, 0f, miss_count);
 
 
         //beatCount = 0;
