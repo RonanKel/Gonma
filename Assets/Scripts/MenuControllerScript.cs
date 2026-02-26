@@ -14,7 +14,10 @@ public class MenuControllerScript : MonoBehaviour
     [SerializeField] GameObject victoryCard;
 
     public UnityEvent paused = new UnityEvent();
+    public UnityEvent rhythmPaused = new UnityEvent();
     public UnityEvent resumed = new UnityEvent();
+
+    private bool rhythmActive = false;
 
     
 
@@ -31,6 +34,11 @@ public class MenuControllerScript : MonoBehaviour
                 ClosePauseMenu();
             }
         }
+    }
+
+    public void SetRhythmActive(bool active)
+    {
+        rhythmActive = active;
     }
 
     public void StartGameButton()
@@ -54,6 +62,11 @@ public class MenuControllerScript : MonoBehaviour
                     pauseMenu.SetActive(true);
                     Time.timeScale = 0f;
                     paused.Invoke();
+                    if (rhythmActive)
+                    {
+                        rhythmPaused.Invoke();
+                    }
+                    
                 }
             }
             else
