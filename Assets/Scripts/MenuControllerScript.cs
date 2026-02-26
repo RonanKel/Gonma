@@ -27,6 +27,7 @@ public class MenuControllerScript : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Escape) && pauseMenu.activeInHierarchy == false)
             {
+                Debug.Log("Calling function");
                 OpenPauseMenu();
             }
             else if (Input.GetKeyDown(KeyCode.Escape) && pauseMenu.activeInHierarchy == true)
@@ -55,10 +56,12 @@ public class MenuControllerScript : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().name != "Title Screen")
         {
+            Debug.Log("Not title screen");
             if (pauseMenu != null)
             {
                 if (pauseMenu.activeInHierarchy == false)
                 {
+                    Debug.Log("Not active in scene");
                     pauseMenu.SetActive(true);
                     Time.timeScale = 0f;
                     paused.Invoke();
@@ -66,7 +69,7 @@ public class MenuControllerScript : MonoBehaviour
                     {
                         rhythmPaused.Invoke();
                     }
-                    
+
                 }
             }
             else
