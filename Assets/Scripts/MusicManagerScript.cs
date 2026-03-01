@@ -76,7 +76,7 @@ public class MusicManagerScript : MonoBehaviour
 
     void PickLevel()
     {
-        if (lvlCount >= 0)
+        if (lvlCount > 0)
         {
             int lvlNum = Random.Range(0, lvlCount - 1);
             Debug.Log(lvlNum);
@@ -88,7 +88,10 @@ public class MusicManagerScript : MonoBehaviour
 
             music.clip = level.song;
             fish.GetComponent<SpriteRenderer>().sprite = level.fishSprite;
-
+        }
+        else if (lvlCount <= 0 && levels.Length >= 1)
+        {
+            ReplayLastMusicGame();
         }
     }
 
