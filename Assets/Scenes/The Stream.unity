@@ -923,6 +923,7 @@ GameObject:
   m_Component:
   - component: {fileID: 175874076}
   - component: {fileID: 175874075}
+  - component: {fileID: 175874077}
   m_Layer: 0
   m_Name: Hook
   m_TagString: Untagged
@@ -1004,6 +1005,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 931414211}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &175874077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 175874074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e5a25ef5c86443af90a9b4222e38595, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnimationComponentScript
+  jump_height: 0.1
+  jump_speed: 2
 --- !u!1 &218526219
 GameObject:
   m_ObjectHideFlags: 0
@@ -4206,6 +4221,42 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: splash
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 175874074}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: uncast
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2107342350}
+        m_TargetAssemblyTypeName: SFXManager, Assembly-CSharp
+        m_MethodName: Play
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: uncast
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2107342350}
+        m_TargetAssemblyTypeName: SFXManager, Assembly-CSharp
+        m_MethodName: Play
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: fishsplash
           m_BoolArgument: 0
         m_CallState: 2
   reel_event:
@@ -7676,6 +7727,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1395234093}
   - component: {fileID: 1395234094}
+  - component: {fileID: 1395234095}
   m_Layer: 0
   m_Name: Fish
   m_TagString: Untagged
@@ -7692,7 +7744,7 @@ Transform:
   m_GameObject: {fileID: 1395234092}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.15533847, w: 0.98786134}
-  m_LocalPosition: {x: 5.8, y: -3.57, z: -2.8938246}
+  m_LocalPosition: {x: 5.8, y: -3.16, z: -2.8938246}
   m_LocalScale: {x: 0.14263, y: 0.14263, z: 0.14263}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7757,6 +7809,20 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &1395234095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1395234092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e5a25ef5c86443af90a9b4222e38595, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  jump_height: 0.4
+  jump_speed: 4.712389
 --- !u!1 &1460304276
 GameObject:
   m_ObjectHideFlags: 0
