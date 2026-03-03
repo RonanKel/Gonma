@@ -2818,7 +2818,7 @@ MonoBehaviour:
   backgroundMusicTracks:
   - {fileID: 8300000, guid: 78470e90a4950f543aa5acb850c9cf20, type: 3}
   - {fileID: 8300000, guid: 63e40d699a972e44c8b353d833db1c96, type: 3}
-  timeBeforeMusicPlays: 5
+  timeBeforeMusicPlays: 15
 --- !u!1 &599048724
 GameObject:
   m_ObjectHideFlags: 0
