@@ -38,6 +38,9 @@ public class CatControllerScript : MonoBehaviour
     public UnityEvent cast_event = new UnityEvent();
     public UnityEvent uncast_event = new UnityEvent();
 
+    [SerializeField] Sprite singingCat;
+    [SerializeField] Sprite standingCat;
+
 
     // Start is called before the first frame update
     void Start()
@@ -117,6 +120,7 @@ public class CatControllerScript : MonoBehaviour
     {
         Debug.Log("Casting");
         cast_event.Invoke();
+        GetComponent<SpriteRenderer>().sprite = singingCat;
         casting = true;
         alertTimer = 0f;
         prealert = false;
@@ -135,6 +139,7 @@ public class CatControllerScript : MonoBehaviour
 
     void uncast()
     {
+        GetComponent<SpriteRenderer>().sprite = standingCat;
         Debug.Log("Uncasting");
         uncast_event.Invoke();
         fishTimer = 0f;
