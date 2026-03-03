@@ -48,6 +48,7 @@ public class MusicManagerScript : MonoBehaviour
     private GameObject goldBeatLine;
     private GameObject magentaBeatLine;
     private GameObject tealBeatLine;
+    private GameObject beatLine;
 
     private GameObject goldNoteSpawner;
     private GameObject magentaNoteSpawner;
@@ -111,6 +112,7 @@ public class MusicManagerScript : MonoBehaviour
         goldBeatLine = GameObject.Find("/---BeatLines---/GoldBeatLine");
         magentaBeatLine = GameObject.Find("/---BeatLines---/MagentaBeatLine");
         tealBeatLine = GameObject.Find("/---BeatLines---/TealBeatLine");
+        beatLine = GameObject.Find("/---BeatLines---/BeatLine");
 
         goldNoteSpawner = GameObject.Find("/---NoteSpawners---/GoldNoteSpawner");
         magentaNoteSpawner = GameObject.Find("/---NoteSpawners---/MagentaNoteSpawner");
@@ -201,6 +203,7 @@ public class MusicManagerScript : MonoBehaviour
         goldBeatLine.SetActive(true);
         magentaBeatLine.SetActive(true);
         tealBeatLine.SetActive(true);
+        beatLine.SetActive(true);
 
         goldNoteSpawner.SetActive(true);
         magentaNoteSpawner.SetActive(true);
@@ -241,6 +244,7 @@ public class MusicManagerScript : MonoBehaviour
         goldBeatLine.SetActive(true);
         magentaBeatLine.SetActive(true);
         tealBeatLine.SetActive(true);
+        beatLine.SetActive(true);
 
         goldNoteSpawner.SetActive(true);
         magentaNoteSpawner.SetActive(true);
@@ -313,6 +317,7 @@ public class MusicManagerScript : MonoBehaviour
         goldBeatLine.SetActive(false);
         magentaBeatLine.SetActive(false);
         tealBeatLine.SetActive(false);
+        beatLine.SetActive(false);
 
         goldNoteSpawner.SetActive(false);
         magentaNoteSpawner.SetActive(false);
