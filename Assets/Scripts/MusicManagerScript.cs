@@ -5,6 +5,7 @@ using UnityEngine;
 using SongFormatScript;
 using TMPro;
 using UnityEngine.Events;
+using System;
 
 public class MusicManagerScript : MonoBehaviour
 {
@@ -74,12 +75,14 @@ public class MusicManagerScript : MonoBehaviour
     public UnityEvent win_song_event = new UnityEvent();
     public UnityEvent lose_song_event = new UnityEvent();
 
+    public static event Action DialogueBegin;
+
 
     void PickLevel()
     {
         if (lvlCount > 0)
         {
-            int lvlNum = Random.Range(0, lvlCount - 1);
+            int lvlNum = UnityEngine.Random.Range(0, lvlCount - 1);
             Debug.Log(lvlNum);
             level = levels[lvlNum];
             // replace the level with the last one
@@ -179,23 +182,22 @@ public class MusicManagerScript : MonoBehaviour
         }
     }
 
-    [ContextMenu("StartMusicGame")]
-    public void StartMusicGame()
+    private void OnEnable()
     {
+        Debug.Log("OnEnable");
+        DialogueManager.OnDialogueEnded += ContinueAfterDialogue;
+    }
 
-        PickLevel();
+    private void OnDisable()
+    {
+        Debug.Log("OnDisable");
+        DialogueManager.OnDialogueEnded -= ContinueAfterDialogue;
+    }
 
-        onHook = true;
-        catSpriteRenderer.sprite = singingCat;
-        score = 0;
-        miss_count = 0;
-        longest_streak = 0;
-        perfect_count = 0;
-        non_perfect_count = 0;
+    private void ContinueAfterDialogue()
+    {
+        // Debug.Log("Dialogue finished, continuing...");
         gameRan = true;
-
-
-
         Debug.Log("Time To Jam!!!");
         BuildNoteHeap();
         music.Play();
@@ -215,7 +217,26 @@ public class MusicManagerScript : MonoBehaviour
         comboText.SetActive(true);
 
         noteBackground.SetActive(true);
+    }
+
+
+    [ContextMenu("StartMusicGame")]
+    public void StartMusicGame()
+    {
+
+        PickLevel();
+
+        onHook = true;
+        catSpriteRenderer.sprite = singingCat;
+        score = 0;
+        miss_count = 0;
+        longest_streak = 0;
+        perfect_count = 0;
+        non_perfect_count = 0;
+        // gameRan = true;
+
         fish.SetActive(true);
+        DialogueBegin?.Invoke();
     }
 
     public void ReplayLastMusicGame()
