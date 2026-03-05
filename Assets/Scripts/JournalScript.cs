@@ -31,6 +31,11 @@ public class JournalScript : MonoBehaviour
 
     void OnEnable()
     {
+        SetJournalObjectsActive(level_name);
+    }
+
+    void SetJournalObjectsActive(string level_name)
+    {
         if (PlayerPrefs.HasKey(level_name))
         {
             scoreText.SetActive(true);
