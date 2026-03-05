@@ -4257,7 +4257,14 @@ MonoBehaviour:
   scientificNameText: {fileID: 432375416}
   meetingThoughtsText: {fileID: 1829654138}
   fishImage: {fileID: 266254682}
+  descriptionText: {fileID: 288015020}
   scoreText: {fileID: 1547457699}
+  award1Image: {fileID: 85091306}
+  award2Image: {fileID: 443585344}
+  award3Image: {fileID: 15316558}
+  trinketImage: {fileID: 1773537339}
+  extra1Text: {fileID: 242388533}
+  extra2Text: {fileID: 748205510}
 --- !u!1 &669143215
 GameObject:
   m_ObjectHideFlags: 0

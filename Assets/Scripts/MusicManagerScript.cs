@@ -313,6 +313,7 @@ public class MusicManagerScript : MonoBehaviour
             if (!PlayerPrefs.HasKey(level.name))
             {
                 PlayerPrefs.SetInt(level.name, score);
+                PlayerPrefs.SetInt(level.name, score);
             }
             else
             {
@@ -324,6 +325,25 @@ public class MusicManagerScript : MonoBehaviour
             float accuracy =  (float)perfect_count / (float)(miss_count + non_perfect_count + perfect_count);
             Debug.Log(accuracy);
             vcScript.SendData(win, level.trinketSprite, score, PlayerPrefs.GetInt(level.name), longest_streak, accuracy, miss_count);
+        
+            // make other save data
+            PlayerPrefs.SetInt(level.name + "award1", 0);
+            PlayerPrefs.SetInt(level.name + "award2", 0);
+            PlayerPrefs.SetInt(level.name + "award3", 0);
+
+            if (win)
+            {
+                PlayerPrefs.SetInt(level.name + "award1", 1);
+            }
+            if (miss_count == 0)
+            {
+                PlayerPrefs.SetInt(level.name + "award2", 1);
+            }
+            if (accuracy == 1)
+            {
+                PlayerPrefs.SetInt(level.name + "award3", 1);
+            }
+        
         }
 
         
