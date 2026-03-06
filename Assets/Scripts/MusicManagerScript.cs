@@ -11,7 +11,7 @@ public class MusicManagerScript : MonoBehaviour
 {
     [SerializeField] AudioSource music;
     [SerializeField] float bpm = 90;
-    [SerializeField] Level[] levels;
+    [SerializeField] List<Level> levels;
     [SerializeField] Sprite singingCat;
     [SerializeField] Sprite standingCat;
     [SerializeField] SpriteRenderer catSpriteRenderer;
@@ -83,20 +83,36 @@ public class MusicManagerScript : MonoBehaviour
     {
         if (lvlCount > 0)
         {
-            int lvlNum = UnityEngine.Random.Range(0, lvlCount - 1);
-            Debug.Log(lvlNum);
+            int lvlNum = UnityEngine.Random.Range(0, lvlCount);
+            level = levels[lvlNum]; 
+            while (PlayerPrefs.HasKey(level.name+"award1") && lvlCount > 0)
+            {
+                if (PlayerPrefs.GetInt(level.name+"award1") != 1)
+                {
+                    // hasn't won yet so this is eligible
+                    break;
+                }
+                SetCurrLevelToBackOfList();
+                lvlNum = UnityEngine.Random.Range(0, lvlCount);
+                level = levels[lvlNum];
+            }
+            if (lvlCount <= 0)
+            {
+                lvlNum = UnityEngine.Random.Range(0, levels.Count);
+            }
             level = levels[lvlNum];
-            // replace the level with the last one
-            levels[lvlNum] = levels[lvlCount - 1];
-            levels[lvlCount - 1] = level;
-            lvlCount--;
-
+            Debug.Log(lvlNum);
+            
             music.clip = level.song;
             fish.GetComponent<SpriteRenderer>().sprite = level.fishSprite;
         }
-        else if (lvlCount <= 0 && levels.Length >= 1)
+            
+        else if (lvlCount <= 0 && levels.Count >= 1)
         {
-            ReplayLastMusicGame();
+            int lvlNum = UnityEngine.Random.Range(0, levels.Count);
+            level = levels[lvlNum];
+            music.clip = level.song;
+            fish.GetComponent<SpriteRenderer>().sprite = level.fishSprite;
         }
     }
 
@@ -106,7 +122,7 @@ public class MusicManagerScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        lvlCount = levels.Length;
+        lvlCount = levels.Count;
         winningScore = -1; // to make it not give victory when starting the game
         EndMusicGame();
     }
@@ -245,9 +261,6 @@ public class MusicManagerScript : MonoBehaviour
     public void ReplayLastMusicGame()
     {
         
-        int lvlNum = lvlCount;
-        Debug.Log(lvlNum);
-        level = levels[lvlNum];
         music.clip = level.song;
         fish.GetComponent<SpriteRenderer>().sprite = level.fishSprite;
 
@@ -297,6 +310,7 @@ public class MusicManagerScript : MonoBehaviour
         {
             Debug.Log("You Win!");
             win_song_event.Invoke();
+            SetCurrLevelToBackOfList();
             Debug.Log("score: " + score);
             win = true;
         }
@@ -434,5 +448,14 @@ public class MusicManagerScript : MonoBehaviour
         music.time = (float)paused_time;
         music.UnPause();
         paused = false;
+    }
+
+    private void SetCurrLevelToBackOfList()
+    {
+        // replace the level with the last one
+        int lvlNum = levels.IndexOf(level);
+        levels[lvlNum] = levels[lvlCount - 1];
+        levels[lvlCount - 1] = level;
+        lvlCount--;
     }
 }
