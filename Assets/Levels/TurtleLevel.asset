@@ -15,4 +15,14 @@ MonoBehaviour:
   name: TurtleLevel
   fishSprite: {fileID: 21300000, guid: a881bc9b8fe4043278e6edffb4cc5820, type: 3}
   song: {fileID: 8300000, guid: ba992296e652c439181b5a80619fad13, type: 3}
+  fishname: Spike
+  scientificFishname: Railroad Spikus
+  meetingThoughts: MEETING THOUGHTS
+  journalFishSprite: {fileID: 21300000, guid: a881bc9b8fe4043278e6edffb4cc5820, type: 3}
+  description: DESCRIPTION
   trinketSprite: {fileID: 5428157334817736624, guid: 9d05a5f09e5cd7b408a8ab817062bfd2, type: 3}
+  award1: {fileID: 21300000, guid: d520009bfb2a188479eeec97aa87b6c0, type: 3}
+  award2: {fileID: 21300000, guid: d520009bfb2a188479eeec97aa87b6c0, type: 3}
+  award3: {fileID: 21300000, guid: d520009bfb2a188479eeec97aa87b6c0, type: 3}
+  extra1: EXTRA 1
+  extra2: EXTRA 2
