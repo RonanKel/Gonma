@@ -122,6 +122,11 @@ public class MusicManagerScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (PlayerPrefs.HasKey("delay"))
+        {
+            delay = PlayerPrefs.GetFloat("delay");
+        }
+
         lvlCount = levels.Count;
         winningScore = -1; // to make it not give victory when starting the game
         EndMusicGame();

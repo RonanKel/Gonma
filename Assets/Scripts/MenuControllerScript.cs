@@ -44,7 +44,14 @@ public class MenuControllerScript : MonoBehaviour
 
     public void StartGameButton()
     {
-        SceneManager.LoadScene("The Stream");
+        if (PlayerPrefs.HasKey("delay"))
+        {
+            SceneManager.LoadScene("The Stream");
+        }
+        else
+        {
+            SceneManager.LoadScene("Delay Test");
+        }
     }
 
     public void GoToTitleScreen()
