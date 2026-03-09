@@ -22,6 +22,8 @@ public class BeatLineScript : MonoBehaviour
     private RaycastHit2D nice;
     private RaycastHit2D perfect;
 
+    private bool waiting = false;
+
     private MusicManagerScript mmScript;
 
     private int i = 0;
@@ -50,10 +52,17 @@ public class BeatLineScript : MonoBehaviour
             statusText.canvasRenderer.SetAlpha(1f);
             statusText.CrossFadeAlpha(0f, .5f, false);
             comboFun(3);
+            
             // Debug.Log("Perfect!");
 
             // Emit particles
             perfectParticles.Emit(5);
+
+            // a little bit of hitstop
+            if (!waiting) {
+                Time.timeScale = 0.0f;
+                StartCoroutine(Wait(.04f));
+            }
         }
         else if (Input.GetKeyDown(inputKey) && nice) {
             Destroy(nice.transform.gameObject);
@@ -70,6 +79,12 @@ public class BeatLineScript : MonoBehaviour
 
             // Emit particles
             otherParticles.Emit(5);
+
+            if (!waiting) {
+                Time.timeScale = 0.0f;
+                StartCoroutine(Wait(.01f));
+            }
+            
         }
         else if (Input.GetKeyDown(inputKey) && poor) {
             Destroy(poor.transform.gameObject);
@@ -86,6 +101,10 @@ public class BeatLineScript : MonoBehaviour
 
             // Emit particles
             otherParticles.Emit(5);
+            if (!waiting) {
+                Time.timeScale = 0.0f;
+                StartCoroutine(Wait(.01f));
+            }
         }
         else if (Input.GetKeyDown(inputKey)){
             // FADE IN .1 RED, FADE OUT .5
@@ -117,7 +136,7 @@ public class BeatLineScript : MonoBehaviour
     }
 
 
-void comboFun(int score)
+    void comboFun(int score)
     {
         if (score != 0){
             // Trin wreck of parseing a int of the text box
@@ -151,7 +170,7 @@ void comboFun(int score)
         }
     }  
 
-IEnumerator TextPop()
+    IEnumerator TextPop()
     {
 
         comboText.fontSize = comboText.fontSize + 5;
@@ -160,8 +179,16 @@ IEnumerator TextPop()
                 yield return new WaitForEndOfFrame();
             }
         comboText.fontSize = comboText.fontSize - 5;
-            
-        }
+                
+    }
 
+
+
+    IEnumerator Wait(float duration)
+    {
+        waiting = true;
+        yield return new WaitForSecondsRealtime(duration);
+        Time.timeScale = 1.0f;
+        waiting = false;
+    }
 }
-

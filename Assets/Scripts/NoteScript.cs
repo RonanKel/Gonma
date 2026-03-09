@@ -7,6 +7,8 @@ public class NoteScript : MonoBehaviour
 {
 
     public float speed;
+    public float beatLinePos;
+    public float spb;
     [SerializeField] LayerMask failBox;
     private MusicManagerScript mmScript;
     private SFXManager sfxScript;
@@ -17,6 +19,9 @@ public class NoteScript : MonoBehaviour
 
     public UnityEvent<string> fail = new UnityEvent<string>();
 
+    private float creationTime;
+    private float startPosition;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,12 +29,14 @@ public class NoteScript : MonoBehaviour
         sfxScript = GameObject.Find("SFXManager").GetComponent<SFXManager>();
         combo = GameObject.Find("Combo").GetComponent<TextMeshProUGUI>();
         fail.AddListener(sfxScript.GetComponent<SFXManager>().Play);
+        creationTime = mmScript.music.time;
+        startPosition = transform.position.x;
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector3.left * speed * Time.deltaTime, Space.World);
+        //transform.Translate(Vector3.left * speed * Time.deltaTime, Space.World);
 
         lose = Physics2D.Raycast(transform.position + new Vector3(0.75f, 0f, 0f), Vector2.left, 1.5f, failBox);
 
@@ -43,4 +50,9 @@ public class NoteScript : MonoBehaviour
             fail.Invoke("fail");
         }
     }    
+
+    void FixedUpdate()
+    {
+        transform.position = new Vector3(startPosition + -1 * speed * (mmScript.music.time - creationTime), transform.position.y, transform.position.z);
+    }
 }

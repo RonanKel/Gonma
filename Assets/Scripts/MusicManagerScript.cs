@@ -9,7 +9,7 @@ using System;
 
 public class MusicManagerScript : MonoBehaviour
 {
-    [SerializeField] AudioSource music;
+    public AudioSource music;
     [SerializeField] float bpm = 90;
     [SerializeField] List<Level> levels;
     [SerializeField] Sprite singingCat;

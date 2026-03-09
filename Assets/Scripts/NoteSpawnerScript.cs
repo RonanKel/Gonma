@@ -39,7 +39,10 @@ public class NoteSpawnerScript : MonoBehaviour
         thisNote = Instantiate(note, transform);
         Renderer renderer = thisNote.GetComponent<Renderer>();
         renderer.sortingOrder = 2;
-        thisNote.GetComponent<NoteScript>().speed = speed;
+        NoteScript noteScript = thisNote.GetComponent<NoteScript>();
+        noteScript.speed = speed;
+        noteScript.beatLinePos = beatLinePos.x;
+        noteScript.spb = spb;
 
     }
 
