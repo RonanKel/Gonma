@@ -15,6 +15,9 @@ public class BeatLineScript : MonoBehaviour
     [SerializeField] float niceLength = 1f;
     [SerializeField] float perfectLength = .4f;
 
+    [SerializeField] ParticleSystem perfectParticles;
+    [SerializeField] ParticleSystem otherParticles;
+
     private RaycastHit2D poor;
     private RaycastHit2D nice;
     private RaycastHit2D perfect;
@@ -48,6 +51,9 @@ public class BeatLineScript : MonoBehaviour
             statusText.CrossFadeAlpha(0f, .5f, false);
             comboFun(3);
             // Debug.Log("Perfect!");
+
+            // Emit particles
+            perfectParticles.Emit(5);
         }
         else if (Input.GetKeyDown(inputKey) && nice) {
             Destroy(nice.transform.gameObject);
@@ -61,6 +67,9 @@ public class BeatLineScript : MonoBehaviour
             statusText.CrossFadeAlpha(0f, .5f, false);
             comboFun(2);
             // Debug.Log("Nice!");
+
+            // Emit particles
+            otherParticles.Emit(5);
         }
         else if (Input.GetKeyDown(inputKey) && poor) {
             Destroy(poor.transform.gameObject);
@@ -74,6 +83,9 @@ public class BeatLineScript : MonoBehaviour
             statusText.CrossFadeAlpha(0f, .5f, false);
             comboFun(1);
             // Debug.Log("Poor!");
+
+            // Emit particles
+            otherParticles.Emit(5);
         }
         else if (Input.GetKeyDown(inputKey)){
             // FADE IN .1 RED, FADE OUT .5

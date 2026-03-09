@@ -315,7 +315,14 @@ public class MusicManagerScript : MonoBehaviour
         {
             Debug.Log("You Win!");
             win_song_event.Invoke();
-            SetCurrLevelToBackOfList();
+            if (PlayerPrefs.HasKey(level.name + "award1"))
+            {
+                if (PlayerPrefs.GetInt(level.name + "award1") == 0)
+                {
+                    SetCurrLevelToBackOfList();
+                }
+            }
+
             Debug.Log("score: " + score);
             win = true;
         }
@@ -459,6 +466,9 @@ public class MusicManagerScript : MonoBehaviour
     {
         // replace the level with the last one
         int lvlNum = levels.IndexOf(level);
+        Debug.Log("lvlNum:" + lvlNum.ToString());
+        Debug.Log("lvlCount:" + lvlCount.ToString());
+        Debug.Log("levels.Count:" + levels.Count);
         levels[lvlNum] = levels[lvlCount - 1];
         levels[lvlCount - 1] = level;
         lvlCount--;
