@@ -18,6 +18,7 @@ public class JournalScript : MonoBehaviour
     [SerializeField] GameObject trinketImage;
     [SerializeField] GameObject extra1Text;
     [SerializeField] GameObject extra2Text;
+    [SerializeField] GameObject pageNumberText;
 
     private int curr_page = 0;
     [SerializeField] List<Level> pages;
@@ -66,6 +67,7 @@ public class JournalScript : MonoBehaviour
     {
         SetJournalObjectsDeactive();
         string level_name = level.name;
+        pageNumberText.GetComponent<TextMeshProUGUI>().text = (curr_page + 1).ToString();
         if (PlayerPrefs.HasKey(level_name))
         {
             scoreText.SetActive(true);
