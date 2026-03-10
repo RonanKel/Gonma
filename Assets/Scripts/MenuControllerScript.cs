@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Events;
+using UnityEngine.UI;
 using TMPro;
 
 
@@ -18,6 +19,12 @@ public class MenuControllerScript : MonoBehaviour
     public UnityEvent resumed = new UnityEvent();
 
     private bool rhythmActive = false;
+    private bool optionOn = false;
+    [SerializeField] GameObject Optionmenu;
+    [SerializeField] TextMeshProUGUI DelayLabel;
+    [SerializeField] TextMeshProUGUI SFXLabel;
+    [SerializeField] TextMeshProUGUI MusicLabel;
+
 
     
 
@@ -125,7 +132,74 @@ public class MenuControllerScript : MonoBehaviour
 
     public void OpenOptionsButton()
     {
+        // Optionmenu = GameObject.Find("--Options--");
+        // Menu = GameObject.Find("Menu Elements");
+        // Set active the options menu
+        // disable the buttons in the main menu
+        // include a back button in the options menu to return to the main menu
+        if (optionOn == false)
+        {
+            optionOn = true;
+            // PlayerPrefs.GetFloat("delay");
 
+            Optionmenu.SetActive(true);
+            DelayLabel.text = "Delay: " + PlayerPrefs.GetFloat("delay").ToString("F2") + "s";
+            // Menu.SetActive(false);
+        }
+        else
+        {
+            optionOn = false;
+            Optionmenu.SetActive(false);
+            // Menu.SetActive(true);
+            }
+
+
+    }
+
+
+    public void videomode()
+    {
+        // Get drop down option
+        int mode = GameObject.Find("VideoModeDropdown").GetComponent<TMP_Dropdown>().value;
+        if (mode == 0)
+        {
+            Debug.Log("Fullscreen");
+            Screen.fullScreenMode = FullScreenMode.ExclusiveFullScreen;
+        }
+        else if (mode == 1)
+        {
+            Debug.Log("Borderless");
+            Screen.fullScreenMode = FullScreenMode.FullScreenWindow;
+        }
+        else if (mode == 2)
+        {
+            Debug.Log("Windowed");
+            Screen.fullScreenMode = FullScreenMode.Windowed;
+        }
+    }
+
+    public void SetDelay()
+    {
+        // Delay value from slider
+        // float delay = GameObject.Find("DelaySlider").GetComponent<Slider>().value;
+        // PlayerPrefs.SetFloat("delay", delay);
+        float delay = GameObject.Find("DelaySlider").GetComponent<Slider>().value;
+        PlayerPrefs.SetFloat("delay", delay);
+        DelayLabel.text = "Delay: " + delay.ToString("F2") + "s";
+    }
+
+    public void MusicVolume()
+    {
+        float volume = GameObject.Find("MusicSlider").GetComponent<Slider>().value;
+        MusicLabel.text = "Music Volume: " + ((int)(volume * 100)).ToString() + "%";
+        // PlayerPrefs.SetFloat("music", volume);
+    }
+
+    public void SFXVolume()
+    {
+        float volume = GameObject.Find("SFXSlider").GetComponent<Slider>().value;
+        SFXLabel.text = "SFX Volume: " + ((int)(volume * 100)).ToString() + "%";
+        // PlayerPrefs.SetFloat("SFX", volume);
     }
 
 
