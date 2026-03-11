@@ -6,6 +6,10 @@ using System.Collections.Generic;
 public class JournalScript : MonoBehaviour
 {
     private string level_name = "TurtleLevel";
+    [SerializeField] GameObject fishLogUI;
+    [SerializeField] GameObject buffUI;
+
+
     [SerializeField] GameObject nameText;
     [SerializeField] GameObject scientificNameText;
     [SerializeField] GameObject meetingThoughtsText;
@@ -26,7 +30,7 @@ public class JournalScript : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        SetJournalObjects(pages[curr_page]);
+        SetJournalObjects();
     }
 
     // Update is called once per frame
@@ -46,28 +50,39 @@ public class JournalScript : MonoBehaviour
     {
         if (curr_page < pages.Count - 1) {
             curr_page++;
-            SetJournalObjects(pages[curr_page]);
+            SetJournalObjects();
         }
     }
 
     public void FlipPageBackward()
     {
-        if (curr_page > 0) {
+        if (curr_page > -1) {
             curr_page--;
-            SetJournalObjects(pages[curr_page]);
+            SetJournalObjects();
         }
     }
 
     void OnEnable()
     {
-        SetJournalObjects(pages[curr_page]);
+        SetJournalObjects();
     }
 
-    void SetJournalObjects(Level level)
+    void SetJournalObjects()
     {
         SetJournalObjectsDeactive();
-        string level_name = level.name;
         pageNumberText.GetComponent<TextMeshProUGUI>().text = (curr_page + 1).ToString();
+        if (curr_page == -1)
+        {
+            fishLogUI.SetActive(false);
+            buffUI.SetActive(true);
+            return;
+        }
+        fishLogUI.SetActive(true);
+        buffUI.SetActive(false);
+
+        Level level = pages[curr_page];
+        string level_name = level.name;
+        
         if (PlayerPrefs.HasKey(level_name))
         {
             scoreText.SetActive(true);
