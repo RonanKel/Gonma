@@ -3,8 +3,11 @@ using UnityEngine.EventSystems;
 using System.Collections;
 using System.Collections.Generic;
 
-public class TrinketDropScript : MonoBehaviour, IPointerEnterHandler , IPointerExitHandler, IPointerUpHandler, IPointerDownHandler
+public class TrinketDropScript : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerExitHandler, IPointerUpHandler, IPointerDownHandler
 {
+
+    
+
     public void OnPointerEnter(PointerEventData eventData)
     {
         Debug.Log("entered");
@@ -13,12 +16,17 @@ public class TrinketDropScript : MonoBehaviour, IPointerEnterHandler , IPointerE
     {
         Debug.Log("left");
     }
-    public void OnPointerDown (PointerEventData eventData)
+    public void OnPointerDown(PointerEventData eventData)
     {
         Debug.Log("down");
     }
-    public void OnPointerUp (PointerEventData eventData)
+    public void OnPointerUp(PointerEventData eventData)
     {
         Debug.Log("up");
+    }
+    
+    public void OnDrop(PointerEventData eventData)
+    {
+        Debug.Log("Dropped");
     }
 }
