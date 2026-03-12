@@ -1167,10 +1167,34 @@ MonoBehaviour:
   bkgdSprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   trinketAdded:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 748165351}
+        m_TargetAssemblyTypeName: MusicManagerScript, Assembly-CSharp
+        m_MethodName: AddSelectedLevel
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   trinketRemoved:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 748165351}
+        m_TargetAssemblyTypeName: MusicManagerScript, Assembly-CSharp
+        m_MethodName: RemoveSelectedLevel
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &154024346
 GameObject:
   m_ObjectHideFlags: 0
@@ -15115,6 +15139,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1048963801}
   - {fileID: 1666413510}
   - {fileID: 979157414}
   - {fileID: 1773712866}
@@ -24584,11 +24609,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1666413510}
+  m_Father: {fileID: 650399515}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -93.00001, y: 259.39}
+  m_AnchoredPosition: {x: -0, y: 0.000030517578}
   m_SizeDelta: {x: 1078.29, y: 599.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1048963802
@@ -40045,10 +40070,34 @@ MonoBehaviour:
   bkgdSprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   trinketAdded:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 748165351}
+        m_TargetAssemblyTypeName: MusicManagerScript, Assembly-CSharp
+        m_MethodName: AddSelectedLevel
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   trinketRemoved:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 748165351}
+        m_TargetAssemblyTypeName: MusicManagerScript, Assembly-CSharp
+        m_MethodName: RemoveSelectedLevel
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1549460853
 GameObject:
   m_ObjectHideFlags: 0
@@ -41251,13 +41300,12 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1048963801}
+  m_Children: []
   m_Father: {fileID: 650399515}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 93, y: -259.39}
+  m_AnchoredPosition: {x: 91, y: -261}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1676980698
@@ -49849,7 +49897,7 @@ GameObject:
   - component: {fileID: 2078255026}
   - component: {fileID: 2078255025}
   m_Layer: 5
-  m_Name: Trinket
+  m_Name: Trinket1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

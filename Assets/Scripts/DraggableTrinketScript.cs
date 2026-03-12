@@ -12,11 +12,27 @@ public class DraggableTrinketScript : MonoBehaviour, IBeginDragHandler, IDragHan
 
     public Level level;
 
-    void Start()
+    void Awake()
     {
         startPos = transform.position;
         image = GetComponent<Image>();
         image.sprite = level.trinketSprite;
+    }
+
+    void OnEnable()
+    {
+        if (level != null)
+        {
+            if (PlayerPrefs.HasKey(level.name))
+            {
+                if (PlayerPrefs.GetInt(level.name + "award1") == 1)
+                {
+                    image.enabled = true;
+                    return;
+                }
+            }
+        }
+        image.enabled = false;
     }
 
     public void OnBeginDrag(PointerEventData eventData)
