@@ -2,31 +2,37 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
+using UnityEngine.Events;
 
-public class TrinketDropScript : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerExitHandler, IPointerUpHandler, IPointerDownHandler
-{
+public class TrinketDropScript : MonoBehaviour, IDropHandler, IPointerDownHandler
+{   
+    [SerializeField] Sprite bkgdSprite;
+    private Image image;
+    private Level level;
+    public UnityEvent<Level> trinketAdded = new UnityEvent<Level>();
+    public UnityEvent<Level> trinketRemoved = new UnityEvent<Level>();
 
-    
 
-    public void OnPointerEnter(PointerEventData eventData)
+    private void Start()
     {
-        Debug.Log("entered");
+        image = GetComponent<Image>();
     }
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        Debug.Log("left");
-    }
+
     public void OnPointerDown(PointerEventData eventData)
     {
-        Debug.Log("down");
+        if (level != null)
+        {
+            trinketRemoved.Invoke(level);
+            image.sprite = bkgdSprite;
+            level = null; 
+        }
     }
-    public void OnPointerUp(PointerEventData eventData)
-    {
-        Debug.Log("up");
-    }
-    
+
     public void OnDrop(PointerEventData eventData)
     {
-        Debug.Log("Dropped");
+        level = eventData.pointerDrag.transform.GetComponent<DraggableTrinketScript>().level;
+        image.sprite = level.trinketSprite;
+        trinketAdded.Invoke(level);
     }
 }

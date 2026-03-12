@@ -1087,6 +1087,7 @@ GameObject:
   - component: {fileID: 147168197}
   - component: {fileID: 147168199}
   - component: {fileID: 147168198}
+  - component: {fileID: 147168200}
   m_Layer: 5
   m_Name: Bait 2
   m_TagString: Untagged
@@ -1126,7 +1127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.92549026, g: 0.6509804, b: 0.62352943, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1151,6 +1152,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 147168196}
   m_CullTransparentMesh: 1
+--- !u!114 &147168200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 147168196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc6071277a652204395c7b664c67c549, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TrinketDropScript
+  bkgdSprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  trinketAdded:
+    m_PersistentCalls:
+      m_Calls: []
+  trinketRemoved:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &154024346
 GameObject:
   m_ObjectHideFlags: 0
@@ -6372,6 +6392,7 @@ GameObject:
   - component: {fileID: 191064743}
   - component: {fileID: 191064745}
   - component: {fileID: 191064744}
+  - component: {fileID: 191064746}
   m_Layer: 5
   m_Name: Buff
   m_TagString: Untagged
@@ -6411,7 +6432,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.92549026, g: 0.6509804, b: 0.62352943, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -6436,6 +6457,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 191064742}
   m_CullTransparentMesh: 1
+--- !u!114 &191064746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 191064742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc6071277a652204395c7b664c67c549, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TrinketDropScript
+  bkgdSprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  trinketAdded:
+    m_PersistentCalls:
+      m_Calls: []
+  trinketRemoved:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &214603859
 GameObject:
   m_ObjectHideFlags: 0
@@ -12621,7 +12661,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &351626988
 RectTransform:
   m_ObjectHideFlags: 0
@@ -14999,7 +15039,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &650399512
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15610,7 +15650,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.92549026, g: 0.6509804, b: 0.62352943, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -15647,6 +15687,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc6071277a652204395c7b664c67c549, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  bkgdSprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  trinketAdded:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 748165351}
+        m_TargetAssemblyTypeName: MusicManagerScript, Assembly-CSharp
+        m_MethodName: AddSelectedLevel
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  trinketRemoved:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 748165351}
+        m_TargetAssemblyTypeName: MusicManagerScript, Assembly-CSharp
+        m_MethodName: RemoveSelectedLevel
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &717588364
 GameObject:
   m_ObjectHideFlags: 0
@@ -39894,6 +39965,7 @@ GameObject:
   - component: {fileID: 1549324467}
   - component: {fileID: 1549324469}
   - component: {fileID: 1549324468}
+  - component: {fileID: 1549324470}
   m_Layer: 5
   m_Name: Bait 3
   m_TagString: Untagged
@@ -39933,7 +40005,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.92549026, g: 0.6509804, b: 0.62352943, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -39958,6 +40030,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1549324466}
   m_CullTransparentMesh: 1
+--- !u!114 &1549324470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1549324466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc6071277a652204395c7b664c67c549, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TrinketDropScript
+  bkgdSprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  trinketAdded:
+    m_PersistentCalls:
+      m_Calls: []
+  trinketRemoved:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1549460853
 GameObject:
   m_ObjectHideFlags: 0
@@ -49795,6 +49886,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1016886646f10d04abe2185cce7ba9d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  level: {fileID: 11400000, guid: 09f9bc91d9673476cbd279f094daee36, type: 2}
 --- !u!114 &2078255026
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -49815,7 +49907,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 5428157334817736624, guid: 9d05a5f09e5cd7b408a8ab817062bfd2, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

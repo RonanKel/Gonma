@@ -4,24 +4,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 
-public class DraggableTrinketScript : MonoBehaviour, IBeginDragHandler, IPointerDownHandler, IDragHandler, IEndDragHandler
+public class DraggableTrinketScript : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     private Vector3 startPos;
 
     private Image image;
 
+    public Level level;
+
     void Start()
     {
         startPos = transform.position;
         image = GetComponent<Image>();
+        image.sprite = level.trinketSprite;
     }
-    public void OnPointerDown(PointerEventData eventData)
-    {
-        
-    }
+
     public void OnBeginDrag(PointerEventData eventData)
     {
-        Debug.Log("start drag");
         image.raycastTarget = false;
     }
 
@@ -32,7 +31,6 @@ public class DraggableTrinketScript : MonoBehaviour, IBeginDragHandler, IPointer
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        Debug.Log("end drag");
         //transform.position = startPos;
         image.raycastTarget = true;
         transform.position = startPos;
