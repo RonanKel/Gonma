@@ -12621,7 +12621,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &351626988
 RectTransform:
   m_ObjectHideFlags: 0
@@ -15570,6 +15570,7 @@ GameObject:
   - component: {fileID: 712265269}
   - component: {fileID: 712265271}
   - component: {fileID: 712265270}
+  - component: {fileID: 712265272}
   m_Layer: 5
   m_Name: Bait 1
   m_TagString: Untagged
@@ -15634,6 +15635,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 712265268}
   m_CullTransparentMesh: 1
+--- !u!114 &712265272
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 712265268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc6071277a652204395c7b664c67c549, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
 --- !u!1 &717588364
 GameObject:
   m_ObjectHideFlags: 0
@@ -42493,14 +42506,14 @@ RectTransform:
   - {fileID: 1382883785}
   - {fileID: 1408707921}
   - {fileID: 2056715813}
-  - {fileID: 191064743}
   - {fileID: 2047118237}
-  - {fileID: 712265269}
+  - {fileID: 191064743}
   - {fileID: 351626988}
-  - {fileID: 147168197}
+  - {fileID: 712265269}
   - {fileID: 1275074546}
-  - {fileID: 1549324467}
+  - {fileID: 147168197}
   - {fileID: 1433632831}
+  - {fileID: 1549324467}
   - {fileID: 717588365}
   - {fileID: 214603860}
   m_Father: {fileID: 650399515}

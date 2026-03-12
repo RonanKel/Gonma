@@ -3,21 +3,20 @@ using UnityEngine.EventSystems;
 using System.Collections;
 using System.Collections.Generic;
 
-public class DraggableTrinketScript : MonoBehaviour, IPointerDownHandler, IDragHandler, IEndDragHandler
+public class DraggableTrinketScript : MonoBehaviour, IBeginDragHandler, IPointerDownHandler, IDragHandler, IEndDragHandler, IDropHandler
 {
     private Vector3 startPos;
     void Start()
     {
         startPos = transform.position;
-        Debug.Log(startPos);
     }
     public void OnPointerDown(PointerEventData eventData)
     {
         
     }
-    public void OnStartDrag(PointerEventData eventData)
+    public void OnBeginDrag(PointerEventData eventData)
     {
-        
+        Debug.Log("start drag");
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -27,8 +26,14 @@ public class DraggableTrinketScript : MonoBehaviour, IPointerDownHandler, IDragH
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        Debug.Log(startPos);
-        transform.position = startPos;
+        Debug.Log("end drag");
+        //transform.position = startPos;
 
+    }
+
+    public void OnDrop(PointerEventData eventData)
+    {
+        Debug.Log("dropped");
+        transform.position = startPos;
     }
 }
