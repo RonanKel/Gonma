@@ -146,4 +146,10 @@ public class JournalScript : MonoBehaviour
         extra1Text.SetActive(false);
         extra2Text.SetActive(false);
     }
+
+    public void SetPage(int pageNum)
+    {
+        curr_page = pageNum;
+        SetJournalObjects();
+    }
 }
