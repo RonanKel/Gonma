@@ -12,6 +12,7 @@ public class MusicManagerScript : MonoBehaviour
     public AudioSource music;
     [SerializeField] float bpm = 90;
     [SerializeField] List<Level> levels;
+    private List<Level> selectedLevels = new List<Level>();
     [SerializeField] Sprite singingCat;
     [SerializeField] Sprite standingCat;
     [SerializeField] SpriteRenderer catSpriteRenderer;
@@ -81,8 +82,14 @@ public class MusicManagerScript : MonoBehaviour
 
     void PickLevel()
     {
-        if (lvlCount > 0)
+        if (selectedLevels.Count > 0)
         {
+            int lvlNum = UnityEngine.Random.Range(0, selectedLevels.Count);
+            level = selectedLevels[lvlNum];
+        }
+        else if (lvlCount > 0)
+        {
+            
             int lvlNum = UnityEngine.Random.Range(0, lvlCount);
             level = levels[lvlNum]; 
             while (PlayerPrefs.HasKey(level.name+"award1") && lvlCount > 0)
@@ -103,17 +110,14 @@ public class MusicManagerScript : MonoBehaviour
             level = levels[lvlNum];
             Debug.Log(lvlNum);
             
-            music.clip = level.song;
-            fish.GetComponent<SpriteRenderer>().sprite = level.fishSprite;
-        }
-            
+        }    
         else if (lvlCount <= 0 && levels.Count >= 1)
         {
             int lvlNum = UnityEngine.Random.Range(0, levels.Count);
             level = levels[lvlNum];
-            music.clip = level.song;
-            fish.GetComponent<SpriteRenderer>().sprite = level.fishSprite;
         }
+        music.clip = level.song;
+        fish.GetComponent<SpriteRenderer>().sprite = level.fishSprite;
     }
 
 
@@ -472,5 +476,15 @@ public class MusicManagerScript : MonoBehaviour
         levels[lvlNum] = levels[lvlCount - 1];
         levels[lvlCount - 1] = level;
         lvlCount--;
+    }
+
+    public void AddSelectedLevel(Level lvl)
+    {
+        selectedLevels.Add(lvl);
+    } 
+
+    public void RemoveSelectedLevel(Level lvl)
+    {
+        selectedLevels.Remove(lvl);
     }
 }
