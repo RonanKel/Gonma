@@ -37,7 +37,7 @@ public class NoteScript : MonoBehaviour
     void Update()
     {
         //transform.Translate(Vector3.left * speed * Time.deltaTime, Space.World);
-
+        transform.position = new Vector3(startPosition + -1 * speed * (mmScript.music.time - creationTime), transform.position.y, transform.position.z);
         lose = Physics2D.Raycast(transform.position + new Vector3(0.75f, 0f, 0f), Vector2.left, 1.5f, failBox);
 
         if (lose)
@@ -50,9 +50,4 @@ public class NoteScript : MonoBehaviour
             fail.Invoke("fail");
         }
     }    
-
-    void FixedUpdate()
-    {
-        transform.position = new Vector3(startPosition + -1 * speed * (mmScript.music.time - creationTime), transform.position.y, transform.position.z);
-    }
 }

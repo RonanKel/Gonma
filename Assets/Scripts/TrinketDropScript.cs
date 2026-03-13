@@ -27,7 +27,6 @@ public class TrinketDropScript : MonoBehaviour, IDropHandler, IPointerDownHandle
         if (level != null) {
             trinketHoverStart.Invoke(level, transform.position);
         }
-
     }
 
     public void OnPointerExit(PointerEventData eventData)
