@@ -1334,6 +1334,48 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  trinketHoverStart:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 508151709}
+        m_TargetAssemblyTypeName: TrinketInformationScript, Assembly-CSharp
+        m_MethodName: SetData
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 508151709}
+        m_TargetAssemblyTypeName: TrinketInformationScript, Assembly-CSharp
+        m_MethodName: SetHovering
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+  trinketHoverEnd:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 508151709}
+        m_TargetAssemblyTypeName: TrinketInformationScript, Assembly-CSharp
+        m_MethodName: SetHovering
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &154024346
 GameObject:
   m_ObjectHideFlags: 0
@@ -15908,6 +15950,48 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: MusicManagerScript, Assembly-CSharp
         m_MethodName: RemoveSelectedLevel
         m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  trinketHoverStart:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 508151709}
+        m_TargetAssemblyTypeName: TrinketInformationScript, Assembly-CSharp
+        m_MethodName: SetData
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 508151709}
+        m_TargetAssemblyTypeName: TrinketInformationScript, Assembly-CSharp
+        m_MethodName: SetHovering
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+  trinketHoverEnd:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 508151709}
+        m_TargetAssemblyTypeName: TrinketInformationScript, Assembly-CSharp
+        m_MethodName: SetHovering
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -40728,6 +40812,48 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: MusicManagerScript, Assembly-CSharp
         m_MethodName: RemoveSelectedLevel
         m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  trinketHoverStart:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 508151709}
+        m_TargetAssemblyTypeName: TrinketInformationScript, Assembly-CSharp
+        m_MethodName: SetData
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 508151709}
+        m_TargetAssemblyTypeName: TrinketInformationScript, Assembly-CSharp
+        m_MethodName: SetHovering
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+  trinketHoverEnd:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 508151709}
+        m_TargetAssemblyTypeName: TrinketInformationScript, Assembly-CSharp
+        m_MethodName: SetHovering
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
