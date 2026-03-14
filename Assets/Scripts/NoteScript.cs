@@ -19,7 +19,7 @@ public class NoteScript : MonoBehaviour
 
     public UnityEvent<string> fail = new UnityEvent<string>();
 
-    public float creationTime;
+    public double creationTime;
     private float startPosition;
     public float beatPos;
 
@@ -30,7 +30,7 @@ public class NoteScript : MonoBehaviour
         sfxScript = GameObject.Find("SFXManager").GetComponent<SFXManager>();
         combo = GameObject.Find("Combo").GetComponent<TextMeshProUGUI>();
         fail.AddListener(sfxScript.GetComponent<SFXManager>().Play);
-        creationTime = mmScript.music.time;
+        creationTime = mmScript.GetCurrentSongTime();
         startPosition = transform.position.x;
     }
 
@@ -38,7 +38,7 @@ public class NoteScript : MonoBehaviour
     void Update()
     {
         //transform.Translate(Vector3.left * speed * Time.deltaTime, Space.World);
-        transform.position = new Vector3(startPosition + -1 * speed * (mmScript.music.time - creationTime), transform.position.y, transform.position.z);
+        transform.position = new Vector3(startPosition + -1 * speed * (float)(mmScript.GetCurrentSongTime() - creationTime), transform.position.y, transform.position.z);
         lose = Physics2D.Raycast(transform.position + new Vector3(0.75f, 0f, 0f), Vector2.left, 1.5f, failBox);
 
         if (lose)

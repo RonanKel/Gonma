@@ -13,9 +13,13 @@ public class BeatLineScript : MonoBehaviour
     [SerializeField] TextMeshProUGUI statusText;
     [SerializeField] TextMeshProUGUI comboText;
 
-    [SerializeField] float poorLength = 1.5f;
+    [SerializeField] float poorLength = 3f;
     [SerializeField] float niceLength = 1f;
     [SerializeField] float perfectLength = .4f;
+
+    [SerializeField] float poorTime = 1.2f;
+    [SerializeField] float niceTime = .1f;
+    [SerializeField] float perfectTime = .08f;
 
     [SerializeField] ParticleSystem perfectParticles;
     [SerializeField] ParticleSystem otherParticles;
@@ -29,6 +33,10 @@ public class BeatLineScript : MonoBehaviour
     private MusicManagerScript mmScript;
 
     private int i = 0;
+
+    bool perfect = false;
+    bool nice = false;
+    bool poor = false;
 
     // Start is called before the first frame update
     void Start()
@@ -46,9 +54,9 @@ public class BeatLineScript : MonoBehaviour
         if (Input.GetKeyDown(inputKey) && hit)
         {
             Debug.Log("Detects input in line");
-            bool perfect = false;
-            bool nice = false;
-            bool poor = false;
+            perfect = false;
+            nice = false;
+            poor = false;
 
             NoteScript note = hit.transform.GetComponent<NoteScript>();
 
@@ -56,18 +64,18 @@ public class BeatLineScript : MonoBehaviour
             Debug.Log("perfect note hit time: "+ (4.0f * mmScript.spb).ToString());
             Debug.Log("difference: "+ (4.0f * mmScript.spb).ToString());
 
-            float err = Mathf.Abs((note.creationTime + (4.0f * mmScript.spb)) - mmScript.music.time);
+            float err = Mathf.Abs(((float)note.creationTime + (4.0f * mmScript.spb)) - (float)mmScript.GetCurrentSongTime());
             Debug.Log("error: "+ err.ToString());
 
-            if (err <= .08f)
+            if (err <= perfectTime)
             {
                 perfect = true;
             }
-            else if (err <= .1f)
+            else if (err <= niceTime)
             {
                 nice = true;
             }
-            else if (err <= .12f)
+            else if (err <= poorTime)
             {
                 poor = true;
             }
@@ -159,8 +167,11 @@ public class BeatLineScript : MonoBehaviour
     {
     
         Gizmos.color = Color.red;
-        Gizmos.DrawLine(transform.position + new Vector3(-(poorLength), 0f, 0f) , ((transform.position + new Vector3(-(poorLength), 0f, 0f)) + (Vector3.right * poorLength * 2f)));
 
+        Vector3 start = transform.position + new Vector3(-poorLength, 0f, 0f);
+        Vector3 end = start + Vector3.right * (poorLength * 2f);
+
+        Gizmos.DrawLine(start, end);
     }
 
 

@@ -33762,7 +33762,7 @@ Transform:
   m_GameObject: {fileID: 1390368214}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7.446531, y: 2.15, z: 0}
+  m_LocalPosition: {x: -7.016, y: 2.15, z: 0}
   m_LocalScale: {x: 0.2, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -33859,9 +33859,12 @@ MonoBehaviour:
   inputKey: e
   statusText: {fileID: 1765670584}
   comboText: {fileID: 1847442115}
-  poorLength: 1
+  poorLength: 2
   niceLength: 0.5
   perfectLength: 0.2
+  poorTime: 1.2
+  niceTime: 0.1
+  perfectTime: 0.08
   perfectParticles: {fileID: 161840890}
   otherParticles: {fileID: 1522107423}
 --- !u!1 &1395234092
@@ -34599,7 +34602,7 @@ Transform:
   m_GameObject: {fileID: 1474823380}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7.446531, y: 3.29, z: 0}
+  m_LocalPosition: {x: -7.016, y: 3.29, z: 0}
   m_LocalScale: {x: 0.2, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -34696,9 +34699,12 @@ MonoBehaviour:
   inputKey: w
   statusText: {fileID: 1620269331}
   comboText: {fileID: 1847442115}
-  poorLength: 1
+  poorLength: 2
   niceLength: 0.5
   perfectLength: 0.2
+  poorTime: 1.2
+  niceTime: 0.1
+  perfectTime: 0.08
   perfectParticles: {fileID: 971472583}
   otherParticles: {fileID: 2013908958}
 --- !u!1 &1482997119
@@ -44725,7 +44731,7 @@ Transform:
   m_GameObject: {fileID: 1914950348}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7.446531, y: 4.4, z: 0}
+  m_LocalPosition: {x: -7.016, y: 4.4, z: 0}
   m_LocalScale: {x: 0.2, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -44822,9 +44828,12 @@ MonoBehaviour:
   inputKey: q
   statusText: {fileID: 857214005}
   comboText: {fileID: 1847442115}
-  poorLength: 1
+  poorLength: 2
   niceLength: 0.5
   perfectLength: 0.2
+  poorTime: 1.2
+  niceTime: 0.1
+  perfectTime: 0.08
   perfectParticles: {fileID: 1235627084}
   otherParticles: {fileID: 264703418}
 --- !u!1 &1928696747

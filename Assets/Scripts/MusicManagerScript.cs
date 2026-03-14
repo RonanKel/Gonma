@@ -62,6 +62,9 @@ public class MusicManagerScript : MonoBehaviour
 
     [SerializeField] private VictoryCardManagerScript vcScript;
 
+    private double songStartTime;
+    private double totalPausedTime = 0;
+
 
     private GameObject goldNoteText;
     private GameObject magentaNoteText;
@@ -169,7 +172,8 @@ public class MusicManagerScript : MonoBehaviour
     {
         if (music.isPlaying)
         {
-            sSongPos = (float)music.time;
+            Debug.Log("elasped time:" + GetCurrentSongTime().ToString());
+            sSongPos = GetCurrentSongTime();
             bSongPos = sSongPos * bps;
 
             if (goldBeatMap.Count > 0 && bSongPos >= goldBeatMap.heap[0].beatPos)
@@ -243,6 +247,7 @@ public class MusicManagerScript : MonoBehaviour
         comboText.SetActive(true);
 
         noteBackground.SetActive(true);
+        songStartTime = AudioSettings.dspTime;
     }
 
 
@@ -251,8 +256,12 @@ public class MusicManagerScript : MonoBehaviour
     {
 
         PickLevel();
+        fish.SetActive(true);
+        DialogueBegin?.Invoke();
 
         start_song_event.Invoke();
+
+        songStartTime = AudioSettings.dspTime;
 
         onHook = true;
         catSpriteRenderer.sprite = singingCat;
@@ -263,8 +272,8 @@ public class MusicManagerScript : MonoBehaviour
         non_perfect_count = 0;
         // gameRan = true;
 
-        fish.SetActive(true);
-        DialogueBegin?.Invoke();
+        
+        
     }
 
     public void ReplayLastMusicGame()
@@ -304,6 +313,8 @@ public class MusicManagerScript : MonoBehaviour
 
         noteBackground.SetActive(true);
         fish.SetActive(true);
+
+        songStartTime = AudioSettings.dspTime;
     }
 
     [ContextMenu("EndMusicGame")]
@@ -452,7 +463,7 @@ public class MusicManagerScript : MonoBehaviour
     public void Pause()
     {
         paused = true;
-        paused_time = music.time;
+        paused_time = AudioSettings.dspTime;
         music.Pause();
 
 
@@ -461,8 +472,8 @@ public class MusicManagerScript : MonoBehaviour
 
     public void UnPause()
     {
-        music.time = (float)paused_time;
         music.UnPause();
+        totalPausedTime += AudioSettings.dspTime - paused_time;
         paused = false;
     }
 
@@ -486,5 +497,10 @@ public class MusicManagerScript : MonoBehaviour
     public void RemoveSelectedLevel(Level lvl)
     {
         selectedLevels.Remove(lvl);
+    }
+
+    public double GetCurrentSongTime()
+    {
+        return AudioSettings.dspTime - songStartTime - totalPausedTime;
     }
 }
