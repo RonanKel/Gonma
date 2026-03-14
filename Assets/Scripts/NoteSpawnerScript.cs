@@ -31,7 +31,7 @@ public class NoteSpawnerScript : MonoBehaviour
 
     }
 
-    public void SpawnNote(Vector3 beatLinePos, float spb) {
+    public void SpawnNote(Vector3 beatLinePos, float spb, float beatPos) {
 
         /* This makes it so that after spawning, a note will reach the beat line
         within 4 beats of whatever bpm */
@@ -43,7 +43,7 @@ public class NoteSpawnerScript : MonoBehaviour
         noteScript.speed = speed;
         noteScript.beatLinePos = beatLinePos.x;
         noteScript.spb = spb;
-
+        noteScript.beatPos = beatPos;
     }
 
     public void CleanUp() {

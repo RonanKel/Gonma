@@ -19,8 +19,9 @@ public class NoteScript : MonoBehaviour
 
     public UnityEvent<string> fail = new UnityEvent<string>();
 
-    private float creationTime;
+    public float creationTime;
     private float startPosition;
+    public float beatPos;
 
     // Start is called before the first frame update
     void Start()

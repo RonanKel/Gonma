@@ -17,7 +17,7 @@ public class MusicManagerScript : MonoBehaviour
     [SerializeField] Sprite standingCat;
     [SerializeField] SpriteRenderer catSpriteRenderer;
     [SerializeField, Range(0f, 5f)]
-    float delay = 0;
+    public float delay = 0;
 
     public bool onHook;
     public int score;
@@ -38,8 +38,8 @@ public class MusicManagerScript : MonoBehaviour
     private bool paused = false;
     double paused_time;
 
-    private float bps;
-    private float spb;
+    public float bps;
+    public float spb;
     //private int beatCount = 0;
     private double sSongPos;
     private double bSongPos;
@@ -177,7 +177,7 @@ public class MusicManagerScript : MonoBehaviour
                 while (goldBeatMap.Count > 0 && bSongPos >= goldBeatMap.heap[0].beatPos + delay)
                 {
                     curr = goldBeatMap.ExtractMin();
-                    goldNoteSS.SpawnNote(goldBeatLine.transform.position, spb);
+                    goldNoteSS.SpawnNote(goldBeatLine.transform.position, spb, (float)bSongPos);
 
                 }
             }
@@ -187,7 +187,7 @@ public class MusicManagerScript : MonoBehaviour
                 while (tealBeatMap.Count > 0 && bSongPos >= tealBeatMap.heap[0].beatPos + delay)
                 {
                     curr = tealBeatMap.ExtractMin();
-                    tealNoteSS.SpawnNote(tealBeatLine.transform.position, spb);
+                    tealNoteSS.SpawnNote(tealBeatLine.transform.position, spb, (float)bSongPos);
                 }
             }
 
@@ -196,7 +196,7 @@ public class MusicManagerScript : MonoBehaviour
                 while (magentaBeatMap.Count > 0 && bSongPos >= magentaBeatMap.heap[0].beatPos + delay)
                 {
                     curr = magentaBeatMap.ExtractMin();
-                    magentaNoteSS.SpawnNote(magentaBeatLine.transform.position, spb);
+                    magentaNoteSS.SpawnNote(magentaBeatLine.transform.position, spb, (float)bSongPos);
                 }
             }
 

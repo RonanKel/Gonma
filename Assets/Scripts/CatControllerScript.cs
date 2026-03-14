@@ -61,7 +61,7 @@ public class CatControllerScript : MonoBehaviour
             // casts
             if (Input.GetKeyDown(KeyCode.Space) && !casting)
             {
-                cast();
+                Cast();
                 
             }
             // if its clicked again it reels it in
@@ -116,7 +116,7 @@ public class CatControllerScript : MonoBehaviour
 
     }
 
-    void cast()
+    void Cast()
     {
         Debug.Log("Casting");
         cast_event.Invoke();

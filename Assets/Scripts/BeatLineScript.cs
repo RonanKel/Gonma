@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System.Text.RegularExpressions;
+
+
 public class BeatLineScript : MonoBehaviour
 {
     [SerializeField] LayerMask noteMask;
@@ -18,9 +20,9 @@ public class BeatLineScript : MonoBehaviour
     [SerializeField] ParticleSystem perfectParticles;
     [SerializeField] ParticleSystem otherParticles;
 
-    private RaycastHit2D poor;
-    private RaycastHit2D nice;
-    private RaycastHit2D perfect;
+    private RaycastHit2D hit;
+    //private RaycastHit2D nice;
+    //private RaycastHit2D perfect;
 
     private bool waiting = false;
 
@@ -37,101 +39,127 @@ public class BeatLineScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        poor = Physics2D.Raycast(transform.position + new Vector3(-(poorLength/2), 0f, 0f), Vector2.right, poorLength, noteMask);
-        nice = Physics2D.Raycast(transform.position + new Vector3(-(niceLength/2), 0f, 0f), Vector2.right, niceLength, noteMask);
-        perfect = Physics2D.Raycast(transform.position + new Vector3(-(perfectLength/2), 0f, 0f), Vector2.right, perfectLength, noteMask);
-
-        if (Input.GetKeyDown(inputKey) && perfect) {
-            Destroy(perfect.transform.gameObject);
-            mmScript.score += 3;
-            mmScript.perfect_count++;
-            // FADE IN .1 GREEN, FADE OUT .5
-            statusText.text = "Perfect!";
-            statusText.color = new Color(0, 1, 0, 1f);
-
-            statusText.canvasRenderer.SetAlpha(1f);
-            statusText.CrossFadeAlpha(0f, .5f, false);
-            comboFun(3);
-            
-            // Debug.Log("Perfect!");
-
-            // Emit particles
-            perfectParticles.Emit(5);
-
-            // a little bit of hitstop
-            if (!waiting) {
-                Time.timeScale = 0.0f;
-                StartCoroutine(Wait(.04f));
-            }
-        }
-        else if (Input.GetKeyDown(inputKey) && nice) {
-            Destroy(nice.transform.gameObject);
-            mmScript.score += 2;
-            mmScript.non_perfect_count++;
-            // FADE IN .1 YELLOW, FADE OUT .5
-            statusText.text = "Nice!";
-            statusText.color = new Color(1, 1, 0, 1f);
-
-            statusText.canvasRenderer.SetAlpha(1f);
-            statusText.CrossFadeAlpha(0f, .5f, false);
-            comboFun(2);
-            // Debug.Log("Nice!");
-
-            // Emit particles
-            otherParticles.Emit(5);
-
-            if (!waiting) {
-                Time.timeScale = 0.0f;
-                StartCoroutine(Wait(.01f));
-            }
-            
-        }
-        else if (Input.GetKeyDown(inputKey) && poor) {
-            Destroy(poor.transform.gameObject);
-            mmScript.score++;
-            mmScript.non_perfect_count++;
-            // FADE IN .1 ORANGE, FADE OUT .5
-            statusText.text = "Poor!";
-            statusText.color = new Color(1f, 0.64f, 0f, 1f);
-
-            statusText.canvasRenderer.SetAlpha(1f);
-            statusText.CrossFadeAlpha(0f, .5f, false);
-            comboFun(1);
-            // Debug.Log("Poor!");
-
-            // Emit particles
-            otherParticles.Emit(5);
-            if (!waiting) {
-                Time.timeScale = 0.0f;
-                StartCoroutine(Wait(.01f));
-            }
-        }
-        else if (Input.GetKeyDown(inputKey)){
-            // FADE IN .1 RED, FADE OUT .5
-            statusText.text = "Miss!";
-            statusText.color = new Color(1, 0, 0, 1f);
-
-            statusText.canvasRenderer.SetAlpha(1f);
-            statusText.CrossFadeAlpha(0f, .5f, false);
-            comboFun(0);
-            mmScript.score -= 1;
-            mmScript.miss_count++;
-            // Debug.Log("Miss!");
-        }
+        // raycast to see which note you're hitting
+        hit = Physics2D.Raycast(transform.position + new Vector3(-(poorLength), 0f, 0f), Vector2.right, poorLength * 2f, noteMask);
         
+
+        if (Input.GetKeyDown(inputKey) && hit)
+        {
+            Debug.Log("Detects input in line");
+            bool perfect = false;
+            bool nice = false;
+            bool poor = false;
+
+            NoteScript note = hit.transform.GetComponent<NoteScript>();
+
+            Debug.Log("curr Music time: "+ mmScript.music.time.ToString());
+            Debug.Log("perfect note hit time: "+ (4.0f * mmScript.spb).ToString());
+            Debug.Log("difference: "+ (4.0f * mmScript.spb).ToString());
+
+            float err = Mathf.Abs((note.creationTime + (4.0f * mmScript.spb)) - mmScript.music.time);
+            Debug.Log("error: "+ err.ToString());
+
+            if (err <= .08f)
+            {
+                perfect = true;
+            }
+            else if (err <= .1f)
+            {
+                nice = true;
+            }
+            else if (err <= .12f)
+            {
+                poor = true;
+            }
+
+            if (perfect) {
+                Destroy(hit.transform.gameObject);
+                mmScript.score += 3;
+                mmScript.perfect_count++;
+                // FADE IN .1 GREEN, FADE OUT .5
+                statusText.text = "Perfect!";
+                statusText.color = new Color(0, 1, 0, 1f);
+
+                statusText.canvasRenderer.SetAlpha(1f);
+                statusText.CrossFadeAlpha(0f, .5f, false);
+                comboFun(3);
+                
+                // Debug.Log("Perfect!");
+
+                // Emit particles
+                perfectParticles.Emit(5);
+
+                // a little bit of hitstop
+                if (!waiting) {
+                    Time.timeScale = 0.0f;
+                    StartCoroutine(Wait(.04f));
+                }   
+            }
+            else if (nice) {
+                Destroy(hit.transform.gameObject);
+                mmScript.score += 2;
+                mmScript.non_perfect_count++;
+                // FADE IN .1 YELLOW, FADE OUT .5
+                statusText.text = "Nice!";
+                statusText.color = new Color(1, 1, 0, 1f);
+
+                statusText.canvasRenderer.SetAlpha(1f);
+                statusText.CrossFadeAlpha(0f, .5f, false);
+                comboFun(2);
+                // Debug.Log("Nice!");
+
+                // Emit particles
+                otherParticles.Emit(5);
+
+                if (!waiting) {
+                    Time.timeScale = 0.0f;
+                    StartCoroutine(Wait(.01f));
+                }
+                
+            }
+            else if (poor) {
+                Destroy(hit.transform.gameObject);
+                mmScript.score++;
+                mmScript.non_perfect_count++;
+                // FADE IN .1 ORANGE, FADE OUT .5
+                statusText.text = "Poor!";
+                statusText.color = new Color(1f, 0.64f, 0f, 1f);
+
+                statusText.canvasRenderer.SetAlpha(1f);
+                statusText.CrossFadeAlpha(0f, .5f, false);
+                comboFun(1);
+                // Debug.Log("Poor!");
+
+                // Emit particles
+                otherParticles.Emit(5);
+                if (!waiting) {
+                    Time.timeScale = 0.0f;
+                    StartCoroutine(Wait(.01f));
+                }
+            }
+            else if (Input.GetKeyDown(inputKey)){
+                // FADE IN .1 RED, FADE OUT .5
+                statusText.text = "Miss!";
+                statusText.color = new Color(1, 0, 0, 1f);
+
+                statusText.canvasRenderer.SetAlpha(1f);
+                statusText.CrossFadeAlpha(0f, .5f, false);
+                comboFun(0);
+                mmScript.score -= 1;
+                mmScript.miss_count++;
+                // Debug.Log("Miss!");
+            }
+        }
+            
     }
+
+
 
     void OnDrawGizmos()
     {
     
         Gizmos.color = Color.red;
-        Gizmos.DrawLine(transform.position + new Vector3(-(poorLength/2), 0f, 0f) , ((transform.position + new Vector3(-(poorLength/2), 0f, 0f)) + (Vector3.right * poorLength)));
-
-        Gizmos.color = Color.blue;
-        Gizmos.DrawLine(transform.position + new Vector3(-(niceLength/2), 0f, 0f), ((transform.position + new Vector3(-(niceLength/2), 0f, 0f) + (Vector3.right * niceLength))));
-
-        Gizmos.color = Color.green;
-        Gizmos.DrawLine(transform.position + new Vector3(-(perfectLength/2), 0f, 0f), ((transform.position + new Vector3(-(perfectLength/2), 0f, 0f)) + (Vector3.right * perfectLength)));
+        Gizmos.DrawLine(transform.position + new Vector3(-(poorLength), 0f, 0f) , ((transform.position + new Vector3(-(poorLength), 0f, 0f)) + (Vector3.right * poorLength * 2f)));
 
     }
 
