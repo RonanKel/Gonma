@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class NoteSpawnerScript : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class NoteSpawnerScript : MonoBehaviour
     [SerializeField] GameObject notePrefab;
     [SerializeField] MusicManagerScript music;
     [SerializeField] int noteCount = 20;
+    [SerializeField] double failTime = 0.5;
+    [SerializeField] TextMeshProUGUI statusText;
     //private float timer = 0f;
 
     private float speed;
@@ -22,6 +25,9 @@ public class NoteSpawnerScript : MonoBehaviour
 
     private List<GameObject> notes = new List<GameObject>();
     private List<GameObject> inactiveNotes = new List<GameObject>();
+
+    public ParticleSystem perfectParticles;
+    public ParticleSystem otherParticles;
 
     // Start is called before the first frame update
     void Start()
@@ -74,6 +80,7 @@ public class NoteSpawnerScript : MonoBehaviour
             noteScript.spb = spb;
             noteScript.beatPos = beatPos;
             noteScript.spawnTime = music.GetCurrentSongTime();
+            noteScript.failTime = failTime;
         }
         else
         {
@@ -97,4 +104,66 @@ public class NoteSpawnerScript : MonoBehaviour
         inactiveNotes.Add(note);
         note.SetActive(false);
     }
+
+    public NoteScript GetBestNote(float hitzone)
+    {
+        float lowestErr = hitzone;
+        NoteScript bestNote = null;
+        NoteScript note;
+
+        for (int i = 0; i < notes.Count; i++)
+        {
+            note = notes[i].GetComponent<NoteScript>();
+            if (note.gameObject.activeSelf == true)
+            {
+                Debug.Log("There's notes here");
+                
+                Debug.Log(note.err.ToString());
+                if (note.err < lowestErr)
+                {
+                    Debug.Log("this is the best note");
+                    bestNote = note;
+                    lowestErr = note.err;
+                }
+            }  
+        }
+
+        return bestNote;
+    }
+    public void ChangeStatusText(string text)
+    {
+        if (text == "Perfect!")
+        {
+            statusText.text = "Perfect!";
+            statusText.color = new Color(0, 1, 0, 1f);
+
+            statusText.canvasRenderer.SetAlpha(1f);
+            statusText.CrossFadeAlpha(0f, .5f, false);
+        }
+        if (text == "Nice!") 
+        {
+            statusText.text = "Nice!";
+            statusText.color = new Color(1, 1, 0, 1f);
+
+            statusText.canvasRenderer.SetAlpha(1f);
+            statusText.CrossFadeAlpha(0f, .5f, false);
+        }
+        if (text == "Poor!") 
+        {
+            statusText.text = "Poor!";
+            statusText.color = new Color(1f, 0.64f, 0f, 1f);
+
+            statusText.canvasRenderer.SetAlpha(1f);
+            statusText.CrossFadeAlpha(0f, .5f, false);
+        }
+        if (text == "Miss!") 
+        {         
+            statusText.text = "Miss!";
+            statusText.color = new Color(1, 0, 0, 1f);
+
+            statusText.canvasRenderer.SetAlpha(1f);
+            statusText.CrossFadeAlpha(0f, .5f, false);
+        }
+    }
 }
+

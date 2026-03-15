@@ -1670,12 +1670,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 161840887}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -7.46, y: 2.15, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 823503529}
+  m_Father: {fileID: 1158389157}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!199 &161840889
 ParticleSystemRenderer:
@@ -7502,12 +7502,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 264703415}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.46, y: 4.39, z: -0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -7.46, y: 4.39, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 823503529}
+  m_Father: {fileID: 1158389157}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!199 &264703417
 ParticleSystemRenderer:
@@ -13063,6 +13063,10 @@ MonoBehaviour:
   notePrefab: {fileID: 4513937415968605467, guid: 315761ae4d95a462581601d940f353cc, type: 3}
   music: {fileID: 748165351}
   noteCount: 20
+  failTime: 0.5
+  statusText: {fileID: 1765670584}
+  perfectParticles: {fileID: 161840890}
+  otherParticles: {fileID: 1522107423}
 --- !u!4 &386827499
 Transform:
   m_ObjectHideFlags: 0
@@ -16684,6 +16688,10 @@ MonoBehaviour:
           m_StringArgument: dropfish
           m_BoolArgument: 0
         m_CallState: 2
+  poorTime: 0.15
+  niceTime: 0.08
+  perfectTime: 0.04
+  hitDetectionZone: 0.2
 --- !u!4 &748165352
 Transform:
   m_ObjectHideFlags: 0
@@ -17477,12 +17485,6 @@ Transform:
   - {fileID: 1914950350}
   - {fileID: 1474823382}
   - {fileID: 1390368216}
-  - {fileID: 1235627082}
-  - {fileID: 971472581}
-  - {fileID: 161840888}
-  - {fileID: 264703416}
-  - {fileID: 2013908956}
-  - {fileID: 1522107421}
   - {fileID: 1089158550}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -19034,12 +19036,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 971472580}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -7.46, y: 3.29, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 823503529}
+  m_Father: {fileID: 1158389157}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!199 &971472582
 ParticleSystemRenderer:
@@ -25784,6 +25786,12 @@ Transform:
   - {fileID: 2105946384}
   - {fileID: 2004765064}
   - {fileID: 386827499}
+  - {fileID: 1235627082}
+  - {fileID: 971472581}
+  - {fileID: 161840888}
+  - {fileID: 264703416}
+  - {fileID: 2013908956}
+  - {fileID: 1522107421}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1158805075
@@ -26687,12 +26695,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1235627081}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.46, y: 4.39, z: -0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -7.46, y: 4.39, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 823503529}
+  m_Father: {fileID: 1158389157}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!199 &1235627083
 ParticleSystemRenderer:
@@ -33746,7 +33754,6 @@ GameObject:
   - component: {fileID: 1390368216}
   - component: {fileID: 1390368218}
   - component: {fileID: 1390368217}
-  - component: {fileID: 1390368219}
   m_Layer: 3
   m_Name: MagentaBeatLine
   m_TagString: Untagged
@@ -33763,7 +33770,7 @@ Transform:
   m_GameObject: {fileID: 1390368214}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7.016, y: 2.15, z: 0}
+  m_LocalPosition: {x: -7.42, y: 2.15, z: 0}
   m_LocalScale: {x: 0.2, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -33842,32 +33849,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &1390368219
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1390368214}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50950a124cf86491f9f1c2498a5d9999, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  noteMask:
-    serializedVersion: 2
-    m_Bits: 64
-  inputKey: e
-  statusText: {fileID: 1765670584}
-  comboText: {fileID: 1847442115}
-  poorLength: 2
-  niceLength: 0.5
-  perfectLength: 0.2
-  poorTime: 1.2
-  niceTime: 0.1
-  perfectTime: 0.08
-  perfectParticles: {fileID: 161840890}
-  otherParticles: {fileID: 1522107423}
 --- !u!1 &1395234092
 GameObject:
   m_ObjectHideFlags: 0
@@ -34586,7 +34567,6 @@ GameObject:
   - component: {fileID: 1474823382}
   - component: {fileID: 1474823384}
   - component: {fileID: 1474823383}
-  - component: {fileID: 1474823385}
   m_Layer: 3
   m_Name: TealBeatLine
   m_TagString: Untagged
@@ -34603,7 +34583,7 @@ Transform:
   m_GameObject: {fileID: 1474823380}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7.016, y: 3.29, z: 0}
+  m_LocalPosition: {x: -7.42, y: 3.29, z: 0}
   m_LocalScale: {x: 0.2, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -34682,32 +34662,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &1474823385
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1474823380}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50950a124cf86491f9f1c2498a5d9999, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  noteMask:
-    serializedVersion: 2
-    m_Bits: 64
-  inputKey: w
-  statusText: {fileID: 1620269331}
-  comboText: {fileID: 1847442115}
-  poorLength: 2
-  niceLength: 0.5
-  perfectLength: 0.2
-  poorTime: 1.2
-  niceTime: 0.1
-  perfectTime: 0.08
-  perfectParticles: {fileID: 971472583}
-  otherParticles: {fileID: 2013908958}
 --- !u!1 &1482997119
 GameObject:
   m_ObjectHideFlags: 0
@@ -35341,12 +35295,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1522107420}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.46, y: 2.15, z: -0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -7.46, y: 2.15, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 823503529}
+  m_Father: {fileID: 1158389157}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!199 &1522107422
 ParticleSystemRenderer:
@@ -44385,13 +44339,13 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1847442113}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0.12383969, w: 0.99230224}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 95274601}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -14.228}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -298.56, y: 40.9}
@@ -44715,7 +44669,6 @@ GameObject:
   - component: {fileID: 1914950350}
   - component: {fileID: 1914950352}
   - component: {fileID: 1914950351}
-  - component: {fileID: 1914950353}
   m_Layer: 3
   m_Name: GoldBeatLine
   m_TagString: Untagged
@@ -44732,7 +44685,7 @@ Transform:
   m_GameObject: {fileID: 1914950348}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7.016, y: 4.4, z: 0}
+  m_LocalPosition: {x: -7.42, y: 4.4, z: 0}
   m_LocalScale: {x: 0.2, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -44811,32 +44764,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &1914950353
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1914950348}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50950a124cf86491f9f1c2498a5d9999, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  noteMask:
-    serializedVersion: 2
-    m_Bits: 64
-  inputKey: q
-  statusText: {fileID: 857214005}
-  comboText: {fileID: 1847442115}
-  poorLength: 2
-  niceLength: 0.5
-  perfectLength: 0.2
-  poorTime: 1.2
-  niceTime: 0.1
-  perfectTime: 0.08
-  perfectParticles: {fileID: 1235627084}
-  otherParticles: {fileID: 264703418}
 --- !u!1 &1928696747
 GameObject:
   m_ObjectHideFlags: 0
@@ -45522,6 +45449,10 @@ MonoBehaviour:
   notePrefab: {fileID: 4513937415968605467, guid: 13f2500ccb7674ce6bd54251da12e66a, type: 3}
   music: {fileID: 748165351}
   noteCount: 20
+  failTime: 0.5
+  statusText: {fileID: 1620269331}
+  perfectParticles: {fileID: 971472583}
+  otherParticles: {fileID: 2013908958}
 --- !u!4 &2004765064
 Transform:
   m_ObjectHideFlags: 0
@@ -45700,12 +45631,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2013908955}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.46, y: 3.29, z: -0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -7.46, y: 3.29, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 823503529}
+  m_Father: {fileID: 1158389157}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!199 &2013908957
 ParticleSystemRenderer:
@@ -51148,6 +51079,10 @@ MonoBehaviour:
   notePrefab: {fileID: 4513937415968605467, guid: cb5741aa9fbe94fa09eb5ae5d90f6d2a, type: 3}
   music: {fileID: 748165351}
   noteCount: 20
+  failTime: 0.5
+  statusText: {fileID: 857214005}
+  perfectParticles: {fileID: 1235627084}
+  otherParticles: {fileID: 264703418}
 --- !u!4 &2105946384
 Transform:
   m_ObjectHideFlags: 0

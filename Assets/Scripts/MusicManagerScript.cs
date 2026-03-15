@@ -6,6 +6,7 @@ using SongFormatScript;
 using TMPro;
 using UnityEngine.Events;
 using System;
+using System.Text.RegularExpressions;
 
 public class MusicManagerScript : MonoBehaviour
 {
@@ -79,6 +80,12 @@ public class MusicManagerScript : MonoBehaviour
     public UnityEvent start_song_event = new UnityEvent();
     public UnityEvent win_song_event = new UnityEvent();
     public UnityEvent lose_song_event = new UnityEvent();
+
+    [SerializeField] float poorTime = .12f;
+    [SerializeField] float niceTime = .1f;
+    [SerializeField] float perfectTime = .08f;
+
+    [SerializeField] float hitDetectionZone = .2f;
 
     public static event Action DialogueBegin;
 
@@ -175,6 +182,111 @@ public class MusicManagerScript : MonoBehaviour
             sSongPos = GetCurrentSongTime();
             bSongPos = sSongPos * bps;
 
+
+            List<NoteSpawnerScript> spawners = new List<NoteSpawnerScript>();
+
+            // PLAYER INPUT
+            if (Input.GetKeyDown("q"))
+            {
+                spawners.Add(goldNoteSS);
+            }
+            if (Input.GetKeyDown("w"))
+            {
+                spawners.Add(tealNoteSS);
+            }
+            if (Input.GetKeyDown("e"))
+            {
+                spawners.Add(magentaNoteSS);
+            }
+            
+            for (int i = 0; i < spawners.Count; i++)
+            {
+                
+
+                NoteScript note = spawners[i].GetBestNote(hitDetectionZone);
+                if (note == null)
+                {
+                    //Debug.Log("NOTE IS BAD");
+                    continue;
+                }
+
+                bool perfect = false;
+                bool nice = false;
+                bool poor = false;
+                float err = Mathf.Abs(((float)note.spawnTime + (4.0f * spb)) - (float)GetCurrentSongTime());
+                ParticleSystem perfectParticles = spawners[i].perfectParticles;
+                ParticleSystem otherParticles = spawners[i].otherParticles;
+
+                if (err <= perfectTime)
+                {
+                    perfect = true;
+                }
+                else if (err <= niceTime)
+                {
+                    nice = true;
+                }
+                else if (err <= poorTime)
+                {
+                    poor = true;
+                }
+
+                if (perfect) {
+                    score += 3;
+                    perfect_count++;
+                    // FADE IN .1 GREEN, FADE OUT .5
+                    
+                    comboFun(3);
+                    
+                    // Debug.Log("Perfect!");
+
+                    spawners[i].ChangeStatusText("Perfect!");
+
+                    // Emit particles
+                    perfectParticles.Emit(5);
+                }
+                else if (nice) {
+                    score += 2;
+                    non_perfect_count++;
+                    // FADE IN .1 YELLOW, FADE OUT .5
+                    spawners[i].ChangeStatusText("Nice!");
+                    comboFun(2);
+                    // Debug.Log("Nice!");
+
+                    // Emit particles
+                    otherParticles.Emit(5);                
+                }
+                else if (poor) {
+                    score++;
+                    non_perfect_count++;
+                    // FADE IN .1 ORANGE, FADE OUT .5
+                    spawners[i].ChangeStatusText("Poor!");
+                    comboFun(1);
+                    // Debug.Log("Poor!");
+
+                    // Emit particles
+                    otherParticles.Emit(5);
+                    
+                }
+                else {
+                    score -= 1;
+                    miss_count++;
+                    spawners[i].ChangeStatusText("Miss!");
+                    // FADE IN .1 RED, FADE OUT .5
+                    
+                    comboFun(0);
+                    
+                    // Debug.Log("Miss!");
+                }
+                note.BeDone();
+            }
+
+
+
+
+
+
+
+            // NOTE SPAWNING
             if (goldBeatMap.Count > 0 && bSongPos >= goldBeatMap.heap[0].beatPos)
             {
                 while (goldBeatMap.Count > 0 && bSongPos >= goldBeatMap.heap[0].beatPos + delay)
@@ -202,6 +314,8 @@ public class MusicManagerScript : MonoBehaviour
                     magentaNoteSS.PlayNote(magentaBeatLine.transform.position, spb, (float)bSongPos);
                 }
             }
+
+
 
         }
         else if (!music.isPlaying && gameRan && !paused)
@@ -502,4 +616,52 @@ public class MusicManagerScript : MonoBehaviour
     {
         return AudioSettings.dspTime - songStartTime - totalPausedTime;
     }
+
+    IEnumerator TextPop()
+    {
+        TextMeshProUGUI comboTxt = comboText.GetComponent<TextMeshProUGUI>();
+        comboTxt.fontSize = comboTxt.fontSize + 5;
+        // Debug.Log("TEST");
+        for(int framecnt = 0; framecnt < 100; framecnt++) {
+                yield return new WaitForEndOfFrame();
+            }
+        comboTxt.fontSize = comboTxt.fontSize - 5;
+                
+    }
+
+    void comboFun(int points)
+    {
+        int i;
+        TextMeshProUGUI comboTxt = comboText.GetComponent<TextMeshProUGUI>();
+        if (points != 0){
+            // Trin wreck of parseing a int of the text box
+            var matches = Regex.Matches(comboTxt.text, @"\d+");
+            string st2 ="";
+            foreach(var match in matches){
+                st2 += match;
+                // Debug.Log(st2);
+            }
+            if (st2 == "")
+            {
+                comboTxt.text = "Combo: 1";
+            }
+            else
+            {
+                i = int.Parse(st2);
+                // Debug.Log("" + i);
+                ++i;
+                comboTxt.text = "Combo: " + i;
+                if (i > longest_streak)
+                {
+                    longest_streak = i;
+                }
+            }
+            StartCoroutine(TextPop());
+            
+
+        }else{
+            i = 0;
+            comboTxt.text = "Combo: " + i;
+        }
+    }  
 }

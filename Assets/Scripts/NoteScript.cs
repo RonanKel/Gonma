@@ -14,6 +14,8 @@ public class NoteScript : MonoBehaviour
     private MusicManagerScript mmScript;
     private SFXManager sfxScript;
 
+    public float err;
+
     private TextMeshProUGUI combo;
 
     private bool lose;
@@ -24,6 +26,7 @@ public class NoteScript : MonoBehaviour
     public double spawnTime;
     private float startPosition;
     public float beatPos;
+    public double failTime;
 
     // Start is called before the first frame update
     void Start()
@@ -37,12 +40,14 @@ public class NoteScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        float signedErr = ((float)spawnTime + (4.0f * mmScript.spb)) - (float)mmScript.GetCurrentSongTime();
+        err = (float)Mathf.Abs(signedErr);
+        
         //transform.Translate(Vector3.left * speed * Time.deltaTime, Space.World);
         transform.position = new Vector3(spawnPos + -1 * speed * (float)(mmScript.GetCurrentSongTime() - spawnTime), transform.position.y, transform.position.z);
         
-        lose = Physics2D.Raycast(transform.position + new Vector3(0.75f, 0f, 0f), Vector2.left, 1.5f, failBox);
 
-        if (lose)
+        if (signedErr <= -failTime)
         {
             mmScript.score--;
             mmScript.miss_count++;

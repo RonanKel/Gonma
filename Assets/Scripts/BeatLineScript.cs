@@ -17,12 +17,14 @@ public class BeatLineScript : MonoBehaviour
     [SerializeField] float niceLength = 1f;
     [SerializeField] float perfectLength = .4f;
 
-    [SerializeField] float poorTime = 1.2f;
+[SerializeField] float poorTime = 1.2f;
     [SerializeField] float niceTime = .1f;
     [SerializeField] float perfectTime = .08f;
 
-    [SerializeField] ParticleSystem perfectParticles;
-    [SerializeField] ParticleSystem otherParticles;
+
+
+    public ParticleSystem perfectParticles;
+    public ParticleSystem otherParticles;
 
     private RaycastHit2D hit;
     //private RaycastHit2D nice;
