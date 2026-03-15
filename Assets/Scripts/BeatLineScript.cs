@@ -53,19 +53,13 @@ public class BeatLineScript : MonoBehaviour
 
         if (Input.GetKeyDown(inputKey) && hit)
         {
-            Debug.Log("Detects input in line");
             perfect = false;
             nice = false;
             poor = false;
 
             NoteScript note = hit.transform.GetComponent<NoteScript>();
 
-            Debug.Log("curr Music time: "+ mmScript.music.time.ToString());
-            Debug.Log("perfect note hit time: "+ (4.0f * mmScript.spb).ToString());
-            Debug.Log("difference: "+ (4.0f * mmScript.spb).ToString());
-
-            float err = Mathf.Abs(((float)note.creationTime + (4.0f * mmScript.spb)) - (float)mmScript.GetCurrentSongTime());
-            Debug.Log("error: "+ err.ToString());
+            float err = Mathf.Abs(((float)note.spawnTime + (4.0f * mmScript.spb)) - (float)mmScript.GetCurrentSongTime());
 
             if (err <= perfectTime)
             {
@@ -81,7 +75,6 @@ public class BeatLineScript : MonoBehaviour
             }
 
             if (perfect) {
-                Destroy(hit.transform.gameObject);
                 mmScript.score += 3;
                 mmScript.perfect_count++;
                 // FADE IN .1 GREEN, FADE OUT .5
@@ -104,7 +97,6 @@ public class BeatLineScript : MonoBehaviour
                 }   
             }
             else if (nice) {
-                Destroy(hit.transform.gameObject);
                 mmScript.score += 2;
                 mmScript.non_perfect_count++;
                 // FADE IN .1 YELLOW, FADE OUT .5
@@ -126,7 +118,6 @@ public class BeatLineScript : MonoBehaviour
                 
             }
             else if (poor) {
-                Destroy(hit.transform.gameObject);
                 mmScript.score++;
                 mmScript.non_perfect_count++;
                 // FADE IN .1 ORANGE, FADE OUT .5
@@ -157,6 +148,8 @@ public class BeatLineScript : MonoBehaviour
                 mmScript.miss_count++;
                 // Debug.Log("Miss!");
             }
+
+            note.BeDone();
         }
             
     }

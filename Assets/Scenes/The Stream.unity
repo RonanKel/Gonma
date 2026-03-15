@@ -13060,8 +13060,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d8c466824b6d44d5b51240dd4a94054, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  note: {fileID: 4513937415968605467, guid: 315761ae4d95a462581601d940f353cc, type: 3}
+  notePrefab: {fileID: 4513937415968605467, guid: 315761ae4d95a462581601d940f353cc, type: 3}
   music: {fileID: 748165351}
+  noteCount: 20
 --- !u!4 &386827499
 Transform:
   m_ObjectHideFlags: 0
@@ -45518,8 +45519,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d8c466824b6d44d5b51240dd4a94054, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  note: {fileID: 4513937415968605467, guid: 13f2500ccb7674ce6bd54251da12e66a, type: 3}
+  notePrefab: {fileID: 4513937415968605467, guid: 13f2500ccb7674ce6bd54251da12e66a, type: 3}
   music: {fileID: 748165351}
+  noteCount: 20
 --- !u!4 &2004765064
 Transform:
   m_ObjectHideFlags: 0
@@ -51143,8 +51145,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d8c466824b6d44d5b51240dd4a94054, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  note: {fileID: 4513937415968605467, guid: cb5741aa9fbe94fa09eb5ae5d90f6d2a, type: 3}
+  notePrefab: {fileID: 4513937415968605467, guid: cb5741aa9fbe94fa09eb5ae5d90f6d2a, type: 3}
   music: {fileID: 748165351}
+  noteCount: 20
 --- !u!4 &2105946384
 Transform:
   m_ObjectHideFlags: 0

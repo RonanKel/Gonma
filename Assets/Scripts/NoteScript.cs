@@ -8,6 +8,7 @@ public class NoteScript : MonoBehaviour
 
     public float speed;
     public float beatLinePos;
+    public float spawnPos;
     public float spb;
     [SerializeField] LayerMask failBox;
     private MusicManagerScript mmScript;
@@ -18,8 +19,9 @@ public class NoteScript : MonoBehaviour
     private bool lose;
 
     public UnityEvent<string> fail = new UnityEvent<string>();
+    public UnityEvent<GameObject> noteDone = new UnityEvent<GameObject>();
 
-    public double creationTime;
+    public double spawnTime;
     private float startPosition;
     public float beatPos;
 
@@ -30,25 +32,30 @@ public class NoteScript : MonoBehaviour
         sfxScript = GameObject.Find("SFXManager").GetComponent<SFXManager>();
         combo = GameObject.Find("Combo").GetComponent<TextMeshProUGUI>();
         fail.AddListener(sfxScript.GetComponent<SFXManager>().Play);
-        creationTime = mmScript.GetCurrentSongTime();
-        startPosition = transform.position.x;
     }
 
     // Update is called once per frame
     void Update()
     {
         //transform.Translate(Vector3.left * speed * Time.deltaTime, Space.World);
-        transform.position = new Vector3(startPosition + -1 * speed * (float)(mmScript.GetCurrentSongTime() - creationTime), transform.position.y, transform.position.z);
+        transform.position = new Vector3(spawnPos + -1 * speed * (float)(mmScript.GetCurrentSongTime() - spawnTime), transform.position.y, transform.position.z);
+        
         lose = Physics2D.Raycast(transform.position + new Vector3(0.75f, 0f, 0f), Vector2.left, 1.5f, failBox);
 
         if (lose)
         {
-            Destroy(gameObject);
             mmScript.score--;
             mmScript.miss_count++;
             combo.text = "Combo: 0";
             Debug.Log("Passed!");
             fail.Invoke("fail");
+            BeDone();
         }
     }    
+
+    public void BeDone()
+    {
+        transform.position = new Vector3(spawnPos, transform.position.y, transform.position.z);
+        noteDone.Invoke(gameObject);
+    }
 }

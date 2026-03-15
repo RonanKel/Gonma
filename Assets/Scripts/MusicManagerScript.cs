@@ -172,7 +172,6 @@ public class MusicManagerScript : MonoBehaviour
     {
         if (music.isPlaying)
         {
-            Debug.Log("elasped time:" + GetCurrentSongTime().ToString());
             sSongPos = GetCurrentSongTime();
             bSongPos = sSongPos * bps;
 
@@ -181,7 +180,7 @@ public class MusicManagerScript : MonoBehaviour
                 while (goldBeatMap.Count > 0 && bSongPos >= goldBeatMap.heap[0].beatPos + delay)
                 {
                     curr = goldBeatMap.ExtractMin();
-                    goldNoteSS.SpawnNote(goldBeatLine.transform.position, spb, (float)bSongPos);
+                    goldNoteSS.PlayNote(goldBeatLine.transform.position, spb, (float)bSongPos);
 
                 }
             }
@@ -191,7 +190,7 @@ public class MusicManagerScript : MonoBehaviour
                 while (tealBeatMap.Count > 0 && bSongPos >= tealBeatMap.heap[0].beatPos + delay)
                 {
                     curr = tealBeatMap.ExtractMin();
-                    tealNoteSS.SpawnNote(tealBeatLine.transform.position, spb, (float)bSongPos);
+                    tealNoteSS.PlayNote(tealBeatLine.transform.position, spb, (float)bSongPos);
                 }
             }
 
@@ -200,7 +199,7 @@ public class MusicManagerScript : MonoBehaviour
                 while (magentaBeatMap.Count > 0 && bSongPos >= magentaBeatMap.heap[0].beatPos + delay)
                 {
                     curr = magentaBeatMap.ExtractMin();
-                    magentaNoteSS.SpawnNote(magentaBeatLine.transform.position, spb, (float)bSongPos);
+                    magentaNoteSS.PlayNote(magentaBeatLine.transform.position, spb, (float)bSongPos);
                 }
             }
 
