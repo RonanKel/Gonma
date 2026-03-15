@@ -26,7 +26,7 @@ public class MusicManagerScript : MonoBehaviour
     public int longest_streak;
     public int perfect_count;
     public int non_perfect_count;
-    
+
     private MinHeap goldBeatMap;
     private MinHeap tealBeatMap;
     private MinHeap magentaBeatMap;
@@ -89,6 +89,8 @@ public class MusicManagerScript : MonoBehaviour
 
     public static event Action DialogueBegin;
 
+    public bool waiting = false;
+
 
     void PickLevel()
     {
@@ -99,12 +101,12 @@ public class MusicManagerScript : MonoBehaviour
         }
         else if (lvlCount > 0)
         {
-            
+
             int lvlNum = UnityEngine.Random.Range(0, lvlCount);
-            level = levels[lvlNum]; 
-            while (PlayerPrefs.HasKey(level.name+"award1") && lvlCount > 0)
+            level = levels[lvlNum];
+            while (PlayerPrefs.HasKey(level.name + "award1") && lvlCount > 0)
             {
-                if (PlayerPrefs.GetInt(level.name+"award1") != 1)
+                if (PlayerPrefs.GetInt(level.name + "award1") != 1)
                 {
                     // hasn't won yet so this is eligible
                     break;
@@ -119,8 +121,8 @@ public class MusicManagerScript : MonoBehaviour
             }
             level = levels[lvlNum];
             Debug.Log(lvlNum);
-            
-        }    
+
+        }
         else if (lvlCount <= 0 && levels.Count >= 1)
         {
             int lvlNum = UnityEngine.Random.Range(0, levels.Count);
@@ -198,10 +200,10 @@ public class MusicManagerScript : MonoBehaviour
             {
                 spawners.Add(magentaNoteSS);
             }
-            
+
             for (int i = 0; i < spawners.Count; i++)
             {
-                
+
 
                 NoteScript note = spawners[i].GetBestNote(hitDetectionZone);
                 if (note == null)
@@ -230,21 +232,28 @@ public class MusicManagerScript : MonoBehaviour
                     poor = true;
                 }
 
-                if (perfect) {
+                if (perfect)
+                {
                     score += 3;
                     perfect_count++;
                     // FADE IN .1 GREEN, FADE OUT .5
-                    
+
                     comboFun(3);
-                    
+
                     // Debug.Log("Perfect!");
 
                     spawners[i].ChangeStatusText("Perfect!");
 
                     // Emit particles
                     perfectParticles.Emit(5);
+                    if (!waiting)
+                    {
+                        Time.timeScale = 0.0f;
+                        StartCoroutine(Wait(.1f));
+                    }
                 }
-                else if (nice) {
+                else if (nice)
+                {
                     score += 2;
                     non_perfect_count++;
                     // FADE IN .1 YELLOW, FADE OUT .5
@@ -253,9 +262,10 @@ public class MusicManagerScript : MonoBehaviour
                     // Debug.Log("Nice!");
 
                     // Emit particles
-                    otherParticles.Emit(5);                
+                    otherParticles.Emit(5);
                 }
-                else if (poor) {
+                else if (poor)
+                {
                     score++;
                     non_perfect_count++;
                     // FADE IN .1 ORANGE, FADE OUT .5
@@ -265,16 +275,17 @@ public class MusicManagerScript : MonoBehaviour
 
                     // Emit particles
                     otherParticles.Emit(5);
-                    
+
                 }
-                else {
+                else
+                {
                     score -= 1;
                     miss_count++;
                     spawners[i].ChangeStatusText("Miss!");
                     // FADE IN .1 RED, FADE OUT .5
-                    
+
                     comboFun(0);
-                    
+
                     // Debug.Log("Miss!");
                 }
                 note.BeDone();
@@ -385,13 +396,13 @@ public class MusicManagerScript : MonoBehaviour
         non_perfect_count = 0;
         // gameRan = true;
 
-        
-        
+
+
     }
 
     public void ReplayLastMusicGame()
     {
-        
+
         music.clip = level.song;
         fish.GetComponent<SpriteRenderer>().sprite = level.fishSprite;
 
@@ -463,7 +474,8 @@ public class MusicManagerScript : MonoBehaviour
         }
 
         // save high score
-        if (level != null) {
+        if (level != null)
+        {
             if (!PlayerPrefs.HasKey(level.name))
             {
                 PlayerPrefs.SetInt(level.name, score);
@@ -476,10 +488,10 @@ public class MusicManagerScript : MonoBehaviour
                     PlayerPrefs.SetInt(level.name, score);
                 }
             }
-            float accuracy =  (float)perfect_count / (float)(miss_count + non_perfect_count + perfect_count);
+            float accuracy = (float)perfect_count / (float)(miss_count + non_perfect_count + perfect_count);
             Debug.Log(accuracy);
             vcScript.SendData(win, level.trinketSprite, score, PlayerPrefs.GetInt(level.name), longest_streak, accuracy, miss_count);
-        
+
             // make other save data
             PlayerPrefs.SetInt(level.name + "award1", 0);
             PlayerPrefs.SetInt(level.name + "award2", 0);
@@ -497,10 +509,10 @@ public class MusicManagerScript : MonoBehaviour
             {
                 PlayerPrefs.SetInt(level.name + "award3", 1);
             }
-        
+
         }
 
-        
+
 
 
         //beatCount = 0;
@@ -605,7 +617,7 @@ public class MusicManagerScript : MonoBehaviour
     public void AddSelectedLevel(Level lvl)
     {
         selectedLevels.Add(lvl);
-    } 
+    }
 
     public void RemoveSelectedLevel(Level lvl)
     {
@@ -622,22 +634,25 @@ public class MusicManagerScript : MonoBehaviour
         TextMeshProUGUI comboTxt = comboText.GetComponent<TextMeshProUGUI>();
         comboTxt.fontSize = comboTxt.fontSize + 5;
         // Debug.Log("TEST");
-        for(int framecnt = 0; framecnt < 100; framecnt++) {
-                yield return new WaitForEndOfFrame();
-            }
+        for (int framecnt = 0; framecnt < 100; framecnt++)
+        {
+            yield return new WaitForEndOfFrame();
+        }
         comboTxt.fontSize = comboTxt.fontSize - 5;
-                
+
     }
 
     void comboFun(int points)
     {
         int i;
         TextMeshProUGUI comboTxt = comboText.GetComponent<TextMeshProUGUI>();
-        if (points != 0){
+        if (points != 0)
+        {
             // Trin wreck of parseing a int of the text box
             var matches = Regex.Matches(comboTxt.text, @"\d+");
-            string st2 ="";
-            foreach(var match in matches){
+            string st2 = "";
+            foreach (var match in matches)
+            {
                 st2 += match;
                 // Debug.Log(st2);
             }
@@ -657,11 +672,21 @@ public class MusicManagerScript : MonoBehaviour
                 }
             }
             StartCoroutine(TextPop());
-            
 
-        }else{
+
+        }
+        else
+        {
             i = 0;
             comboTxt.text = "Combo: " + i;
         }
     }  
+    
+    IEnumerator Wait(float duration)
+    {
+        waiting = true;
+        yield return new WaitForSecondsRealtime(duration);
+        Time.timeScale = 1.0f;
+        waiting = false;
+    }
 }

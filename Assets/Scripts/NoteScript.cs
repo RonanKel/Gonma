@@ -40,12 +40,16 @@ public class NoteScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!mmScript.waiting)
+        {
+            transform.position = new Vector3(spawnPos + -1 * speed * (float)(mmScript.GetCurrentSongTime() - spawnTime), transform.position.y, transform.position.z);
+        }
         float signedErr = ((float)spawnTime + (4.0f * mmScript.spb)) - (float)mmScript.GetCurrentSongTime();
         err = (float)Mathf.Abs(signedErr);
-        
+
         //transform.Translate(Vector3.left * speed * Time.deltaTime, Space.World);
-        transform.position = new Vector3(spawnPos + -1 * speed * (float)(mmScript.GetCurrentSongTime() - spawnTime), transform.position.y, transform.position.z);
         
+
 
         if (signedErr <= -failTime)
         {
