@@ -94,7 +94,8 @@ public class NoteSpawnerScript : MonoBehaviour
         /* This will get rid of all the notes that have been generated 
         thus reseting the song */
 
-        for (int i = 0; i < notes.Count; i++) {
+        for (int i = 0; i < notes.Count; i++)
+        {
             NoteDone(notes[i]);
         }
     }

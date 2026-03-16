@@ -13,7 +13,10 @@ public class Level : ScriptableObject
 
     public AudioClip song;
 
-    public string GetLevelData () {
+    public float bpm;
+
+    public string GetLevelData()
+    {
         return "LevelData/" + name + ".txt";
     }
 

@@ -8,15 +8,40 @@ using UnityEngine.Events;
 using System;
 using System.Text.RegularExpressions;
 
+
+[Serializable]
+public class Line
+{
+    public string inputKey;
+    public MinHeap beatMap = new MinHeap();
+    public GameObject beatLine;
+    public GameObject noteSpawner;
+    public NoteSpawnerScript noteSpawnerScript;
+    public GameObject noteText;
+
+    void Start()
+    {
+        
+    }
+
+}
+
+
+
 public class MusicManagerScript : MonoBehaviour
 {
+    public List<Line> lines = new List<Line>();
+
     public AudioSource music;
     [SerializeField] float bpm = 90;
     [SerializeField] List<Level> levels;
     private List<Level> selectedLevels = new List<Level>();
-    [SerializeField] Sprite singingCat;
+
+    [SerializeField, Header("Cat Sprite")] Sprite singingCat;
     [SerializeField] Sprite standingCat;
     [SerializeField] SpriteRenderer catSpriteRenderer;
+
+
     [SerializeField, Range(0f, 5f)]
     public float delay = 0;
 
@@ -27,9 +52,6 @@ public class MusicManagerScript : MonoBehaviour
     public int perfect_count;
     public int non_perfect_count;
 
-    private MinHeap goldBeatMap;
-    private MinHeap tealBeatMap;
-    private MinHeap magentaBeatMap;
     private int noteCount;
     private int winningScore;
     private bool gameRan = false;
@@ -48,34 +70,17 @@ public class MusicManagerScript : MonoBehaviour
     private Note curr;
 
     // Things to hide and un-hide when starting or ending the rhythm game
-    private GameObject goldBeatLine;
-    private GameObject magentaBeatLine;
-    private GameObject tealBeatLine;
     private GameObject beatLine;
 
-    private GameObject goldNoteSpawner;
-    private GameObject magentaNoteSpawner;
-    private GameObject tealNoteSpawner;
-
-    private NoteSpawnerScript goldNoteSS;
-    private NoteSpawnerScript magentaNoteSS;
-    private NoteSpawnerScript tealNoteSS;
 
     [SerializeField] private VictoryCardManagerScript vcScript;
 
     private double songStartTime;
     private double totalPausedTime = 0;
-
-
-    private GameObject goldNoteText;
-    private GameObject magentaNoteText;
-    private GameObject tealNoteText;
     private GameObject comboText;
 
     private GameObject noteBackground;
     private GameObject fish;
-
-    //float[] beatMap = {0f,1f,2f,3f,4f,6f,8f,8.5f,9f,9.5f,10f,10.5f,11f,11.5f,12f, 10000000f, 10000000f};
 
     public UnityEvent start_song_event = new UnityEvent();
     public UnityEvent win_song_event = new UnityEvent();
@@ -138,6 +143,10 @@ public class MusicManagerScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        for (int i = 0; i < lines.Count; i++)
+        {
+            lines[i].noteSpawnerScript = lines[i].noteSpawner.GetComponent<NoteSpawnerScript>();
+        }
         if (PlayerPrefs.HasKey("delay"))
         {
             delay = PlayerPrefs.GetFloat("delay");
@@ -150,23 +159,8 @@ public class MusicManagerScript : MonoBehaviour
 
     void Awake()
     {
-        goldBeatLine = GameObject.Find("/---BeatLines---/GoldBeatLine");
-        magentaBeatLine = GameObject.Find("/---BeatLines---/MagentaBeatLine");
-        tealBeatLine = GameObject.Find("/---BeatLines---/TealBeatLine");
         beatLine = GameObject.Find("/---BeatLines---/BeatLine");
-
-        goldNoteSpawner = GameObject.Find("/---NoteSpawners---/GoldNoteSpawner");
-        magentaNoteSpawner = GameObject.Find("/---NoteSpawners---/MagentaNoteSpawner");
-        tealNoteSpawner = GameObject.Find("/---NoteSpawners---/TealNoteSpawner");
-
-        goldNoteText = GameObject.Find("/---FeedBackText---/YText");
-        magentaNoteText = GameObject.Find("/---FeedBackText---/MText");
-        tealNoteText = GameObject.Find("/---FeedBackText---/CText");
         comboText = GameObject.Find("/---FeedBackText---/Combo");
-
-        goldNoteSS = goldNoteSpawner.GetComponent<NoteSpawnerScript>();
-        magentaNoteSS = magentaNoteSpawner.GetComponent<NoteSpawnerScript>();
-        tealNoteSS = tealNoteSpawner.GetComponent<NoteSpawnerScript>();
 
         noteBackground = GameObject.Find("---Notes Stuff---/Notes Backdrop");
         fish = GameObject.Find("---Scene Management---/Fish");
@@ -185,150 +179,99 @@ public class MusicManagerScript : MonoBehaviour
             bSongPos = sSongPos * bps;
 
 
-            List<NoteSpawnerScript> spawners = new List<NoteSpawnerScript>();
-
-            // PLAYER INPUT
-            if (Input.GetKeyDown("q"))
+            // Input detection
+            for (int i = 0; i < lines.Count; i++)
             {
-                spawners.Add(goldNoteSS);
-            }
-            if (Input.GetKeyDown("w"))
-            {
-                spawners.Add(tealNoteSS);
-            }
-            if (Input.GetKeyDown("e"))
-            {
-                spawners.Add(magentaNoteSS);
-            }
-
-            for (int i = 0; i < spawners.Count; i++)
-            {
-
-
-                NoteScript note = spawners[i].GetBestNote(hitDetectionZone);
-                if (note == null)
+                if (Input.GetKeyDown(lines[i].inputKey))
                 {
-                    //Debug.Log("NOTE IS BAD");
-                    continue;
-                }
-
-                bool perfect = false;
-                bool nice = false;
-                bool poor = false;
-                float err = Mathf.Abs(((float)note.spawnTime + (4.0f * spb)) - (float)GetCurrentSongTime());
-                ParticleSystem perfectParticles = spawners[i].perfectParticles;
-                ParticleSystem otherParticles = spawners[i].otherParticles;
-
-                if (err <= perfectTime)
-                {
-                    perfect = true;
-                }
-                else if (err <= niceTime)
-                {
-                    nice = true;
-                }
-                else if (err <= poorTime)
-                {
-                    poor = true;
-                }
-
-                if (perfect)
-                {
-                    score += 3;
-                    perfect_count++;
-                    // FADE IN .1 GREEN, FADE OUT .5
-
-                    comboFun(3);
-
-                    // Debug.Log("Perfect!");
-
-                    spawners[i].ChangeStatusText("Perfect!");
-
-                    // Emit particles
-                    perfectParticles.Emit(5);
-                    if (!waiting)
+                    NoteScript note = lines[i].noteSpawnerScript.GetBestNote(hitDetectionZone);
+                    if (note == null)
                     {
-                        Time.timeScale = 0.0f;
-                        StartCoroutine(Wait(.1f));
+                        continue;
+                    }
+                    bool perfect = false;
+                    bool nice = false;
+                    bool poor = false;
+                    float err = note.err;
+
+                    ParticleSystem perfectParticles = lines[i].noteSpawnerScript.perfectParticles;
+                    ParticleSystem otherParticles = lines[i].noteSpawnerScript.otherParticles;
+
+                    if (err <= perfectTime)
+                    {
+                        score += 3;
+                        perfect_count++;
+                        // FADE IN .1 GREEN, FADE OUT .5
+
+                        comboFun(3);
+
+                        // Debug.Log("Perfect!");
+
+                        lines[i].noteSpawnerScript.ChangeStatusText("Perfect!");
+
+                        // Emit particles
+                        perfectParticles.Emit(5);
+                        if (!waiting)
+                        {
+                            Time.timeScale = 0.0f;
+                            StartCoroutine(Wait(.1f));
+                        }
+                    }
+                    else if (err <= niceTime)
+                    {
+                        score += 2;
+                        non_perfect_count++;
+                        // FADE IN .1 YELLOW, FADE OUT .5
+                        lines[i].noteSpawnerScript.ChangeStatusText("Nice!");
+                        comboFun(2);
+                        // Debug.Log("Nice!");
+
+                        // Emit particles
+                        otherParticles.Emit(5);
+                    }
+                    else if (err <= poorTime)
+                    {
+                        score++;
+                        non_perfect_count++;
+                        // FADE IN .1 ORANGE, FADE OUT .5
+                        lines[i].noteSpawnerScript.ChangeStatusText("Poor!");
+                        comboFun(1);
+                        // Debug.Log("Poor!");
+
+                        // Emit particles
+                        otherParticles.Emit(5);
+                    }
+                    else
+                    {
+                        score -= 1;
+                        miss_count++;
+                        lines[i].noteSpawnerScript.ChangeStatusText("Miss!");
+                        // FADE IN .1 RED, FADE OUT .5
+
+                        comboFun(0);
+
+                        // Debug.Log("Miss!");
+                    }
+                    note.BeDone();
+                }
+            }
+
+
+
+            // Spawn Notes
+            for (int i = 0; i < lines.Count; i++)
+            {
+                if (lines[i].beatMap.Count > 0 && bSongPos >= lines[i].beatMap.heap[0].beatPos)
+                {
+                    while (lines[i].beatMap.Count > 0 && bSongPos >= lines[i].beatMap.heap[0].beatPos + delay)
+                    {
+                        curr = lines[i].beatMap.ExtractMin();
+                        lines[i].noteSpawnerScript.PlayNote(lines[i].beatLine.transform.position, spb, (float)bSongPos);
                     }
                 }
-                else if (nice)
-                {
-                    score += 2;
-                    non_perfect_count++;
-                    // FADE IN .1 YELLOW, FADE OUT .5
-                    spawners[i].ChangeStatusText("Nice!");
-                    comboFun(2);
-                    // Debug.Log("Nice!");
-
-                    // Emit particles
-                    otherParticles.Emit(5);
-                }
-                else if (poor)
-                {
-                    score++;
-                    non_perfect_count++;
-                    // FADE IN .1 ORANGE, FADE OUT .5
-                    spawners[i].ChangeStatusText("Poor!");
-                    comboFun(1);
-                    // Debug.Log("Poor!");
-
-                    // Emit particles
-                    otherParticles.Emit(5);
-
-                }
-                else
-                {
-                    score -= 1;
-                    miss_count++;
-                    spawners[i].ChangeStatusText("Miss!");
-                    // FADE IN .1 RED, FADE OUT .5
-
-                    comboFun(0);
-
-                    // Debug.Log("Miss!");
-                }
-                note.BeDone();
             }
-
-
-
-
-
-
-
-            // NOTE SPAWNING
-            if (goldBeatMap.Count > 0 && bSongPos >= goldBeatMap.heap[0].beatPos)
-            {
-                while (goldBeatMap.Count > 0 && bSongPos >= goldBeatMap.heap[0].beatPos + delay)
-                {
-                    curr = goldBeatMap.ExtractMin();
-                    goldNoteSS.PlayNote(goldBeatLine.transform.position, spb, (float)bSongPos);
-
-                }
-            }
-
-            if (tealBeatMap.Count > 0 && bSongPos >= tealBeatMap.heap[0].beatPos)
-            {
-                while (tealBeatMap.Count > 0 && bSongPos >= tealBeatMap.heap[0].beatPos + delay)
-                {
-                    curr = tealBeatMap.ExtractMin();
-                    tealNoteSS.PlayNote(tealBeatLine.transform.position, spb, (float)bSongPos);
-                }
-            }
-
-            if (magentaBeatMap.Count > 0 && bSongPos >= magentaBeatMap.heap[0].beatPos)
-            {
-                while (magentaBeatMap.Count > 0 && bSongPos >= magentaBeatMap.heap[0].beatPos + delay)
-                {
-                    curr = magentaBeatMap.ExtractMin();
-                    magentaNoteSS.PlayNote(magentaBeatLine.transform.position, spb, (float)bSongPos);
-                }
-            }
-
-
-
         }
+
         else if (!music.isPlaying && gameRan && !paused)
         {
             EndMusicGame();
@@ -356,20 +299,12 @@ public class MusicManagerScript : MonoBehaviour
         BuildNoteHeap();
         music.Play();
 
-        goldBeatLine.SetActive(true);
-        magentaBeatLine.SetActive(true);
-        tealBeatLine.SetActive(true);
-        beatLine.SetActive(true);
+        for (int i = 0; i < lines.Count; i++)
+        {
+            SetLineActive(lines[i], true);
+        }
 
-        goldNoteSpawner.SetActive(true);
-        magentaNoteSpawner.SetActive(true);
-        tealNoteSpawner.SetActive(true);
-
-        goldNoteText.SetActive(true);
-        magentaNoteText.SetActive(true);
-        tealNoteText.SetActive(true);
         comboText.SetActive(true);
-
         noteBackground.SetActive(true);
         songStartTime = AudioSettings.dspTime;
     }
@@ -378,7 +313,6 @@ public class MusicManagerScript : MonoBehaviour
     [ContextMenu("StartMusicGame")]
     public void StartMusicGame()
     {
-
         PickLevel();
         fish.SetActive(true);
         DialogueBegin?.Invoke();
@@ -387,6 +321,7 @@ public class MusicManagerScript : MonoBehaviour
 
         songStartTime = AudioSettings.dspTime;
 
+        beatLine.SetActive(true);
         onHook = true;
         catSpriteRenderer.sprite = singingCat;
         score = 0;
@@ -395,9 +330,6 @@ public class MusicManagerScript : MonoBehaviour
         perfect_count = 0;
         non_perfect_count = 0;
         // gameRan = true;
-
-
-
     }
 
     public void ReplayLastMusicGame()
@@ -421,20 +353,13 @@ public class MusicManagerScript : MonoBehaviour
         BuildNoteHeap();
         music.Play();
 
-        goldBeatLine.SetActive(true);
-        magentaBeatLine.SetActive(true);
-        tealBeatLine.SetActive(true);
-        beatLine.SetActive(true);
+        for (int i = 0; i < lines.Count; i++)
+        {
+            SetLineActive(lines[i], true);
+        }
 
-        goldNoteSpawner.SetActive(true);
-        magentaNoteSpawner.SetActive(true);
-        tealNoteSpawner.SetActive(true);
-
-        goldNoteText.SetActive(true);
-        magentaNoteText.SetActive(true);
-        tealNoteText.SetActive(true);
+        beatLine.SetActive(false);
         comboText.SetActive(true);
-
         noteBackground.SetActive(true);
         fish.SetActive(true);
 
@@ -516,27 +441,21 @@ public class MusicManagerScript : MonoBehaviour
 
 
         //beatCount = 0;
-
-        goldNoteSS.CleanUp();
-        magentaNoteSS.CleanUp();
-        tealNoteSS.CleanUp();
+        for (int i = 0; i < lines.Count; i++)
+        {
+            lines[i].noteSpawnerScript.CleanUp();
+        }
 
         music.Stop();
 
         //Debug.Log("It's Over");
 
-        goldBeatLine.SetActive(false);
-        magentaBeatLine.SetActive(false);
-        tealBeatLine.SetActive(false);
+        for (int i = 0; i < lines.Count; i++)
+        {
+            SetLineActive(lines[i], false);
+        }
+
         beatLine.SetActive(false);
-
-        goldNoteSpawner.SetActive(false);
-        magentaNoteSpawner.SetActive(false);
-        tealNoteSpawner.SetActive(false);
-
-        goldNoteText.SetActive(false);
-        magentaNoteText.SetActive(false);
-        tealNoteText.SetActive(false);
         comboText.GetComponent<TextMeshProUGUI>().text = "Combo: 0";
         comboText.SetActive(false);
 
@@ -550,10 +469,6 @@ public class MusicManagerScript : MonoBehaviour
         string line;
         noteCount = 0;
 
-        goldBeatMap = new MinHeap();
-        tealBeatMap = new MinHeap();
-        magentaBeatMap = new MinHeap();
-
         StreamReader reader = new StreamReader(filePath);
         Debug.Log(filePath);
 
@@ -566,15 +481,15 @@ public class MusicManagerScript : MonoBehaviour
             {
                 case "gold":
                     GoldNote goldNote = new GoldNote(float.Parse(data[0]) - 1);
-                    goldBeatMap.Insert(goldNote);
+                    lines[0].beatMap.Insert(goldNote);
                     break;
                 case "teal":
                     TealNote tealNote = new TealNote(float.Parse(data[0]) - 1);
-                    tealBeatMap.Insert(tealNote);
+                    lines[1].beatMap.Insert(tealNote);
                     break;
                 case "magenta":
                     MagentaNote magentaNote = new MagentaNote(float.Parse(data[0]) - 1);
-                    magentaBeatMap.Insert(magentaNote);
+                    lines[2].beatMap.Insert(magentaNote);
                     break;
                 default:
                     Debug.Log("Faulty Note. color: " + data[1] + ". position: " + data[0]);
@@ -590,9 +505,6 @@ public class MusicManagerScript : MonoBehaviour
         paused = true;
         paused_time = AudioSettings.dspTime;
         music.Pause();
-
-
-
     }
 
     public void UnPause()
@@ -639,7 +551,6 @@ public class MusicManagerScript : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
         comboTxt.fontSize = comboTxt.fontSize - 5;
-
     }
 
     void comboFun(int points)
@@ -680,13 +591,20 @@ public class MusicManagerScript : MonoBehaviour
             i = 0;
             comboTxt.text = "Combo: " + i;
         }
-    }  
-    
+    }
+
     IEnumerator Wait(float duration)
     {
         waiting = true;
         yield return new WaitForSecondsRealtime(duration);
         Time.timeScale = 1.0f;
         waiting = false;
+    }
+
+    void SetLineActive(Line line, bool status)
+    {
+        line.beatLine.SetActive(status);
+        line.noteSpawner.gameObject.SetActive(status);
+        line.noteText.SetActive(status);
     }
 }

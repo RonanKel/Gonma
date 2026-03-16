@@ -16554,6 +16554,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 816065ff9ddcf49768e45bb8179237f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lines:
+  - inputKey: q
+    beatLine: {fileID: 1914950348}
+    noteSpawner: {fileID: 2105946382}
+    noteSpawnerScript: {fileID: 2105946383}
+    noteText: {fileID: 857214003}
+  - inputKey: w
+    beatLine: {fileID: 1474823380}
+    noteSpawner: {fileID: 2004765062}
+    noteSpawnerScript: {fileID: 2004765063}
+    noteText: {fileID: 1620269329}
+  - inputKey: e
+    beatLine: {fileID: 1390368214}
+    noteSpawner: {fileID: 386827497}
+    noteSpawnerScript: {fileID: 386827498}
+    noteText: {fileID: 1765670582}
   music: {fileID: 748165350}
   bpm: 90
   levels:
@@ -16692,6 +16708,7 @@ MonoBehaviour:
   niceTime: 0.08
   perfectTime: 0.04
   hitDetectionZone: 0.2
+  waiting: 0
 --- !u!4 &748165352
 Transform:
   m_ObjectHideFlags: 0
