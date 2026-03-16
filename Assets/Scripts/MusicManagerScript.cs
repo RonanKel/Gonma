@@ -187,6 +187,12 @@ public class MusicManagerScript : MonoBehaviour
                     NoteScript note = lines[i].noteSpawnerScript.GetBestNote(hitDetectionZone);
                     if (note == null)
                     {
+                        score -= 1;
+                        miss_count++;
+                        lines[i].noteSpawnerScript.ChangeStatusText("Miss!");
+                        // FADE IN .1 RED, FADE OUT .5
+
+                        comboFun(0);
                         continue;
                     }
                     bool perfect = false;

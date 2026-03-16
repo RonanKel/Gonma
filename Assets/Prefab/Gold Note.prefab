@@ -142,9 +142,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 4
+  beatLinePos: {x: 0, y: 0, z: 0}
+  spawnPos: {x: 0, y: 0, z: 0}
+  spb: 0
   failBox:
     serializedVersion: 2
     m_Bits: 128
+  err: 0
   fail:
     m_PersistentCalls:
       m_Calls: []
+  noteDone:
+    m_PersistentCalls:
+      m_Calls: []
+  spawnTime: 0
+  beatPos: 0
+  failTime: 0

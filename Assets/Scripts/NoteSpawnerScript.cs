@@ -59,13 +59,14 @@ public class NoteSpawnerScript : MonoBehaviour
         NoteScript noteScript = thisNote.GetComponent<NoteScript>();
         noteScript.noteDone.AddListener(NoteDone);
         noteScript.spawnPos = transform.position;
+        
         return thisNote;
 
     }
 
     public void PlayNote(Vector3 beatLinePos, float spb, float beatPos)
     {
-        if (inactiveNotes.Count >= 1) 
+        if (inactiveNotes.Count >= 1)
         {
             GameObject thisNote = inactiveNotes[0];
             thisNote.SetActive(true);
