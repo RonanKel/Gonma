@@ -7,8 +7,8 @@ public class NoteScript : MonoBehaviour
 {
 
     public float speed;
-    public float beatLinePos;
-    public float spawnPos;
+    public Vector3 beatLinePos;
+    public Vector3 spawnPos;
     public float spb;
     [SerializeField] LayerMask failBox;
     private MusicManagerScript mmScript;
@@ -24,7 +24,6 @@ public class NoteScript : MonoBehaviour
     public UnityEvent<GameObject> noteDone = new UnityEvent<GameObject>();
 
     public double spawnTime;
-    private float startPosition;
     public float beatPos;
     public double failTime;
 
@@ -40,16 +39,15 @@ public class NoteScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!mmScript.waiting)
-        {
-            transform.position = new Vector3(spawnPos + -1 * speed * (float)(mmScript.GetCurrentSongTime() - spawnTime), transform.position.y, transform.position.z);
-        }
+        
         float signedErr = ((float)spawnTime + (4.0f * mmScript.spb)) - (float)mmScript.GetCurrentSongTime();
         err = (float)Mathf.Abs(signedErr);
 
-        //transform.Translate(Vector3.left * speed * Time.deltaTime, Space.World);
-        
-
+        if (!mmScript.waiting)
+        {
+            float ratio = (float)(mmScript.GetCurrentSongTime() - spawnTime) / (spb * 4);
+            transform.position = Vector3.LerpUnclamped(spawnPos, beatLinePos, ratio);
+        }
 
         if (signedErr <= -failTime)
         {
@@ -64,7 +62,7 @@ public class NoteScript : MonoBehaviour
 
     public void BeDone()
     {
-        transform.position = new Vector3(spawnPos, transform.position.y, transform.position.z);
+        transform.position = spawnPos;
         noteDone.Invoke(gameObject);
     }
 }

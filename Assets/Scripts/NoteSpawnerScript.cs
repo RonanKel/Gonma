@@ -30,7 +30,7 @@ public class NoteSpawnerScript : MonoBehaviour
     public ParticleSystem otherParticles;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         GameObject note;
         for (int i = 0; i < noteCount; i++)
@@ -58,7 +58,7 @@ public class NoteSpawnerScript : MonoBehaviour
         thisNote = Instantiate(notePrefab, transform);
         NoteScript noteScript = thisNote.GetComponent<NoteScript>();
         noteScript.noteDone.AddListener(NoteDone);
-        noteScript.spawnPos = transform.position.x;
+        noteScript.spawnPos = transform.position;
         return thisNote;
 
     }
@@ -76,7 +76,7 @@ public class NoteSpawnerScript : MonoBehaviour
 
             NoteScript noteScript = thisNote.GetComponent<NoteScript>();
             noteScript.speed = speed;
-            noteScript.beatLinePos = beatLinePos.x;
+            noteScript.beatLinePos = beatLinePos;
             noteScript.spb = spb;
             noteScript.beatPos = beatPos;
             noteScript.spawnTime = music.GetCurrentSongTime();
@@ -117,12 +117,8 @@ public class NoteSpawnerScript : MonoBehaviour
             note = notes[i].GetComponent<NoteScript>();
             if (note.gameObject.activeSelf == true)
             {
-                Debug.Log("There's notes here");
-                
-                Debug.Log(note.err.ToString());
                 if (note.err < lowestErr)
                 {
-                    Debug.Log("this is the best note");
                     bestNote = note;
                     lowestErr = note.err;
                 }

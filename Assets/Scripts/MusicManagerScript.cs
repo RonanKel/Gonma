@@ -58,7 +58,7 @@ public class MusicManagerScript : MonoBehaviour
     private Level level;
     private int lvlCount;
 
-    private bool paused = false;
+    public bool paused = false;
     double paused_time;
 
     public float bps;
@@ -304,6 +304,7 @@ public class MusicManagerScript : MonoBehaviour
             SetLineActive(lines[i], true);
         }
 
+        beatLine.SetActive(true);
         comboText.SetActive(true);
         noteBackground.SetActive(true);
         songStartTime = AudioSettings.dspTime;
@@ -321,7 +322,6 @@ public class MusicManagerScript : MonoBehaviour
 
         songStartTime = AudioSettings.dspTime;
 
-        beatLine.SetActive(true);
         onHook = true;
         catSpriteRenderer.sprite = singingCat;
         score = 0;
@@ -329,6 +329,7 @@ public class MusicManagerScript : MonoBehaviour
         longest_streak = 0;
         perfect_count = 0;
         non_perfect_count = 0;
+        
         // gameRan = true;
     }
 
@@ -358,7 +359,7 @@ public class MusicManagerScript : MonoBehaviour
             SetLineActive(lines[i], true);
         }
 
-        beatLine.SetActive(false);
+        beatLine.SetActive(true);
         comboText.SetActive(true);
         noteBackground.SetActive(true);
         fish.SetActive(true);
