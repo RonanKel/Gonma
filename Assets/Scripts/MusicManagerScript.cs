@@ -544,6 +544,10 @@ public class MusicManagerScript : MonoBehaviour
 
     public double GetCurrentSongTime()
     {
+        if (paused)
+        {
+            return AudioSettings.dspTime - songStartTime - totalPausedTime - (AudioSettings.dspTime - paused_time);
+        }
         return AudioSettings.dspTime - songStartTime - totalPausedTime;
     }
 
