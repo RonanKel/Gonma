@@ -217,11 +217,6 @@ public class MusicManagerScript : MonoBehaviour
 
                         // Emit particles
                         perfectParticles.Emit(5);
-                        if (!waiting)
-                        {
-                            Time.timeScale = 0.0f;
-                            StartCoroutine(Wait(.1f));
-                        }
                     }
                     else if (err <= niceTime)
                     {
