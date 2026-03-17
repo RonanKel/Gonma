@@ -37,7 +37,7 @@ public class NoteFileBuilderScript : MonoBehaviour
 
     public void AddNotesToFile() 
     {
-        string filePath = "Assets/Levels/" + songName + ".txt";
+        string filePath = "Assets/StreamingAssets/LevelData/" + songName + ".txt";
 
         StreamWriter writer = new StreamWriter(filePath, true);
 
