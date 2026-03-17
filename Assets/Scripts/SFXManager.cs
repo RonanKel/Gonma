@@ -20,7 +20,11 @@ public class SFXManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        // Update SFX volume based on player preferences
+        for (int i = 0; i < sfx_name_list.Count; i++)
+        {
+            sfx_dictionary[sfx_name_list[i]].volume = PlayerPrefs.GetFloat("sfx_volume", 1f);
+        }
     }
 
     public void Play(string sfx_name)

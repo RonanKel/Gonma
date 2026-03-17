@@ -20,6 +20,8 @@ public class BackgroundMuiscScript : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        // Volume Change
+        audio.volume = PlayerPrefs.GetFloat("music_volume", 1f);
         if (timerGoing && !audio.isPlaying)
         {
             timer += Time.deltaTime;

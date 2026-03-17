@@ -96,7 +96,11 @@ public class MusicManagerScript : MonoBehaviour
 
     public bool waiting = false;
 
-
+    void update()
+    {
+        // Change music volume based on player preferences
+        music.volume = PlayerPrefs.GetFloat("music_volume", 1f);
+    }
     void PickLevel()
     {
         if (selectedLevels.Count > 0)

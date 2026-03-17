@@ -7,7 +7,7 @@ public class DialogueManager : MonoBehaviour
     private DialogueData CD;
     private int Index;
 
-    public float typingSpeed = 0.1f;
+    [SerializeField] float typingSpeed = 0.01f;
     private Coroutine typingCoroutine;
     public static event Action OnDialogueEnded;
     private void Awake()

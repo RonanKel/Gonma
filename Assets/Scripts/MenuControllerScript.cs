@@ -37,7 +37,7 @@ public class MenuControllerScript : MonoBehaviour
                 Debug.Log("Calling function");
                 OpenPauseMenu();
             }
-            else if (Input.GetKeyDown(KeyCode.Escape) && pauseMenu.activeInHierarchy == true)
+            else if (Input.GetKeyDown(KeyCode.Escape) && pauseMenu.activeInHierarchy == true && optionOn == false)
             {
                 ClosePauseMenu();
             }
@@ -132,25 +132,17 @@ public class MenuControllerScript : MonoBehaviour
 
     public void OpenOptionsButton()
     {
-        // Optionmenu = GameObject.Find("--Options--");
-        // Menu = GameObject.Find("Menu Elements");
-        // Set active the options menu
-        // disable the buttons in the main menu
-        // include a back button in the options menu to return to the main menu
         if (optionOn == false)
         {
             optionOn = true;
-            // PlayerPrefs.GetFloat("delay");
-
             Optionmenu.SetActive(true);
+            PlayerPrefsSliders();
             DelayLabel.text = "Delay: " + PlayerPrefs.GetFloat("delay").ToString("F2") + "s";
-            // Menu.SetActive(false);
         }
         else
         {
             optionOn = false;
             Optionmenu.SetActive(false);
-            // Menu.SetActive(true);
             }
 
 
@@ -192,14 +184,22 @@ public class MenuControllerScript : MonoBehaviour
     {
         float volume = GameObject.Find("MusicSlider").GetComponent<Slider>().value;
         MusicLabel.text = "Music Volume: " + ((int)(volume * 100)).ToString() + "%";
-        // PlayerPrefs.SetFloat("music", volume);
+        PlayerPrefs.SetFloat("music_volume", volume);
     }
 
     public void SFXVolume()
     {
         float volume = GameObject.Find("SFXSlider").GetComponent<Slider>().value;
         SFXLabel.text = "SFX Volume: " + ((int)(volume * 100)).ToString() + "%";
-        // PlayerPrefs.SetFloat("SFX", volume);
+        PlayerPrefs.SetFloat("sfx_volume", volume);
+    }
+
+    public void PlayerPrefsSliders()
+    {
+        // Set all sliders to current player preferences
+        GameObject.Find("DelaySlider").GetComponent<Slider>().value = PlayerPrefs.GetFloat("delay", 0f);
+        GameObject.Find("MusicSlider").GetComponent<Slider>().value = PlayerPrefs.GetFloat("music_volume", 1f);
+        GameObject.Find("SFXSlider").GetComponent<Slider>().value = PlayerPrefs.GetFloat("sfx_volume", 1f);
     }
 
 
