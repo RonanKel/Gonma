@@ -424,19 +424,29 @@ public class MusicManagerScript : MonoBehaviour
             vcScript.SendData(win, level.trinketSprite, score, PlayerPrefs.GetInt(level.name), longest_streak, accuracy, miss_count);
 
             // make other save data
-            PlayerPrefs.SetInt(level.name + "award1", 0);
-            PlayerPrefs.SetInt(level.name + "award2", 0);
-            PlayerPrefs.SetInt(level.name + "award3", 0);
 
-            if (win)
+            if (!PlayerPrefs.HasKey(level.name + "award1"))
+            {
+                PlayerPrefs.SetInt(level.name + "award1", 0);
+            }
+            if (!PlayerPrefs.HasKey(level.name + "award2"))
+            {
+                PlayerPrefs.SetInt(level.name + "award2", 0);
+            }
+            if (!PlayerPrefs.HasKey(level.name + "award3"))
+            {
+                PlayerPrefs.SetInt(level.name + "award3", 0);
+            }
+
+            if (win && PlayerPrefs.GetInt(level.name + "award1") == 0)
             {
                 PlayerPrefs.SetInt(level.name + "award1", 1);
             }
-            if (miss_count == 0)
+            if (miss_count == 0 && PlayerPrefs.GetInt(level.name + "award2") == 0)
             {
                 PlayerPrefs.SetInt(level.name + "award2", 1);
             }
-            if (accuracy == 1)
+            if (accuracy == 1 && PlayerPrefs.GetInt(level.name + "award3") == 0)
             {
                 PlayerPrefs.SetInt(level.name + "award3", 1);
             }
