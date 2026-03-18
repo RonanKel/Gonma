@@ -23,6 +23,11 @@ namespace SongFormatScript
             heap.Add(item);
         }
 
+        public void Clear()
+        {
+            heap.Clear();
+        }
+
         public Note Peek()
         {
             return heap[0];

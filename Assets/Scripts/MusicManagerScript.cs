@@ -380,6 +380,8 @@ public class MusicManagerScript : MonoBehaviour
 
         bool win = false;
 
+        totalPausedTime = 0f;
+
         if (winningScore < 0) { }
         else if (score >= winningScore)
         {
@@ -455,11 +457,11 @@ public class MusicManagerScript : MonoBehaviour
 
 
 
-
         //beatCount = 0;
         for (int i = 0; i < lines.Count; i++)
         {
             lines[i].noteSpawnerScript.CleanUp();
+            lines[i].beatMap.Clear();
         }
 
         music.Stop();
