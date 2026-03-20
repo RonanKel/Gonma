@@ -492,24 +492,8 @@ public class MusicManagerScript : MonoBehaviour
             noteCount++;
             string[] data = line.Split();
 
-            switch (data[1])
-            {
-                case "gold":
-                    GoldNote goldNote = new GoldNote(float.Parse(data[0]) - 1);
-                    lines[0].beatMap.Insert(goldNote);
-                    break;
-                case "teal":
-                    TealNote tealNote = new TealNote(float.Parse(data[0]) - 1);
-                    lines[1].beatMap.Insert(tealNote);
-                    break;
-                case "magenta":
-                    MagentaNote magentaNote = new MagentaNote(float.Parse(data[0]) - 1);
-                    lines[2].beatMap.Insert(magentaNote);
-                    break;
-                default:
-                    Debug.Log("Faulty Note. color: " + data[1] + ". position: " + data[0]);
-                    break;
-            }
+            Note note = new Note(float.Parse(data[0]) - 1, int.Parse(data[2]));
+            lines[int.Parse(data[1])].beatMap.Insert(note);
         }
 
         winningScore = (int)(noteCount * 1.2);

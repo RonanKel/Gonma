@@ -25438,7 +25438,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   songName: BarTest
-  notes: []
+  notes:
+  - beatPos: 0
+    beatLine: 0
+    type: 0
 --- !u!4 &1101064662
 Transform:
   m_ObjectHideFlags: 0
