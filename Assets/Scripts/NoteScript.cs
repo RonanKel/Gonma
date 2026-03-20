@@ -11,8 +11,10 @@ public class NoteScript : MonoBehaviour
     public Vector3 spawnPos;
     public float spb;
     [SerializeField] LayerMask failBox;
-    private MusicManagerScript mmScript;
+    protected MusicManagerScript mmScript;
     private SFXManager sfxScript;
+
+    [SerializeField] protected int beatsToTravel = 4;
 
     public float err;
     float signedErr;
@@ -50,15 +52,15 @@ public class NoteScript : MonoBehaviour
 
     void GetErr()
     {
-        signedErr = ((float)spawnTime + (4.0f * mmScript.spb)) - (float)mmScript.GetCurrentSongTime();
+        signedErr = ((float)spawnTime + (beatsToTravel * mmScript.spb)) - (float)mmScript.GetCurrentSongTime();
         err = (float)Mathf.Abs(signedErr);
     }
 
-    void CalculateMovement()
+    protected virtual void CalculateMovement()
     {
         if (!mmScript.waiting)
         {
-            float ratio = (float)(mmScript.GetCurrentSongTime() - spawnTime) / (spb * 4);
+            float ratio = (float)(mmScript.GetCurrentSongTime() - spawnTime) / (spb * beatsToTravel);
             transform.position = Vector3.LerpUnclamped(spawnPos, beatLinePos, ratio);
         }
     }
