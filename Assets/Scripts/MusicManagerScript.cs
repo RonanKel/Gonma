@@ -138,6 +138,9 @@ public class MusicManagerScript : MonoBehaviour
             level = levels[lvlNum];
         }
         music.clip = level.song;
+        bpm = level.bpm;
+        bps = bpm / 60f;
+        spb = 60f / bpm;
         fish.GetComponent<SpriteRenderer>().sprite = level.fishSprite;
     }
 
@@ -168,10 +171,6 @@ public class MusicManagerScript : MonoBehaviour
 
         noteBackground = GameObject.Find("---Notes Stuff---/Notes Backdrop");
         fish = GameObject.Find("---Scene Management---/Fish");
-
-        bps = bpm / 60f;
-        spb = 60f / bpm;
-
     }
 
     // Update is called once per frame
