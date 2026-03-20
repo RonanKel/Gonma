@@ -15,6 +15,7 @@ public class NoteScript : MonoBehaviour
     private SFXManager sfxScript;
 
     public float err;
+    float signedErr;
 
     private TextMeshProUGUI combo;
 
@@ -27,7 +28,7 @@ public class NoteScript : MonoBehaviour
     public float beatPos;
     public double failTime;
 
-    public int ID;
+    public int type;
     public bool isDone = false;
 
     // Start is called before the first frame update
@@ -42,16 +43,28 @@ public class NoteScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        float signedErr = ((float)spawnTime + (4.0f * mmScript.spb)) - (float)mmScript.GetCurrentSongTime();
-        err = (float)Mathf.Abs(signedErr);
+        GetErr();
+        CalculateMovement();
+        CheckFail();
+    }    
 
+    void GetErr()
+    {
+        signedErr = ((float)spawnTime + (4.0f * mmScript.spb)) - (float)mmScript.GetCurrentSongTime();
+        err = (float)Mathf.Abs(signedErr);
+    }
+
+    void CalculateMovement()
+    {
         if (!mmScript.waiting)
         {
             float ratio = (float)(mmScript.GetCurrentSongTime() - spawnTime) / (spb * 4);
             transform.position = Vector3.LerpUnclamped(spawnPos, beatLinePos, ratio);
         }
+    }
 
+    void CheckFail()
+    {
         if (signedErr <= -failTime)
         {
             mmScript.score--;
@@ -61,7 +74,7 @@ public class NoteScript : MonoBehaviour
             fail.Invoke("fail");
             BeDone();
         }
-    }    
+    }
 
     public void BeDone()
     {

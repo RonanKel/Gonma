@@ -6,7 +6,7 @@ using TMPro;
 public class NoteSpawnerScript : MonoBehaviour
 {
 
-    [SerializeField] GameObject notePrefab;
+    [SerializeField] List<GameObject> notePrefabs = new List<GameObject>();
     [SerializeField] MusicManagerScript music;
     [SerializeField] int noteCount = 20;
     [SerializeField] double failTime = 0.5;
@@ -24,23 +24,25 @@ public class NoteSpawnerScript : MonoBehaviour
     private bool great;*/
 
     private List<GameObject> notes = new List<GameObject>();
-    private List<GameObject> inactiveNotes = new List<GameObject>();
+    private List<List<GameObject>> inactiveNotesLists = new List<List<GameObject>>();
 
     public ParticleSystem perfectParticles;
     public ParticleSystem otherParticles;
-
-    private int id = 0;
 
     // Start is called before the first frame update
     void Awake()
     {
         GameObject note;
-        for (int i = 0; i < noteCount; i++)
-        {
-            note = SpawnNote();
-            inactiveNotes.Add(note);
-            notes.Add(note);
-            note.SetActive(false);
+        for (int i = 0; i < notePrefabs.Count; i++) 
+        {   
+            List<GameObject> lst = new List<GameObject>();
+            inactiveNotesLists.Add(lst);
+            for (int j = 0; j < noteCount; j++)
+            {
+                note = SpawnNote(notePrefabs[i], i);
+                notes.Add(note);
+                note.SetActive(false);
+            }
         }
         
     }
@@ -51,34 +53,29 @@ public class NoteSpawnerScript : MonoBehaviour
 
     }
 
-    public GameObject SpawnNote() {
+    public GameObject SpawnNote(GameObject note, int type) {
 
         /* This makes it so that after spawning, a note will reach the beat line
         within 4 beats of whatever bpm */
         
-        thisNote = Instantiate(notePrefab, transform);
+        thisNote = Instantiate(note, transform);
         NoteScript noteScript = thisNote.GetComponent<NoteScript>();
         noteScript.noteDone.AddListener(NoteDone);
         noteScript.spawnPos = transform.position;
-        noteScript.ID = id;
-        id++;
+        noteScript.type = type;
         
         return thisNote;
 
     }
 
-    public void PlayNote(Vector3 beatLinePos, float spb, float beatPos)
+    public void PlayNote(Vector3 beatLinePos, float spb, float beatPos, int type)
     {
-        if (inactiveNotes.Count >= 1)
+        if (inactiveNotesLists[type].Count >= 1)
         {
-            GameObject thisNote = inactiveNotes[0];
+            GameObject thisNote = inactiveNotesLists[type][0];
             thisNote.SetActive(true);
-            inactiveNotes.Remove(thisNote);
+            inactiveNotesLists[type].Remove(thisNote);
             thisNote.transform.position = transform.position;
-
-            
-
-            float speed = ((transform.position.x - beatLinePos.x) / (spb * 4));
 
             NoteScript noteScript = thisNote.GetComponent<NoteScript>();
             noteScript.speed = speed;
@@ -109,12 +106,13 @@ public class NoteSpawnerScript : MonoBehaviour
 
     public void NoteDone(GameObject note)
     {
-        if (inactiveNotes.Contains(note))
+        int type = note.GetComponent<NoteScript>().type;
+        if (inactiveNotesLists[type].Contains(note))
         {
             return;
         }
         note.SetActive(false);
-        inactiveNotes.Add(note);
+        inactiveNotesLists[type].Add(note);
         
     }
 
@@ -127,7 +125,7 @@ public class NoteSpawnerScript : MonoBehaviour
         for (int i = 0; i < notes.Count; i++)
         {
             note = notes[i].GetComponent<NoteScript>();
-            if (!inactiveNotes.Contains(note.gameObject))
+            if (note.gameObject.activeSelf)
             {
                 if (note.err < lowestErr)
                 {
