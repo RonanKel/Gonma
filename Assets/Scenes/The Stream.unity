@@ -13062,6 +13062,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   notePrefabs:
   - {fileID: 4513937415968605467, guid: 315761ae4d95a462581601d940f353cc, type: 3}
+  - {fileID: 842622904818638807, guid: b4f48c1b7e6944da588c334574b570a3, type: 3}
   music: {fileID: 748165351}
   noteCount: 10
   failTime: 0.5
@@ -45866,6 +45867,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   notePrefabs:
   - {fileID: 4513937415968605467, guid: 13f2500ccb7674ce6bd54251da12e66a, type: 3}
+  - {fileID: 842622904818638807, guid: b4f48c1b7e6944da588c334574b570a3, type: 3}
   music: {fileID: 748165351}
   noteCount: 10
   failTime: 0.5
@@ -51497,6 +51499,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   notePrefabs:
   - {fileID: 4513937415968605467, guid: cb5741aa9fbe94fa09eb5ae5d90f6d2a, type: 3}
+  - {fileID: 842622904818638807, guid: b4f48c1b7e6944da588c334574b570a3, type: 3}
   music: {fileID: 748165351}
   noteCount: 10
   failTime: 0.5
