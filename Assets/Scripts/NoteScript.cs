@@ -27,6 +27,9 @@ public class NoteScript : MonoBehaviour
     public float beatPos;
     public double failTime;
 
+    public int ID;
+    public bool isDone = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -63,6 +66,8 @@ public class NoteScript : MonoBehaviour
     public void BeDone()
     {
         transform.position = spawnPos;
+        err = 10000.0f;
         noteDone.Invoke(gameObject);
+        
     }
 }

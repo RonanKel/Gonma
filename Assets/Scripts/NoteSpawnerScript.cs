@@ -29,6 +29,8 @@ public class NoteSpawnerScript : MonoBehaviour
     public ParticleSystem perfectParticles;
     public ParticleSystem otherParticles;
 
+    private int id = 0;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -39,7 +41,6 @@ public class NoteSpawnerScript : MonoBehaviour
             inactiveNotes.Add(note);
             notes.Add(note);
             note.SetActive(false);
-            
         }
         
     }
@@ -59,6 +60,8 @@ public class NoteSpawnerScript : MonoBehaviour
         NoteScript noteScript = thisNote.GetComponent<NoteScript>();
         noteScript.noteDone.AddListener(NoteDone);
         noteScript.spawnPos = transform.position;
+        noteScript.ID = id;
+        id++;
         
         return thisNote;
 
@@ -73,6 +76,8 @@ public class NoteSpawnerScript : MonoBehaviour
             inactiveNotes.Remove(thisNote);
             thisNote.transform.position = transform.position;
 
+            
+
             float speed = ((transform.position.x - beatLinePos.x) / (spb * 4));
 
             NoteScript noteScript = thisNote.GetComponent<NoteScript>();
@@ -82,6 +87,7 @@ public class NoteSpawnerScript : MonoBehaviour
             noteScript.beatPos = beatPos;
             noteScript.spawnTime = music.GetCurrentSongTime();
             noteScript.failTime = failTime;
+            noteScript.err = 1000f;
         }
         else
         {
@@ -103,8 +109,13 @@ public class NoteSpawnerScript : MonoBehaviour
 
     public void NoteDone(GameObject note)
     {
-        inactiveNotes.Add(note);
+        if (inactiveNotes.Contains(note))
+        {
+            return;
+        }
         note.SetActive(false);
+        inactiveNotes.Add(note);
+        
     }
 
     public NoteScript GetBestNote(float hitzone)
@@ -116,7 +127,7 @@ public class NoteSpawnerScript : MonoBehaviour
         for (int i = 0; i < notes.Count; i++)
         {
             note = notes[i].GetComponent<NoteScript>();
-            if (note.gameObject.activeSelf == true)
+            if (!inactiveNotes.Contains(note.gameObject))
             {
                 if (note.err < lowestErr)
                 {

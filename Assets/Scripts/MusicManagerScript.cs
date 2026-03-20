@@ -266,13 +266,10 @@ public class MusicManagerScript : MonoBehaviour
             // Spawn Notes
             for (int i = 0; i < lines.Count; i++)
             {
-                if (lines[i].beatMap.Count > 0 && bSongPos >= lines[i].beatMap.heap[0].beatPos)
+                if (lines[i].beatMap.Count > 0 && bSongPos >= lines[i].beatMap.heap[0].beatPos + (delay * bps))
                 {
-                    while (lines[i].beatMap.Count > 0 && bSongPos >= lines[i].beatMap.heap[0].beatPos + delay)
-                    {
-                        curr = lines[i].beatMap.ExtractMin();
-                        lines[i].noteSpawnerScript.PlayNote(lines[i].beatLine.transform.position, spb, (float)bSongPos);
-                    }
+                    curr = lines[i].beatMap.ExtractMin();
+                    lines[i].noteSpawnerScript.PlayNote(lines[i].beatLine.transform.position, spb, (float)bSongPos);
                 }
             }
         }
