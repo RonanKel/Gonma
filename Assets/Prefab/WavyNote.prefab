@@ -111,7 +111,7 @@ MonoBehaviour:
   failBox:
     serializedVersion: 2
     m_Bits: 0
-  beatsToTravel: 8
+  beatsToTravel: 6
   err: 0
   fail:
     m_PersistentCalls:
