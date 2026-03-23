@@ -24,6 +24,7 @@ public class VictoryCardManagerScript : MonoBehaviour
     private int _longestStreak = 0;
     private float _accuracy = 0f;
     private int _misses = 0;
+    private bool _hasPendingResult = false;
 
 
     public void SendData(bool win, Sprite trinketSprite, int score, int highScore, int longestStreak, float accuracy, int misses)
@@ -36,6 +37,15 @@ public class VictoryCardManagerScript : MonoBehaviour
         _accuracy = accuracy;
         _misses = misses;
         UpdateInfo();
+    }
+
+    void OnDisable()
+    {
+        MusicManagerScript musicManager = FindObjectOfType<MusicManagerScript>();
+        if (musicManager != null)
+        {
+            musicManager.OnVictoryCardClosed();
+        }
     }
 
     void UpdateInfo()

@@ -469,6 +469,18 @@ public class MusicManagerScript : MonoBehaviour
         fish.SetActive(false);
     }
 
+    public void OnVictoryCardClosed()
+    {
+        if (score >= winningScore)
+        {
+            win_dialogue.Invoke();
+        }
+        else
+        {
+            lose_dialogue.Invoke();
+        }
+    }
+
     public void BuildNoteHeap()
     {
         string filePath = Path.Combine(Application.streamingAssetsPath, level.GetLevelData());
