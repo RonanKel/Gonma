@@ -9,7 +9,8 @@ using UnityEditor;
 public class NoteProperties 
 {
     public float beatPos;
-    public string color;
+    public int beatLine;
+    public int type;
 }
 
 public class NoteFileBuilderScript : MonoBehaviour
@@ -37,12 +38,12 @@ public class NoteFileBuilderScript : MonoBehaviour
 
     public void AddNotesToFile() 
     {
-        string filePath = "Assets/Levels/" + songName + ".txt";
+        string filePath = "Assets/StreamingAssets/LevelData/" + songName + ".txt";
 
         StreamWriter writer = new StreamWriter(filePath, true);
 
         foreach (NoteProperties note in notes) {
-            writer.WriteLine(note.beatPos + " " + note.color);
+            writer.WriteLine(note.beatPos + " " + note.beatLine + " " + note.type);
         }
 
         writer.Close();

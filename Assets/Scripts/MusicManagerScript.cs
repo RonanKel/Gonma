@@ -142,6 +142,9 @@ public class MusicManagerScript : MonoBehaviour
             level = levels[lvlNum];
         }
         music.clip = level.song;
+        bpm = level.bpm;
+        bps = bpm / 60f;
+        spb = 60f / bpm;
         fish.GetComponent<SpriteRenderer>().sprite = level.fishSprite;
     }
 
@@ -172,10 +175,6 @@ public class MusicManagerScript : MonoBehaviour
 
         noteBackground = GameObject.Find("---Notes Stuff---/Notes Backdrop");
         fish = GameObject.Find("---Scene Management---/Fish");
-
-        bps = bpm / 60f;
-        spb = 60f / bpm;
-
     }
 
     // Update is called once per frame
@@ -270,13 +269,10 @@ public class MusicManagerScript : MonoBehaviour
             // Spawn Notes
             for (int i = 0; i < lines.Count; i++)
             {
-                if (lines[i].beatMap.Count > 0 && bSongPos >= lines[i].beatMap.heap[0].beatPos)
+                if (lines[i].beatMap.Count > 0 && bSongPos >= lines[i].beatMap.Peek().beatPos + (delay * bps))
                 {
-                    while (lines[i].beatMap.Count > 0 && bSongPos >= lines[i].beatMap.heap[0].beatPos + delay)
-                    {
-                        curr = lines[i].beatMap.ExtractMin();
-                        lines[i].noteSpawnerScript.PlayNote(lines[i].beatLine.transform.position, spb, (float)bSongPos);
-                    }
+                    curr = lines[i].beatMap.ExtractMin();
+                    lines[i].noteSpawnerScript.PlayNote(lines[i].beatLine.transform.position, spb, (float)bSongPos, curr.type);
                 }
             }
         }
@@ -372,6 +368,8 @@ public class MusicManagerScript : MonoBehaviour
 
         bool win = false;
 
+        totalPausedTime = 0f;
+
         if (winningScore < 0) { }
         else if (score >= winningScore)
         {
@@ -416,19 +414,29 @@ public class MusicManagerScript : MonoBehaviour
             vcScript.SendData(win, level.trinketSprite, score, PlayerPrefs.GetInt(level.name), longest_streak, accuracy, miss_count);
 
             // make other save data
-            PlayerPrefs.SetInt(level.name + "award1", 0);
-            PlayerPrefs.SetInt(level.name + "award2", 0);
-            PlayerPrefs.SetInt(level.name + "award3", 0);
 
-            if (win)
+            if (!PlayerPrefs.HasKey(level.name + "award1"))
+            {
+                PlayerPrefs.SetInt(level.name + "award1", 0);
+            }
+            if (!PlayerPrefs.HasKey(level.name + "award2"))
+            {
+                PlayerPrefs.SetInt(level.name + "award2", 0);
+            }
+            if (!PlayerPrefs.HasKey(level.name + "award3"))
+            {
+                PlayerPrefs.SetInt(level.name + "award3", 0);
+            }
+
+            if (win && PlayerPrefs.GetInt(level.name + "award1") == 0)
             {
                 PlayerPrefs.SetInt(level.name + "award1", 1);
             }
-            if (miss_count == 0)
+            if (miss_count == 0 && PlayerPrefs.GetInt(level.name + "award2") == 0)
             {
                 PlayerPrefs.SetInt(level.name + "award2", 1);
             }
-            if (accuracy == 1)
+            if (accuracy == 1 && PlayerPrefs.GetInt(level.name + "award3") == 0)
             {
                 PlayerPrefs.SetInt(level.name + "award3", 1);
             }
@@ -437,11 +445,11 @@ public class MusicManagerScript : MonoBehaviour
 
 
 
-
         //beatCount = 0;
         for (int i = 0; i < lines.Count; i++)
         {
             lines[i].noteSpawnerScript.CleanUp();
+            lines[i].beatMap.Clear();
         }
 
         music.Stop();
@@ -475,24 +483,8 @@ public class MusicManagerScript : MonoBehaviour
             noteCount++;
             string[] data = line.Split();
 
-            switch (data[1])
-            {
-                case "gold":
-                    GoldNote goldNote = new GoldNote(float.Parse(data[0]) - 1);
-                    lines[0].beatMap.Insert(goldNote);
-                    break;
-                case "teal":
-                    TealNote tealNote = new TealNote(float.Parse(data[0]) - 1);
-                    lines[1].beatMap.Insert(tealNote);
-                    break;
-                case "magenta":
-                    MagentaNote magentaNote = new MagentaNote(float.Parse(data[0]) - 1);
-                    lines[2].beatMap.Insert(magentaNote);
-                    break;
-                default:
-                    Debug.Log("Faulty Note. color: " + data[1] + ". position: " + data[0]);
-                    break;
-            }
+            Note note = new Note(float.Parse(data[0]) - 1, int.Parse(data[2]));
+            lines[int.Parse(data[1])].beatMap.Insert(note);
         }
 
         winningScore = (int)(noteCount * 1.2);
@@ -536,6 +528,10 @@ public class MusicManagerScript : MonoBehaviour
 
     public double GetCurrentSongTime()
     {
+        if (paused)
+        {
+            return AudioSettings.dspTime - songStartTime - totalPausedTime - (AudioSettings.dspTime - paused_time);
+        }
         return AudioSettings.dspTime - songStartTime - totalPausedTime;
     }
 

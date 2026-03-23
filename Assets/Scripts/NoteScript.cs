@@ -11,10 +11,13 @@ public class NoteScript : MonoBehaviour
     public Vector3 spawnPos;
     public float spb;
     [SerializeField] LayerMask failBox;
-    private MusicManagerScript mmScript;
+    protected MusicManagerScript mmScript;
     private SFXManager sfxScript;
 
+    [SerializeField] protected int beatsToTravel = 4;
+
     public float err;
+    float signedErr;
 
     private TextMeshProUGUI combo;
 
@@ -26,6 +29,9 @@ public class NoteScript : MonoBehaviour
     public double spawnTime;
     public float beatPos;
     public double failTime;
+
+    public int type;
+    public bool isDone = false;
 
     // Start is called before the first frame update
     void Start()
@@ -39,16 +45,28 @@ public class NoteScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        float signedErr = ((float)spawnTime + (4.0f * mmScript.spb)) - (float)mmScript.GetCurrentSongTime();
-        err = (float)Mathf.Abs(signedErr);
+        GetErr();
+        CalculateMovement();
+        CheckFail();
+    }    
 
+    void GetErr()
+    {
+        signedErr = ((float)spawnTime + (beatsToTravel * mmScript.spb)) - (float)mmScript.GetCurrentSongTime();
+        err = (float)Mathf.Abs(signedErr);
+    }
+
+    protected virtual void CalculateMovement()
+    {
         if (!mmScript.waiting)
         {
-            float ratio = (float)(mmScript.GetCurrentSongTime() - spawnTime) / (spb * 4);
+            float ratio = (float)(mmScript.GetCurrentSongTime() - spawnTime) / (spb * beatsToTravel);
             transform.position = Vector3.LerpUnclamped(spawnPos, beatLinePos, ratio);
         }
+    }
 
+    void CheckFail()
+    {
         if (signedErr <= -failTime)
         {
             mmScript.score--;
@@ -58,11 +76,13 @@ public class NoteScript : MonoBehaviour
             fail.Invoke("fail");
             BeDone();
         }
-    }    
+    }
 
     public void BeDone()
     {
         transform.position = spawnPos;
+        err = 10000.0f;
         noteDone.Invoke(gameObject);
+        
     }
 }
