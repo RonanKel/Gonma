@@ -8,28 +8,22 @@ using System.Collections.Generic;
 
 public class Masher : MonoBehaviour
 {
-[SerializeField] GameObject MasherCircle;
-[SerializeField] GameObject IndicatorCircle;
-[SerializeField] float StartingScale;
-[SerializeField] AudioSource ReelSFX;
+    [SerializeField] GameObject MasherCircle;
+    [SerializeField] GameObject IndicatorCircle;
+    [SerializeField] float StartingScale;
+    [SerializeField] AudioSource ReelSFX;
 
-private Vector3 posChange, negChange;
+    private Vector3 posChange, negChange;
 
-[HideInInspector] public bool done = false;
-[HideInInspector] public bool result;
+    [HideInInspector] public bool done = false;
+    [HideInInspector] public bool result;
 
-public UnityEvent hooked_event = new UnityEvent();
-public UnityEvent reel_event = new UnityEvent();
-public UnityEvent win_event = new UnityEvent();
-public UnityEvent lose_event = new UnityEvent();
+    public UnityEvent hooked_event = new UnityEvent();
+    public UnityEvent reel_event = new UnityEvent();
+    public UnityEvent win_event = new UnityEvent();
+    public UnityEvent lose_event = new UnityEvent();
 
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        hooked_event.Invoke();
-        ReelSFX.Play();
-    }
 
     // FixedUpdate is called once per REAL frame
     void FixedUpdate()
@@ -123,7 +117,10 @@ public UnityEvent lose_event = new UnityEvent();
             // Debug.Log("OnEnable");
             done = false;
             IndicatorCircle.transform.localScale = new Vector3(StartingScale, StartingScale, StartingScale);
+            hooked_event.Invoke();
+            ReelSFX.Play();
         }
+        
         void OnDisable(){
             done = false;
             IndicatorCircle.transform.localScale = new Vector3(StartingScale, StartingScale, StartingScale);
