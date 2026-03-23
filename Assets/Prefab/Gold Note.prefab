@@ -148,6 +148,7 @@ MonoBehaviour:
   failBox:
     serializedVersion: 2
     m_Bits: 128
+  beatsToTravel: 4
   err: 0
   fail:
     m_PersistentCalls:
@@ -158,3 +159,5 @@ MonoBehaviour:
   spawnTime: 0
   beatPos: 0
   failTime: 0
+  type: 0
+  isDone: 0

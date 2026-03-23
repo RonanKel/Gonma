@@ -305,6 +305,7 @@ public class MusicManagerScript : MonoBehaviour
         comboText.SetActive(true);
         noteBackground.SetActive(true);
         songStartTime = AudioSettings.dspTime;
+        catSpriteRenderer.sprite = singingCat;
     }
 
 
@@ -320,7 +321,7 @@ public class MusicManagerScript : MonoBehaviour
         songStartTime = AudioSettings.dspTime;
 
         onHook = true;
-        catSpriteRenderer.sprite = singingCat;
+        
         score = 0;
         miss_count = 0;
         longest_streak = 0;

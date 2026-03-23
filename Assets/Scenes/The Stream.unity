@@ -13067,6 +13067,7 @@ MonoBehaviour:
   noteCount: 10
   failTime: 0.5
   statusText: {fileID: 1765670584}
+  color: {r: 1, g: 0.52156866, b: 0.8588236, a: 1}
   perfectParticles: {fileID: 161840890}
   otherParticles: {fileID: 1522107423}
 --- !u!4 &386827499
@@ -16575,7 +16576,7 @@ MonoBehaviour:
   music: {fileID: 748165350}
   bpm: 90
   levels:
-  - {fileID: 11400000, guid: 09f9bc91d9673476cbd279f094daee36, type: 2}
+  - {fileID: 11400000, guid: 03816d2adecda41b5a6b3da2d0a833db, type: 2}
   singingCat: {fileID: 21300000, guid: bad444f8127c34293965852db327f776, type: 3}
   standingCat: {fileID: 21300000, guid: 4a1821c4421b5494094d3b6d0f9f1eed, type: 3}
   catSpriteRenderer: {fileID: 817575377}
@@ -45934,6 +45935,7 @@ MonoBehaviour:
   noteCount: 10
   failTime: 0.5
   statusText: {fileID: 1620269331}
+  color: {r: 0.41960788, g: 0.63529414, b: 1, a: 1}
   perfectParticles: {fileID: 971472583}
   otherParticles: {fileID: 2013908958}
 --- !u!4 &2004765064
@@ -51566,6 +51568,7 @@ MonoBehaviour:
   noteCount: 10
   failTime: 0.5
   statusText: {fileID: 857214005}
+  color: {r: 1, g: 0.7254902, b: 0.17254902, a: 1}
   perfectParticles: {fileID: 1235627084}
   otherParticles: {fileID: 264703418}
 --- !u!4 &2105946384

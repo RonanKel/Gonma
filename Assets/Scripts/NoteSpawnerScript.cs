@@ -11,6 +11,7 @@ public class NoteSpawnerScript : MonoBehaviour
     [SerializeField] int noteCount = 20;
     [SerializeField] double failTime = 0.5;
     [SerializeField] TextMeshProUGUI statusText;
+    [SerializeField] Color color = new Color();
     //private float timer = 0f;
 
     private float speed;
@@ -63,7 +64,11 @@ public class NoteSpawnerScript : MonoBehaviour
         noteScript.noteDone.AddListener(NoteDone);
         noteScript.spawnPos = transform.position;
         noteScript.type = type;
-        
+
+        if (type != 0) 
+        {
+            thisNote.GetComponent<SpriteRenderer>().color = color;
+        }   
         return thisNote;
 
     }
