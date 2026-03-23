@@ -85,6 +85,9 @@ public class MusicManagerScript : MonoBehaviour
     public UnityEvent start_song_event = new UnityEvent();
     public UnityEvent win_song_event = new UnityEvent();
     public UnityEvent lose_song_event = new UnityEvent();
+    public UnityEvent enter_dialogue = new UnityEvent();
+    public UnityEvent win_dialogue = new UnityEvent();
+    public UnityEvent lose_dialogue = new UnityEvent();
 
     [SerializeField] float poorTime = .12f;
     [SerializeField] float niceTime = .1f;
@@ -92,7 +95,8 @@ public class MusicManagerScript : MonoBehaviour
 
     [SerializeField] float hitDetectionZone = .2f;
 
-    public static event Action DialogueBegin;
+    // public static event Action DialogueBegin;
+
 
     public bool waiting = false;
 
@@ -284,19 +288,7 @@ public class MusicManagerScript : MonoBehaviour
         }
     }
 
-    private void OnEnable()
-    {
-        Debug.Log("OnEnable");
-        DialogueManager.OnDialogueEnded += ContinueAfterDialogue;
-    }
-
-    private void OnDisable()
-    {
-        Debug.Log("OnDisable");
-        DialogueManager.OnDialogueEnded -= ContinueAfterDialogue;
-    }
-
-    private void ContinueAfterDialogue()
+    public void ContinueAfterDialogue()
     {
         // Debug.Log("Dialogue finished, continuing...");
         gameRan = true;
@@ -321,7 +313,7 @@ public class MusicManagerScript : MonoBehaviour
     {
         PickLevel();
         fish.SetActive(true);
-        DialogueBegin?.Invoke();
+        enter_dialogue.Invoke();
 
         start_song_event.Invoke();
 

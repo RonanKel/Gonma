@@ -1,15 +1,19 @@
 using UnityEngine;
 using System.Collections;
 using System;
+using UnityEngine.Events;
 public class DialogueManager : MonoBehaviour
 {
     public static DialogueManager Instance;
     private DialogueData CD;
     private int Index;
 
+    private bool startingDialogue = false;
+
     [SerializeField] float typingSpeed = 0.01f;
     private Coroutine typingCoroutine;
-    public static event Action OnDialogueEnded;
+    // public static event Action OnDialogueEnded;
+    public UnityEvent OnDialogueEnded = new UnityEvent();
     private void Awake()
     {
         // Singleton pattern
@@ -19,8 +23,9 @@ public class DialogueManager : MonoBehaviour
             Destroy(gameObject);
     }
     
-    public void StartDialogue(DialogueData dialogue)
+    public void StartDialogue(bool start, DialogueData dialogue)
     {
+        startingDialogue = start;
         CD = dialogue;
         Index = 0;
         DialogueUI.Instance.ShowDialogueUI();
@@ -68,6 +73,9 @@ public class DialogueManager : MonoBehaviour
     {
         DialogueUI.Instance.HideDialogueUI();
         CD = null;
-        OnDialogueEnded?.Invoke();
+        if (startingDialogue) {
+            startingDialogue = false;
+            OnDialogueEnded.Invoke();
+        }
     }
 }

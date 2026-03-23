@@ -2,19 +2,22 @@ using UnityEngine;
 
 public class DialogueTrigger : MonoBehaviour
 {
-    public DialogueData dialogue;
+    public DialogueData SDialogue;
+    public DialogueData WDialogue;
+    public DialogueData LDialogue;
 
-    private void OnEnable()
-    {
-        MusicManagerScript.DialogueBegin += TriggerDialogue;
-    }
-
-    private void OnDisable()
-    {
-        MusicManagerScript.DialogueBegin -= TriggerDialogue;
-    }
     public void TriggerDialogue()
     {
-        DialogueManager.Instance.StartDialogue(dialogue);
+        DialogueManager.Instance.StartDialogue(true, SDialogue);
+    }
+
+    public void TriggerWinDialogue()
+    {
+        DialogueManager.Instance.StartDialogue(false, WDialogue);
+    }
+
+    public void TriggerLoseDialogue()
+    {
+        DialogueManager.Instance.StartDialogue(false, LDialogue);
     }
 }
