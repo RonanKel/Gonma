@@ -10,8 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e131bfa6796299f479f235e1d6e4c927, type: 3}
-  m_Name: FirstFishWin
+  m_Name: STurtleLevel
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   lines:
-  - speakerName: HAPPY
-    dialogueText: YOU WIN, THANK YOU!
+  - speakerName: ???
+    dialogueText: Hey there!
+  - speakerName: ???
+    dialogueText: I am the gay fish!
+  - speakerName: Happy
+    dialogueText: My Buds just call me Happy though :D

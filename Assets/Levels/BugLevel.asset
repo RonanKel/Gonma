@@ -27,3 +27,6 @@ MonoBehaviour:
   award3: {fileID: 5428157334817736624, guid: 9d05a5f09e5cd7b408a8ab817062bfd2, type: 3}
   extra1: Bug
   extra2: Bug
+  SDialogue: {fileID: 11400000, guid: 6cb8ee44a4eb6fb4bb7a3e69369d3f53, type: 2}
+  WDialogue: {fileID: 11400000, guid: 8ed62c66ff666824584f4d864b5ca433, type: 2}
+  LDialogue: {fileID: 11400000, guid: b4b06f04c60815446a7a00b798ac5b7c, type: 2}

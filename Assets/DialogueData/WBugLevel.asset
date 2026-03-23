@@ -10,12 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e131bfa6796299f479f235e1d6e4c927, type: 3}
-  m_Name: FirstFish
+  m_Name: WBugLevel
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   lines:
-  - speakerName: ???
-    dialogueText: Hey there!
-  - speakerName: ???
-    dialogueText: I am the gay fish!
-  - speakerName: Happy
-    dialogueText: My Buds just call me Happy though :D
+  - speakerName: Bug
+    dialogueText: FFFFFIIIIINEEEEE
+  - speakerName: Bug
+    dialogueText: YOU GOT ME
