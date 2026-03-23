@@ -145,6 +145,10 @@ public class MusicManagerScript : MonoBehaviour
         bpm = level.bpm;
         bps = bpm / 60f;
         spb = 60f / bpm;
+        // Set the dialogue based on the level
+        fish.GetComponent<DialogueTrigger>().SDialogue = level.SDialogue;
+        fish.GetComponent<DialogueTrigger>().WDialogue = level.WDialogue;
+        fish.GetComponent<DialogueTrigger>().LDialogue = level.LDialogue;
         fish.GetComponent<SpriteRenderer>().sprite = level.fishSprite;
     }
 

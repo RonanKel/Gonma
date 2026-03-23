@@ -44,6 +44,10 @@ public class Level : ScriptableObject
 
     public new string extra2;
 
+    public DialogueData SDialogue;
+    public DialogueData WDialogue;
+    public DialogueData LDialogue;
+
     
 
 }

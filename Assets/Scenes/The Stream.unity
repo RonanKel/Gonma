@@ -34219,9 +34219,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 679c1f4c97a4a2841872205df9ed3dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DialogueTrigger
-  SDialogue: {fileID: 11400000, guid: 86ef194ec56cf6c458818f785b335a4e, type: 2}
-  WDialogue: {fileID: 11400000, guid: 8f441bb5e92494e40966c958ee2df6d4, type: 2}
-  LDialogue: {fileID: 11400000, guid: 0decbcb3124981646b2f2b979121e91b, type: 2}
+  SDialogue: {fileID: 0}
+  WDialogue: {fileID: 0}
+  LDialogue: {fileID: 0}
 --- !u!1 &1402921607
 GameObject:
   m_ObjectHideFlags: 0
