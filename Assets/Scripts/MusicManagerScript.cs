@@ -477,10 +477,12 @@ public class MusicManagerScript : MonoBehaviour
     {
         if (score >= winningScore)
         {
+            fish.SetActive(true);
             win_dialogue.Invoke();
         }
         else
         {
+            fish.SetActive(true);
             lose_dialogue.Invoke();
         }
     }

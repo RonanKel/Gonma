@@ -76,6 +76,10 @@ public class DialogueManager : MonoBehaviour
         if (startingDialogue) {
             startingDialogue = false;
             OnDialogueEnded.Invoke();
+        }else
+        {
+            GameObject fish = GameObject.Find("Fish");
+            fish.SetActive(false);
         }
     }
 }
