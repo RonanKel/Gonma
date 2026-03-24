@@ -54,7 +54,7 @@ public class MusicManagerScript : MonoBehaviour
 
     private int noteCount;
     private int winningScore;
-    private bool gameRan = false;
+    public bool gameRan = false;
     private Level level;
     private int lvlCount;
 
@@ -281,8 +281,9 @@ public class MusicManagerScript : MonoBehaviour
             }
         }
 
-        else if (!music.isPlaying && gameRan && !paused)
+        else if ((music.clip.length <= GetCurrentSongTime()) && gameRan && !paused)
         {
+            Debug.Log("its here");
             EndMusicGame();
             gameRan = false;
         }
