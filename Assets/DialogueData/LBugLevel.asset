@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   lines:
   - speakerName: Bug
-    dialogueText: BzztBzzt
+    dialogueText: I told ya not to bug me! Now you got stepped on!

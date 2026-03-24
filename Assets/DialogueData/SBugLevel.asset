@@ -13,5 +13,9 @@ MonoBehaviour:
   m_Name: SBugLevel
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   lines:
-  - speakerName: Random Fly
-    dialogueText: ...
+  - speakerName: The Bug
+    dialogueText: "You\u2019ve got some nerve shoving your antennae in my face!"
+  - speakerName: The Bug
+    dialogueText: That is antennae, right? Those long strands on your face?
+  - speakerName: The Bug
+    dialogueText: "Whatever they are, I\u2019m about to rip them out!"

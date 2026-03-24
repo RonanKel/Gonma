@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65af20d9f2f954ac0b1b96e7672e93d7, type: 3}
   m_Name: BugLevel
   m_EditorClassIdentifier: Assembly-CSharp::Level
-  name: BugLevel
+  name: BugLevel2
   fishSprite: {fileID: 5428157334817736624, guid: 9d05a5f09e5cd7b408a8ab817062bfd2, type: 3}
   song: {fileID: 8300000, guid: 5b368299712e44ab9acd7e36f6b03344, type: 3}
   bpm: 80

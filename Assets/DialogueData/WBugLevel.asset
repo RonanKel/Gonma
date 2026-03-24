@@ -14,6 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   lines:
   - speakerName: Bug
-    dialogueText: FFFFFIIIIINEEEEE
-  - speakerName: Bug
-    dialogueText: YOU GOT ME
+    dialogueText: 'Geez, I really am at the bottom of the food web. This is rock
+      bottom. '
