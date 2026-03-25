@@ -23,6 +23,7 @@ public class NoteScript : MonoBehaviour
 
     private bool lose;
 
+    public UnityEvent start = new UnityEvent();
     public UnityEvent<string> fail = new UnityEvent<string>();
     public UnityEvent<GameObject> noteDone = new UnityEvent<GameObject>();
 

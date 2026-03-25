@@ -90,6 +90,7 @@ public class NoteSpawnerScript : MonoBehaviour
             noteScript.spawnTime = music.GetCurrentSongTime();
             noteScript.failTime = failTime;
             noteScript.err = 1000f;
+            noteScript.start.Invoke();
         }
         else
         {
