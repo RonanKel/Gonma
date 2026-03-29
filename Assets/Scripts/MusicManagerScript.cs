@@ -177,7 +177,7 @@ public class MusicManagerScript : MonoBehaviour
         beatLine = GameObject.Find("/---BeatLines---/BeatLine");
         comboText = GameObject.Find("/---FeedBackText---/Combo");
 
-        noteBackground = GameObject.Find("---Notes Stuff---/Notes Backdrop");
+        noteBackground = GameObject.Find("---Notes Stuff---");
         fish = GameObject.Find("---Scene Management---/Fish");
     }
 
