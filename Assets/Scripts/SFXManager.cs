@@ -29,17 +29,26 @@ public class SFXManager : MonoBehaviour
 
     public void Play(string sfx_name)
     {
-        sfx_dictionary[sfx_name].Play();
+        if (sfx_dictionary.ContainsKey(sfx_name))
+        {
+            sfx_dictionary[sfx_name].Play();
+        }
     }
 
     public void Pause(string sfx_name)
     {
-        sfx_dictionary[sfx_name].Pause();
+        if (sfx_dictionary.ContainsKey(sfx_name))
+        {
+            sfx_dictionary[sfx_name].Pause();
+        }
     }
 
     public void Stop(string sfx_name)
     {
-        sfx_dictionary[sfx_name].Stop();
+        if (sfx_dictionary.ContainsKey(sfx_name))
+        {
+            sfx_dictionary[sfx_name].Stop();
+        }
     }
 
     public void PausePlaying()

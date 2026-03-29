@@ -12,6 +12,7 @@ public class Masher : MonoBehaviour
     [SerializeField] GameObject IndicatorCircle;
     [SerializeField] float StartingScale;
     [SerializeField] AudioSource ReelSFX;
+    [SerializeField] Animator animator;
 
     private Vector3 posChange, negChange;
 
@@ -39,6 +40,11 @@ public class Masher : MonoBehaviour
         {
             OnMouseOver(0.1f);
             ReelSFX.pitch = 1 + IndicatorCircle.transform.localScale.x;
+            
+            float percentDone = IndicatorCircle.transform.localScale.x / MasherCircle.transform.localScale.x;
+            animator.speed = 0f;
+            animator.Play("New Animation", 0, percentDone);
+            animator.Update(0);
         }
         
     }
@@ -64,6 +70,7 @@ public class Masher : MonoBehaviour
         else if(IndicatorCircle.transform.localScale.x < .25f ){
             heat = Color.red;
         }
+        
         IndicatorCircle.GetComponent<Renderer>().material.color = heat;
     }
 
@@ -119,6 +126,8 @@ public class Masher : MonoBehaviour
             IndicatorCircle.transform.localScale = new Vector3(StartingScale, StartingScale, StartingScale);
             hooked_event.Invoke();
             ReelSFX.Play();
+            float percentDone = IndicatorCircle.transform.localScale.x / MasherCircle.transform.localScale.x;
+            animator.Play("Masher_fill", 0, percentDone);
         }
         
         void OnDisable(){
