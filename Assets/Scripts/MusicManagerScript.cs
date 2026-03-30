@@ -33,6 +33,7 @@ public class MusicManagerScript : MonoBehaviour
     public List<Line> lines = new List<Line>();
 
     public AudioSource music;
+    private float initVolume;
     [SerializeField] float bpm = 90;
     [SerializeField] List<Level> levels;
     private List<Level> selectedLevels = new List<Level>();
@@ -100,11 +101,6 @@ public class MusicManagerScript : MonoBehaviour
 
     public bool waiting = false;
 
-    void update()
-    {
-        // Change music volume based on player preferences
-        music.volume = PlayerPrefs.GetFloat("music_volume", 1f);
-    }
     void PickLevel()
     {
         if (selectedLevels.Count > 0)
@@ -170,6 +166,18 @@ public class MusicManagerScript : MonoBehaviour
         lvlCount = levels.Count;
         winningScore = -1; // to make it not give victory when starting the game
         EndMusicGame();
+        initVolume = music.volume;
+        SetVolume(PlayerPrefs.GetFloat("music_volume"));
+    }
+
+    public void SetDelay(float value)
+    {
+        delay = value;
+    }
+
+    public void SetVolume(float value)
+    {
+        music.volume = value * initVolume;
     }
 
     void Awake()
@@ -313,6 +321,10 @@ public class MusicManagerScript : MonoBehaviour
     [ContextMenu("StartMusicGame")]
     public void StartMusicGame()
     {
+        if (PlayerPrefs.HasKey("delay"))
+        {
+            delay = PlayerPrefs.GetFloat("delay");
+        }
         PickLevel();
         fish.SetActive(true);
         enter_dialogue.Invoke();
@@ -334,7 +346,10 @@ public class MusicManagerScript : MonoBehaviour
 
     public void ReplayLastMusicGame()
     {
-
+        if (PlayerPrefs.HasKey("delay"))
+        {
+            delay = PlayerPrefs.GetFloat("delay");
+        }
         music.clip = level.song;
         fish.GetComponent<SpriteRenderer>().sprite = level.fishSprite;
 

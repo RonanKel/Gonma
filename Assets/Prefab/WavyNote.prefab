@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7440840788993555038}
   - component: {fileID: 2660009462082265742}
   - component: {fileID: 152969775607188090}
+  - component: {fileID: 2737274723775733051}
   m_Layer: 0
   m_Name: WavyNote
   m_TagString: Untagged
@@ -251,3 +252,15 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2737274723775733051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 842622904818638807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e09bd610dc0e443fa103beac6a5aa0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SFXWrapperScript

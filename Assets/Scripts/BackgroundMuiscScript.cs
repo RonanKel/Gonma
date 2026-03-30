@@ -6,6 +6,7 @@ using System.Collections.Generic;
 public class BackgroundMuiscScript : MonoBehaviour
 {
     [SerializeField] AudioSource audio;
+    float initVolume;
     [SerializeField] List<AudioClip> backgroundMusicTracks;
     [SerializeField] float timeBeforeMusicPlays = 30.0f;
     bool timerGoing = true;
@@ -14,14 +15,14 @@ public class BackgroundMuiscScript : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        initVolume = audio.volume;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
         // Volume Change
-        audio.volume = PlayerPrefs.GetFloat("music_volume", 1f);
+        SetVolume(PlayerPrefs.GetFloat("music_volume"));
         if (timerGoing && !audio.isPlaying)
         {
             timer += Time.deltaTime;
@@ -30,6 +31,11 @@ public class BackgroundMuiscScript : MonoBehaviour
                 StopTimer();
             }
         }
+    }
+
+    public void SetVolume(float value)
+    {
+        audio.volume = value * initVolume;
     }
 
     public void StartTimer()
