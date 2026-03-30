@@ -14,19 +14,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Level
   name: BugLevel2
   fishSprite: {fileID: 8875151898643241270, guid: 1fb8d31df5bb3264ba5ec0bc6b70e107, type: 3}
-  song: {fileID: 8300000, guid: 5b368299712e44ab9acd7e36f6b03344, type: 3}
+  song: {fileID: 8300000, guid: 083ec0ecff9b0424387c625cf503c950, type: 3}
   bpm: 80
-  fishname: Bug
-  scientificFishname: Bug
-  meetingThoughts: Bug
+  fishname: The Bug
+  scientificFishname: Exasperans volatum
+  meetingThoughts: "Is this where that buzzing sound was coming from? It seems to
+    be some kind of\u2026 bug? It is so rude! It\u2019s definitely affected by [The
+    evil wizard fish]\u2019s magic. Regardless of its temperament, it is a creature
+    that needs saving.  I really hope that it becomes friendlier once the enchantment
+    is removed. "
   journalFishSprite: {fileID: 8875151898643241270, guid: 1fb8d31df5bb3264ba5ec0bc6b70e107, type: 3}
-  description: Bug
-  trinketSprite: {fileID: 21300000, guid: d520009bfb2a188479eeec97aa87b6c0, type: 3}
+  description: "The Bug is a creature that comes in many shapes, sizes, and colors.
+    The most distinguishing features of The Bug are its six legs, compound eyes,
+    antennae, and its three-part body. The three parts of The Bug\u2019s body are
+    the head, thorax, and abdomen. Rumors in the scientific community tell of a fourth
+    part, but it has yet to be substantiated with any meaningful evidence. "
+  trinketSprite: {fileID: 5428157334817736624, guid: 9d05a5f09e5cd7b408a8ab817062bfd2, type: 3}
   award1: {fileID: 21300000, guid: d520009bfb2a188479eeec97aa87b6c0, type: 3}
   award2: {fileID: 21300000, guid: d520009bfb2a188479eeec97aa87b6c0, type: 3}
   award3: {fileID: 21300000, guid: d520009bfb2a188479eeec97aa87b6c0, type: 3}
-  extra1: Bug
-  extra2: Bug
+  extra1: "I guess it\u2019s true that small packages can have big surprises. "
+  extra2: 'Why would nature make something so fierce with such sturdy armor? '
   SDialogue: {fileID: 11400000, guid: 6cb8ee44a4eb6fb4bb7a3e69369d3f53, type: 2}
   WDialogue: {fileID: 11400000, guid: 8ed62c66ff666824584f4d864b5ca433, type: 2}
   LDialogue: {fileID: 11400000, guid: b4b06f04c60815446a7a00b798ac5b7c, type: 2}
