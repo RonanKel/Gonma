@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65af20d9f2f954ac0b1b96e7672e93d7, type: 3}
+  m_Name: HookLevel
+  m_EditorClassIdentifier: Assembly-CSharp::Level
+  name: TurtleLevel
+  fishSprite: {fileID: 8336586057233870521, guid: 026293be610b161409d5c73207548a9f, type: 3}
+  song: {fileID: 8300000, guid: 63ebedf904180b8458ccfb2db6393c8a, type: 3}
+  bpm: 110
+  fishname: Grizzled Hookjaw
+  scientificFishname: Silurus hamata barba
+  meetingThoughts: A fearless fish with a beard full of trophies from his previous
+    entanglements.
+  journalFishSprite: {fileID: 8336586057233870521, guid: 026293be610b161409d5c73207548a9f, type: 3}
+  description: A fish with a pension for collecting the sharpest objects.
+  trinketSprite: {fileID: -5083476907971843369, guid: 6bd1fe22ae4841242bbe8e9cfed9dd08, type: 3}
+  award1: {fileID: 21300000, guid: d520009bfb2a188479eeec97aa87b6c0, type: 3}
+  award2: {fileID: 21300000, guid: d520009bfb2a188479eeec97aa87b6c0, type: 3}
+  award3: {fileID: 21300000, guid: d520009bfb2a188479eeec97aa87b6c0, type: 3}
+  extra1: So shiny
+  extra2: So so shiny
+  SDialogue: {fileID: 11400000, guid: af8295f007a9c1e47865ce9bb2150264, type: 2}
+  WDialogue: {fileID: 11400000, guid: 6fb09d4d188e2074baed6c4c72cf6534, type: 2}
+  LDialogue: {fileID: 11400000, guid: 9d14b569c6ad67d4e8f5a93aeac2dbb6, type: 2}
