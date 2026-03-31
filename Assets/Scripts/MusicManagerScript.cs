@@ -527,16 +527,22 @@ public class MusicManagerScript : MonoBehaviour
 
     public void Pause()
     {
-        paused = true;
-        paused_time = AudioSettings.dspTime;
-        music.Pause();
+        if (music.isPlaying) 
+        {
+            paused = true;
+            paused_time = AudioSettings.dspTime;
+            music.Pause();
+        }
     }
 
     public void UnPause()
     {
-        music.UnPause();
-        totalPausedTime += AudioSettings.dspTime - paused_time;
-        paused = false;
+        if (music.isPlaying) 
+        {
+            music.UnPause();
+            totalPausedTime += AudioSettings.dspTime - paused_time;
+            paused = false;
+        }
     }
 
     private void SetCurrLevelToBackOfList()

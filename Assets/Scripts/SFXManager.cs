@@ -37,7 +37,6 @@ public class SFXManager : MonoBehaviour
 
     public void SetVolume(float value)
     {
-        Debug.Log("penis");
         for (int i = 0; i < sfx_name_list.Count; i++)
         {
             sfx_dictionary[sfx_name_list[i]].volume = value * sfx_volume_dictionary[sfx_name_list[i]];

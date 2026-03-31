@@ -20,7 +20,7 @@ public class WavyNote : NoteScript
             Vector3 basePos = Vector3.LerpUnclamped(spawnPos, beatLinePos, ratio);
             
             float offset = amplitude * Mathf.Sin(ratio * Mathf.PI * frequency);
-            Debug.Log(offset.ToString());
+            //Debug.Log(offset.ToString());
             Vector3 cross = Vector3.Cross(direction.normalized, Vector3.forward);
             Vector3 vecOffset = cross * offset;
 
