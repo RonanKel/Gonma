@@ -7,10 +7,11 @@ public class DialogueManager : MonoBehaviour
     public static DialogueManager Instance;
     private DialogueData CD;
     private int Index;
+    private bool SkipRequest = false;
 
     private bool startingDialogue = false;
 
-    [SerializeField] float typingSpeed = 0.01f;
+    [SerializeField] float typingSpeed;
     private Coroutine typingCoroutine;
     // public static event Action OnDialogueEnded;
     public UnityEvent OnDialogueEnded = new UnityEvent();
@@ -21,6 +22,22 @@ public class DialogueManager : MonoBehaviour
             Instance = this;
         else
             Destroy(gameObject);
+    }
+
+    void Update(){
+
+        // Speedy dialogue
+        if (Input.GetKeyDown(KeyCode.Space) && CD != null)
+        {
+            if (typingCoroutine != null)
+            {
+                SkipRequest = true;
+            }
+            else
+            {
+                NextLine();
+            }
+        }
     }
     
     public void StartDialogue(bool start, DialogueData dialogue)
@@ -59,9 +76,16 @@ public class DialogueManager : MonoBehaviour
     IEnumerator TypeLine(string text)
     {
         DialogueUI.Instance.SetDialogueText("");
+        SkipRequest = false;
 
         foreach (char letter in text)
         {
+            // Now they can skip with space
+            if (SkipRequest)
+            {
+                DialogueUI.Instance.SetDialogueText(text);
+                break;
+            }
             DialogueUI.Instance.AppendCharacter(letter);
             yield return new WaitForSeconds(typingSpeed);
         }

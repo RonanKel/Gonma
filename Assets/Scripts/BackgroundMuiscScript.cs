@@ -22,7 +22,7 @@ public class BackgroundMuiscScript : MonoBehaviour
     void FixedUpdate()
     {
         // Volume Change
-        SetVolume(PlayerPrefs.GetFloat("music_volume"));
+        SetVolume(PlayerPrefs.GetFloat("bgm_volume"));
         if (timerGoing && !audio.isPlaying)
         {
             timer += Time.deltaTime;
