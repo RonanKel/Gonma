@@ -196,6 +196,7 @@ public class MusicManagerScript : MonoBehaviour
         {
             sSongPos = GetCurrentSongTime();
             bSongPos = sSongPos * bps;
+            //Debug.Log(bSongPos.ToString());
 
 
             // Input detection
@@ -321,6 +322,7 @@ public class MusicManagerScript : MonoBehaviour
     [ContextMenu("StartMusicGame")]
     public void StartMusicGame()
     {
+        totalPausedTime = 0f;
         if (PlayerPrefs.HasKey("delay"))
         {
             delay = PlayerPrefs.GetFloat("delay");
@@ -346,6 +348,7 @@ public class MusicManagerScript : MonoBehaviour
 
     public void ReplayLastMusicGame()
     {
+        totalPausedTime = 0f;
         if (PlayerPrefs.HasKey("delay"))
         {
             delay = PlayerPrefs.GetFloat("delay");
@@ -537,12 +540,9 @@ public class MusicManagerScript : MonoBehaviour
 
     public void UnPause()
     {
-        if (music.isPlaying) 
-        {
-            music.UnPause();
-            totalPausedTime += AudioSettings.dspTime - paused_time;
-            paused = false;
-        }
+        music.UnPause();
+        totalPausedTime += AudioSettings.dspTime - paused_time;
+        paused = false;
     }
 
     private void SetCurrLevelToBackOfList()
@@ -571,8 +571,10 @@ public class MusicManagerScript : MonoBehaviour
     {
         if (paused)
         {
+            Debug.Log("paused");
             return AudioSettings.dspTime - songStartTime - totalPausedTime - (AudioSettings.dspTime - paused_time);
         }
+        Debug.Log("free");
         return AudioSettings.dspTime - songStartTime - totalPausedTime;
     }
 
