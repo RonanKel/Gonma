@@ -25,6 +25,11 @@ public class DraggableTrinketScript : MonoBehaviour, IBeginDragHandler, IDragHan
         image.sprite = level.trinketSprite;
     }
 
+    void Start()
+    {
+        startPos = transform.position;
+    }
+
     void OnEnable()
     {
         if (level != null)
