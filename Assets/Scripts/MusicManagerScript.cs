@@ -212,6 +212,10 @@ public class MusicManagerScript : MonoBehaviour
             // Input detection
             for (int i = 0; i < lines.Count; i++)
             {
+                if (paused)
+                {
+                    continue;
+                }
                 if (Input.GetKeyDown(lines[i].inputKey))
                 {
                     NoteScript note = lines[i].noteSpawnerScript.GetBestNote(hitDetectionZone);

@@ -24,13 +24,17 @@ public class Masher : MonoBehaviour
     public UnityEvent win_event = new UnityEvent();
     public UnityEvent lose_event = new UnityEvent();
 
+    public bool paused = false;
+
 
 
     // FixedUpdate is called once per REAL frame
     void FixedUpdate()
     {
-        ColorHeat();
-        BasicMash();
+        if (Time.timeScale != 0f) {
+            ColorHeat();
+            BasicMash();
+        }
     }
 
     // Update is called once per frame
@@ -110,7 +114,7 @@ public class Masher : MonoBehaviour
 
 
     void OnMouseOver(float gain){
-        if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space))
+        if ((Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space)) && !paused)
         {
             posChange = new Vector3(gain, gain, gain);
             IndicatorCircle.transform.localScale += posChange;

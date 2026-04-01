@@ -175,6 +175,7 @@ public class CatControllerScript : MonoBehaviour
     public void SetCanCast(bool value)
     {
         canCast = value;
+        timingCircle.GetComponent<Masher>().paused = !value;
     }
 
     public void SetJournalActive(bool value)
