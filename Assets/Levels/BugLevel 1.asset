@@ -22,8 +22,7 @@ MonoBehaviour:
   meetingThoughts: "Is this where that buzzing sound was coming from? It seems to
     be some kind of\u2026 bug? It is so rude! It\u2019s definitely affected by [The
     evil wizard fish]\u2019s magic. Regardless of its temperament, it is a creature
-    that needs saving.  I really hope that it becomes friendlier once the enchantment
-    is removed. "
+    that needs saving. "
   journalFishSprite: {fileID: 8875151898643241270, guid: 1fb8d31df5bb3264ba5ec0bc6b70e107, type: 3}
   description: "The Bug is a creature that comes in many shapes, sizes, and colors.
     The most distinguishing features of The Bug are its six legs, compound eyes,
@@ -35,7 +34,8 @@ MonoBehaviour:
   award2: {fileID: 21300000, guid: d520009bfb2a188479eeec97aa87b6c0, type: 3}
   award3: {fileID: 21300000, guid: d520009bfb2a188479eeec97aa87b6c0, type: 3}
   extra1: "I guess it\u2019s true that small packages can have big surprises. "
-  extra2: 'Why would nature make something so fierce with such sturdy armor? '
+  extra2: I wonder if its eyes see multiple of everything, or everything like a fuzzy
+    image?
   S1Dialogue: {fileID: 11400000, guid: 6cb8ee44a4eb6fb4bb7a3e69369d3f53, type: 2}
   S2Dialogue: {fileID: 11400000, guid: 956016aa78067f94fb90939c52e81e0d, type: 2}
   S3Dialogue: {fileID: 11400000, guid: 1487fc596baf5c74e9ec70e3f9c57b4e, type: 2}

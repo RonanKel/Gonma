@@ -19,3 +19,5 @@ MonoBehaviour:
     dialogueText: Something about that song has me feeling like myself again.
   - speakerName: The Bug
     dialogueText: "I don\u2019t know what you did, but I feel much better!\r\n"
+  - speakerName: The Bug
+    dialogueText: "Here, have my maggot. I wasn\u2019t paying the child support anyways.\r\n"
