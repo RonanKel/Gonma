@@ -10,8 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e131bfa6796299f479f235e1d6e4c927, type: 3}
-  m_Name: LBugLevel
+  m_Name: W1BugLevel
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   lines:
-  - speakerName: Bug
-    dialogueText: I told ya not to bug me! Now you got stepped on!
+  - speakerName: The Bug
+    dialogueText: Golly!
+  - speakerName: The Bug
+    dialogueText: Something about that song has me feeling like myself again.
+  - speakerName: The Bug
+    dialogueText: "I don\u2019t know what you did, but I feel much better!\r\n"

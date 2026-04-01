@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e131bfa6796299f479f235e1d6e4c927, type: 3}
+  m_Name: S1BugLevel
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueData
+  lines:
+  - speakerName: The Bug
+    dialogueText: "You\u2019ve got some nerve shoving your antennae in my face!"
+  - speakerName: The Bug
+    dialogueText: That is antennae, right? Those long strands on your face?
+  - speakerName: The Bug
+    dialogueText: "Whatever they are, I\u2019m about to rip them out!"

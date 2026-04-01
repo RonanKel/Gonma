@@ -10,9 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e131bfa6796299f479f235e1d6e4c927, type: 3}
-  m_Name: WBugLevel
+  m_Name: W2BugLevel
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   lines:
   - speakerName: Bug
-    dialogueText: 'Geez, I really am at the bottom of the food web. This is rock
-      bottom. '
+    dialogueText: "Well I\u2019ll be buzzed, it gets better each time I hear it!"
