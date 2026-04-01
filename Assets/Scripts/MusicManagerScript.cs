@@ -302,7 +302,6 @@ public class MusicManagerScript : MonoBehaviour
 
         else if ((music.clip.length <= GetCurrentSongTime()) && gameRan && !paused)
         {
-            Debug.Log("its here");
             EndMusicGame();
             gameRan = false;
         }
@@ -591,7 +590,6 @@ public class MusicManagerScript : MonoBehaviour
             Debug.Log("paused");
             return AudioSettings.dspTime - songStartTime - totalPausedTime - (AudioSettings.dspTime - paused_time);
         }
-        Debug.Log("free");
         return AudioSettings.dspTime - songStartTime - totalPausedTime;
     }
 

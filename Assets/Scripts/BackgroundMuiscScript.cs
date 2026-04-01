@@ -16,13 +16,16 @@ public class BackgroundMuiscScript : MonoBehaviour
     void Start()
     {
         initVolume = audio.volume;
+        if (PlayerPrefs.HasKey("bgm_volume"))
+        {
+            SetVolume(PlayerPrefs.GetFloat("bgm_volume"));
+        }
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
         // Volume Change
-        SetVolume(PlayerPrefs.GetFloat("bgm_volume"));
         if (timerGoing && !audio.isPlaying)
         {
             timer += Time.deltaTime;
