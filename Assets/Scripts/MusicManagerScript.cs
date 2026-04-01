@@ -677,6 +677,11 @@ public class MusicManagerScript : MonoBehaviour
     {
         line.beatLine.SetActive(status);
         line.noteSpawner.gameObject.SetActive(status);
+        if (status == false)
+        {
+            line.noteText.GetComponent<TextMeshProUGUI>().canvasRenderer.SetAlpha(0f);
+        }
         line.noteText.SetActive(status);
+        
     }
 }
