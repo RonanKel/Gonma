@@ -27,6 +27,8 @@ public class JournalScript : MonoBehaviour
     private int curr_page = 0;
     [SerializeField] List<Level> pages;
 
+    [SerializeField] Material greyOut;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -82,6 +84,9 @@ public class JournalScript : MonoBehaviour
 
         Level level = pages[curr_page];
         string level_name = level.name;
+        fishImage.SetActive(true);
+        fishImage.GetComponent<Image>().sprite = level.fishSprite;
+        fishImage.GetComponent<Image>().material = greyOut;
         
         if (PlayerPrefs.HasKey(level_name))
         {
@@ -97,6 +102,7 @@ public class JournalScript : MonoBehaviour
             {
                 fishImage.GetComponent<Image>().sprite = level.angryFishSprite;
             }
+            fishImage.GetComponent<Image>().material = null;
             
             meetingThoughtsText.SetActive(true);
             meetingThoughtsText.GetComponent<TextMeshProUGUI>().text = level.meetingThoughts;
