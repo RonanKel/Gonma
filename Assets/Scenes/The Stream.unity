@@ -18395,6 +18395,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MenuControllerScript
   pauseMenu: {fileID: 1100460900}
   victoryCard: {fileID: 218526219}
+  journal: {fileID: 650399511}
   paused:
     m_PersistentCalls:
       m_Calls:

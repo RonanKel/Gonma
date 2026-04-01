@@ -13,6 +13,7 @@ public class MenuControllerScript : MonoBehaviour
 
     [SerializeField] GameObject pauseMenu;
     [SerializeField] GameObject victoryCard;
+    [SerializeField] GameObject journal;
 
     public UnityEvent paused = new UnityEvent();
     public UnityEvent rhythmPaused = new UnityEvent();
@@ -40,7 +41,15 @@ public class MenuControllerScript : MonoBehaviour
             }
             else if (Input.GetKeyDown(KeyCode.Escape) && pauseMenu.activeInHierarchy == true && optionOn == false)
             {
-                ClosePauseMenu();
+                if (journal.activeSelf == true)
+                {
+                    journal.SetActive(false);
+                }
+                else
+                {
+                    ClosePauseMenu();
+                }
+                
             }
         }
         // THIS IS USLELSS I WAS JUST SPITBALLING
