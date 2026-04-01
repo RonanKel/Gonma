@@ -34,12 +34,17 @@ public class VictoryCardManagerScript : MonoBehaviour
     public void SendData(bool win, Sprite trinketSprite, int score, int highScore, int longestStreak, float accuracy, int misses, Level lvl)
     {
         _win = win;
-        _score = score;
+        _score = Mathf.Max(score, 0);
         _trinketSprite = trinketSprite;
-        _highScore = highScore;
-        _longestStreak = longestStreak;
+        _highScore =  Mathf.Max(0, highScore);
+        _longestStreak = Mathf.Max(longestStreak, 0);
         _accuracy = accuracy;
-        _misses = misses;
+        Debug.Log(" ACCURACY: " + accuracy.ToString());
+        if (float.IsNaN(accuracy))
+        {
+            _accuracy = 0f;
+        }
+        _misses = Mathf.Max(0, misses);
         _lvl = lvl;
         UpdateInfo();
     }
