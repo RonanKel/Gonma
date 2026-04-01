@@ -16230,6 +16230,36 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 69dd9ecb6574b794da888a4f2cf0ee96, type: 2}
   - {fileID: 11400000, guid: 0d5f6923a3e1e974e9c527a8d66800ad, type: 2}
   greyOut: {fileID: 2100000, guid: d92e1c44de858c04b8ae810cac39a205, type: 2}
+  journalOpened:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 817575379}
+        m_TargetAssemblyTypeName: CatControllerScript, Assembly-CSharp
+        m_MethodName: SetJournalActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+  journalClosed:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 817575379}
+        m_TargetAssemblyTypeName: CatControllerScript, Assembly-CSharp
+        m_MethodName: SetJournalActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &658878914
 GameObject:
   m_ObjectHideFlags: 0
@@ -17813,6 +17843,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 817575379}
+        m_TargetAssemblyTypeName: CatControllerScript, Assembly-CSharp
+        m_MethodName: SetCanCast
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   lose_song_event:
     m_PersistentCalls:
       m_Calls:
@@ -17844,6 +17886,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: BackgroundMuiscScript, Assembly-CSharp
         m_MethodName: StartTimer
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: dropfish
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 817575379}
+        m_TargetAssemblyTypeName: CatControllerScript, Assembly-CSharp
+        m_MethodName: SetCanCast
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -18416,6 +18470,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 817575379}
+        m_TargetAssemblyTypeName: CatControllerScript, Assembly-CSharp
+        m_MethodName: SetCanCast
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   rhythmPaused:
     m_PersistentCalls:
       m_Calls:
@@ -18455,6 +18521,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 817575379}
+        m_TargetAssemblyTypeName: CatControllerScript, Assembly-CSharp
+        m_MethodName: SetCanCast
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   resumed:
     m_PersistentCalls:
       m_Calls:
@@ -18493,6 +18571,18 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 817575379}
+        m_TargetAssemblyTypeName: CatControllerScript, Assembly-CSharp
+        m_MethodName: SetCanCast
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
   Optionmenu: {fileID: 1324060306}
   DelayLabel: {fileID: 146875638}
@@ -20140,6 +20230,18 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 817575376}
+        m_TargetAssemblyTypeName: CatControllerScript, Assembly-CSharp
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -36733,7 +36835,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DialogueManager
   typingSpeed: 0.01
-  OnDialogueEnded:
+  OnStartDialogueEnded:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 748165351}
@@ -36747,6 +36849,21 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
+        m_CallState: 2
+  OnDialogueEnded:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 817575379}
+        m_TargetAssemblyTypeName: CatControllerScript, Assembly-CSharp
+        m_MethodName: SetCanCast
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!1 &1502594232
 GameObject:

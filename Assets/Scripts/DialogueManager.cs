@@ -14,6 +14,7 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] float typingSpeed;
     private Coroutine typingCoroutine;
     // public static event Action OnDialogueEnded;
+    public UnityEvent OnStartDialogueEnded = new UnityEvent();
     public UnityEvent OnDialogueEnded = new UnityEvent();
     private void Awake()
     {
@@ -99,11 +100,13 @@ public class DialogueManager : MonoBehaviour
         CD = null;
         if (startingDialogue) {
             startingDialogue = false;
-            OnDialogueEnded.Invoke();
+            OnStartDialogueEnded.Invoke();
+            Debug.Log("ASLDKJHBASD");
         }else
         {
             GameObject fish = GameObject.Find("Fish");
             fish.SetActive(false);
         }
+        OnDialogueEnded.Invoke();
     }
 }

@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 using TMPro;
 using System.Collections.Generic;
 
@@ -28,6 +29,9 @@ public class JournalScript : MonoBehaviour
     [SerializeField] List<Level> pages;
 
     [SerializeField] Material greyOut;
+
+    public UnityEvent journalOpened = new UnityEvent();
+    public UnityEvent journalClosed = new UnityEvent();
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -67,6 +71,11 @@ public class JournalScript : MonoBehaviour
     void OnEnable()
     {
         SetJournalObjects();
+        journalOpened.Invoke();
+    }
+    void OnDisable()
+    {
+        journalClosed.Invoke();
     }
 
     void SetJournalObjects()
@@ -159,6 +168,7 @@ public class JournalScript : MonoBehaviour
         trinketImage.SetActive(false);
         extra1Text.SetActive(false);
         extra2Text.SetActive(false);
+        
     }
 
     public void SetPage(int pageNum)

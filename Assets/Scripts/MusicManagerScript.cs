@@ -587,7 +587,6 @@ public class MusicManagerScript : MonoBehaviour
     {
         if (paused)
         {
-            Debug.Log("paused");
             return AudioSettings.dspTime - songStartTime - totalPausedTime - (AudioSettings.dspTime - paused_time);
         }
         return AudioSettings.dspTime - songStartTime - totalPausedTime;

@@ -14,6 +14,8 @@ public class CatControllerScript : MonoBehaviour
     private float alertTimer = 0f;
     private bool alerted = false;
     private bool onHook;
+    private bool canCast = true;
+    private bool journalActive = false;
 
     [SerializeField]
     MusicManagerScript musicManager;
@@ -59,7 +61,7 @@ public class CatControllerScript : MonoBehaviour
         if (!onHook) {
 
             // casts
-            if (Input.GetKeyDown(KeyCode.Space) && !casting)
+            if (Input.GetKeyDown(KeyCode.Space) && !casting && canCast && !journalActive)
             {
                 Cast();
                 
@@ -121,14 +123,14 @@ public class CatControllerScript : MonoBehaviour
         if (!casting)
         {
             Debug.Log("Casting");
-        cast_event.Invoke();
-        GetComponent<SpriteRenderer>().sprite = singingCat;
-        casting = true;
-        alertTimer = 0f;
-        prealert = false;
-        hook.SetActive(true);
-        pole.SetActive(true);
-        calcFishTime();
+            cast_event.Invoke();
+            GetComponent<SpriteRenderer>().sprite = singingCat;
+            casting = true;
+            alertTimer = 0f;
+            prealert = false;
+            hook.SetActive(true);
+            pole.SetActive(true);
+            calcFishTime();
         }
     }
 
@@ -169,4 +171,15 @@ public class CatControllerScript : MonoBehaviour
     void calcFishTime() {
         catchWarningTime = initDelayTime + Random.Range(1f,5f);
     }
+
+    public void SetCanCast(bool value)
+    {
+        canCast = value;
+    }
+
+    public void SetJournalActive(bool value)
+    {
+        journalActive = value;
+    }
 }
+
