@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: S2BugLevel
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   lines:
-  - speakerName: Bug
-    dialogueText: "Hello again! Thank you again for removing that curse. I haven\u2019t
-      felt so positively joyful in a while!"
-  - speakerName: Bug
-    dialogueText: Would you like to spin a tune? For old times sake?
+  - speakerName: The Bug
+    dialogueText: "Oh, I guess I didn\u2019t give you a good enough squishing."
+  - speakerName: The Bug
+    dialogueText: "Well, there\u2019s more where that came from!"

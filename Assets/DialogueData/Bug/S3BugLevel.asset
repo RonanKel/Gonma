@@ -10,8 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e131bfa6796299f479f235e1d6e4c927, type: 3}
-  m_Name: W2BugLevel
+  m_Name: S3BugLevel
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   lines:
   - speakerName: The Bug
-    dialogueText: "Well I\u2019ll be buzzed, it gets better each time I hear it!"
+    dialogueText: "Hello again! Thank you again for removing that curse. I haven\u2019t
+      felt so positively joyful in a while!"
+  - speakerName: The Bug
+    dialogueText: Would you like to spin a tune? For old times sake?

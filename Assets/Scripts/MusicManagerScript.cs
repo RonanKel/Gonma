@@ -142,17 +142,24 @@ public class MusicManagerScript : MonoBehaviour
         bps = bpm / 60f;
         spb = 60f / bpm;
         // Set the dialogue based on the level
-        fish.GetComponent<DialogueTrigger>().SDialogue = level.SDialogue;
-        fish.GetComponent<DialogueTrigger>().WDialogue = level.WDialogue;
-        fish.GetComponent<DialogueTrigger>().LDialogue = level.LDialogue;
-        if (PlayerPrefs.GetInt(level.name + "award1") == 1)
-        {
-            fish.GetComponent<SpriteRenderer>().sprite = level.fishSprite;
-        }
-        else if (PlayerPrefs.GetInt(level.name + "award1") == 0 && level.angryFishSprite != null)
+        fish.GetComponent<DialogueTrigger>().SDialogue = level.S1Dialogue;
+        if (level.angryFishSprite != null)
         {
             fish.GetComponent<SpriteRenderer>().sprite = level.angryFishSprite;
         }
+        if (PlayerPrefs.HasKey(level.name + "award1"))
+        {
+            if (PlayerPrefs.GetInt(level.name + "award1") == 1)
+            {
+                fish.GetComponent<SpriteRenderer>().sprite = level.fishSprite;
+                fish.GetComponent<DialogueTrigger>().SDialogue = level.S3Dialogue;
+            }
+            else
+            {
+                fish.GetComponent<DialogueTrigger>().SDialogue = level.S2Dialogue;
+            }
+        }
+        
         
     }
 
@@ -412,6 +419,7 @@ public class MusicManagerScript : MonoBehaviour
         {
             Debug.Log("You Win!");
             win_song_event.Invoke();
+            fish.GetComponent<DialogueTrigger>().WDialogue = level.W2Dialogue;
             if (PlayerPrefs.HasKey(level.name + "award1"))
             {
                 if (PlayerPrefs.GetInt(level.name + "award1") == 0)
@@ -425,6 +433,13 @@ public class MusicManagerScript : MonoBehaviour
         }
         else
         {
+            fish.GetComponent<DialogueTrigger>().LDialogue = level.L1Dialogue;
+            if (PlayerPrefs.HasKey(level.name + "award1"))
+            {
+                if (PlayerPrefs.GetInt(level.name + "award1") == 1) {
+                    fish.GetComponent<DialogueTrigger>().LDialogue = level.L2Dialogue;
+                }
+            }
             Debug.Log("You Lose...");
             lose_song_event.Invoke();
             Debug.Log("score: " + score);
@@ -468,6 +483,8 @@ public class MusicManagerScript : MonoBehaviour
             if (win && PlayerPrefs.GetInt(level.name + "award1") == 0)
             {
                 PlayerPrefs.SetInt(level.name + "award1", 1); 
+                fish.GetComponent<DialogueTrigger>().WDialogue = level.W1Dialogue;
+        
                 if (level.angryFishSprite != null)
                 {
                     fish.GetComponent<SpriteRenderer>().sprite = level.fishSprite;

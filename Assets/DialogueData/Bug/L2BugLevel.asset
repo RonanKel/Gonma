@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: L2BugLevel
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   lines:
-  - speakerName: Bug
+  - speakerName: The Bug
     dialogueText: "Don\u2019t feel too bad, sometimes I still run into windows. Even
       though I\u2019ve been flying for months!"

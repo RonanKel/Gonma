@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: L1BugLevel
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   lines:
-  - speakerName: Bug
+  - speakerName: The Bug
     dialogueText: I told ya not to bug me! Now you got stepped on!

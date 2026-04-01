@@ -46,9 +46,13 @@ public class Level : ScriptableObject
 
     public new string extra2;
 
-    public DialogueData SDialogue;
-    public DialogueData WDialogue;
-    public DialogueData LDialogue;
+    public DialogueData S1Dialogue;
+    public DialogueData S2Dialogue;
+    public DialogueData S3Dialogue;
+    public DialogueData W1Dialogue;
+    public DialogueData W2Dialogue;
+    public DialogueData L1Dialogue;
+    public DialogueData L2Dialogue;
 
     
 
