@@ -96,6 +96,10 @@ public class JournalScript : MonoBehaviour
             
             fishImage.SetActive(true);
             fishImage.GetComponent<Image>().sprite = level.fishSprite;
+            if (level.angryFishSprite != null)
+            {
+                fishImage.GetComponent<Image>().sprite = level.angryFishSprite;
+            }
             
             meetingThoughtsText.SetActive(true);
             meetingThoughtsText.GetComponent<TextMeshProUGUI>().text = level.meetingThoughts;
@@ -109,6 +113,7 @@ public class JournalScript : MonoBehaviour
                 award1Image.GetComponent<Image>().sprite = level.award1;
                 trinketImage.SetActive(true);
                 trinketImage.GetComponent<Image>().sprite = level.trinketSprite;
+                fishImage.GetComponent<Image>().sprite = level.fishSprite;
             }
         }
         if (PlayerPrefs.HasKey(level_name + "award2")) {

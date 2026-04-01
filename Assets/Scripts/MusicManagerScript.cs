@@ -145,7 +145,15 @@ public class MusicManagerScript : MonoBehaviour
         fish.GetComponent<DialogueTrigger>().SDialogue = level.SDialogue;
         fish.GetComponent<DialogueTrigger>().WDialogue = level.WDialogue;
         fish.GetComponent<DialogueTrigger>().LDialogue = level.LDialogue;
-        fish.GetComponent<SpriteRenderer>().sprite = level.fishSprite;
+        if (PlayerPrefs.GetInt(level.name + "award1") == 1)
+        {
+            fish.GetComponent<SpriteRenderer>().sprite = level.fishSprite;
+        }
+        else if (PlayerPrefs.GetInt(level.name + "award1") == 0 && level.angryFishSprite != null)
+        {
+            fish.GetComponent<SpriteRenderer>().sprite = level.angryFishSprite;
+        }
+        
     }
 
 
@@ -454,15 +462,22 @@ public class MusicManagerScript : MonoBehaviour
 
             if (win && PlayerPrefs.GetInt(level.name + "award1") == 0)
             {
-                PlayerPrefs.SetInt(level.name + "award1", 1);
+                PlayerPrefs.SetInt(level.name + "award1", 1); 
+                if (level.angryFishSprite != null)
+                {
+                    fish.GetComponent<SpriteRenderer>().sprite = level.fishSprite;
+                }
             }
-            if (miss_count == 0 && PlayerPrefs.GetInt(level.name + "award2") == 0)
+            if (win)
             {
-                PlayerPrefs.SetInt(level.name + "award2", 1);
-            }
-            if (accuracy == 1 && PlayerPrefs.GetInt(level.name + "award3") == 0)
-            {
-                PlayerPrefs.SetInt(level.name + "award3", 1);
+                if (miss_count == 0 && PlayerPrefs.GetInt(level.name + "award2") == 0)
+                {
+                    PlayerPrefs.SetInt(level.name + "award2", 1);
+                }
+                if (accuracy == 1 && PlayerPrefs.GetInt(level.name + "award3") == 0)
+                {
+                    PlayerPrefs.SetInt(level.name + "award3", 1);
+                }
             }
 
         }

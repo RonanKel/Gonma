@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Level
   name: BugLevel2
   fishSprite: {fileID: 5428157334817736624, guid: 9d05a5f09e5cd7b408a8ab817062bfd2, type: 3}
+  angryFishSprite: {fileID: 8875151898643241270, guid: 1fb8d31df5bb3264ba5ec0bc6b70e107, type: 3}
   song: {fileID: 8300000, guid: 083ec0ecff9b0424387c625cf503c950, type: 3}
   bpm: 80
   fishname: Bug

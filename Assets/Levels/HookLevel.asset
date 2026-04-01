@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Level
   name: TurtleLevel
   fishSprite: {fileID: 8336586057233870521, guid: 026293be610b161409d5c73207548a9f, type: 3}
+  angryFishSprite: {fileID: 8875151898643241270, guid: 1fb8d31df5bb3264ba5ec0bc6b70e107, type: 3}
   song: {fileID: 8300000, guid: 63ebedf904180b8458ccfb2db6393c8a, type: 3}
   bpm: 110
   fishname: Grizzled Hookjaw
