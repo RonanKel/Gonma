@@ -175,7 +175,9 @@ public class MusicManagerScript : MonoBehaviour
         winningScore = -1; // to make it not give victory when starting the game
         EndMusicGame();
         initVolume = music.volume;
-        SetVolume(PlayerPrefs.GetFloat("music_volume"));
+        if (PlayerPrefs.HasKey("music_volume")) {
+            SetVolume(PlayerPrefs.GetFloat("music_volume"));
+        }
     }
 
     public void SetDelay(float value)
