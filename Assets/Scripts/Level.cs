@@ -10,6 +10,8 @@ public class Level : ScriptableObject
     public new string name;
 
     public Sprite fishSprite;
+    
+    public Sprite angryFishSprite;
 
     public AudioClip song;
 
