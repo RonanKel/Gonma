@@ -87,6 +87,10 @@ public class JournalScript : MonoBehaviour
         fishImage.SetActive(true);
         fishImage.GetComponent<Image>().sprite = level.fishSprite;
         fishImage.GetComponent<Image>().material = greyOut;
+        nameText.SetActive(true);
+        nameText.GetComponent<TextMeshProUGUI>().text = "???";
+        scoreText.SetActive(true);
+        scoreText.GetComponent<TextMeshProUGUI>().text = "X";
         
         if (PlayerPrefs.HasKey(level_name))
         {

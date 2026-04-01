@@ -61,9 +61,14 @@ public class VictoryCardManagerScript : MonoBehaviour
                 loseText.gameObject.SetActive(true);
             }
         }
-        if (trinketUI != null && _trinketSprite != null)
+        if (trinketUI != null && _trinketSprite != null && _win)
         {
+            trinketUI.gameObject.SetActive(true);
             trinketUI.sprite = _trinketSprite;
+        }
+        else
+        {
+            trinketUI.gameObject.SetActive(false);
         }
         if (scoreText != null && _score != null)
         {
