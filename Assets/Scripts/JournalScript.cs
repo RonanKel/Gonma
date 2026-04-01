@@ -166,4 +166,15 @@ public class JournalScript : MonoBehaviour
         curr_page = pageNum;
         SetJournalObjects();
     }
+
+    public void SetPageByLevel(Level lvl)
+    {
+        for (int i = 0; i < pages.Count; i++)
+        {
+            if (pages[i] == lvl)
+            {
+                SetPage(i);
+            }
+        }
+    }
 }

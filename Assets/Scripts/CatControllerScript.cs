@@ -118,7 +118,9 @@ public class CatControllerScript : MonoBehaviour
 
     void Cast()
     {
-        Debug.Log("Casting");
+        if (!casting)
+        {
+            Debug.Log("Casting");
         cast_event.Invoke();
         GetComponent<SpriteRenderer>().sprite = singingCat;
         casting = true;
@@ -127,6 +129,7 @@ public class CatControllerScript : MonoBehaviour
         hook.SetActive(true);
         pole.SetActive(true);
         calcFishTime();
+        }
     }
 
     void recast() {
@@ -137,16 +140,19 @@ public class CatControllerScript : MonoBehaviour
         calcFishTime();
     }
 
-    void uncast()
+    public void uncast()
     {
-        GetComponent<SpriteRenderer>().sprite = standingCat;
-        Debug.Log("Uncasting");
-        uncast_event.Invoke();
-        fishTimer = 0f;
-        //fishBite = false;
-        casting = false;
-        hook.SetActive(false);
-        pole.SetActive(false);
+        if (casting)
+        {
+            GetComponent<SpriteRenderer>().sprite = standingCat;
+            Debug.Log("Uncasting");
+            uncast_event.Invoke();
+            fishTimer = 0f;
+            //fishBite = false;
+            casting = false;
+            hook.SetActive(false);
+            pole.SetActive(false);
+        }
 
     }
 

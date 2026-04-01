@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Events;
 
 public class VictoryCardManagerScript : MonoBehaviour
 {
@@ -25,9 +26,12 @@ public class VictoryCardManagerScript : MonoBehaviour
     private float _accuracy = 0f;
     private int _misses = 0;
     private bool _hasPendingResult = false;
+    private Level _lvl;
+
+    public UnityEvent<Level> journalOpen = new UnityEvent<Level>();
 
 
-    public void SendData(bool win, Sprite trinketSprite, int score, int highScore, int longestStreak, float accuracy, int misses)
+    public void SendData(bool win, Sprite trinketSprite, int score, int highScore, int longestStreak, float accuracy, int misses, Level lvl)
     {
         _win = win;
         _score = score;
@@ -36,6 +40,7 @@ public class VictoryCardManagerScript : MonoBehaviour
         _longestStreak = longestStreak;
         _accuracy = accuracy;
         _misses = misses;
+        _lvl = lvl;
         UpdateInfo();
     }
 
@@ -120,5 +125,10 @@ public class VictoryCardManagerScript : MonoBehaviour
                 badge3.gameObject.SetActive(false);
             }
         }
+    }
+
+    public void HandleJournalPress()
+    {
+        journalOpen.Invoke(_lvl);
     }
 }

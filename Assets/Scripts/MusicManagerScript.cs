@@ -444,7 +444,7 @@ public class MusicManagerScript : MonoBehaviour
             }
             float accuracy = (float)perfect_count / (float)(miss_count + non_perfect_count + perfect_count);
             Debug.Log(accuracy);
-            vcScript.SendData(win, level.trinketSprite, score, PlayerPrefs.GetInt(level.name), longest_streak, accuracy, miss_count);
+            vcScript.SendData(win, level.trinketSprite, score, PlayerPrefs.GetInt(level.name), longest_streak, accuracy, miss_count, level);
 
             // make other save data
 
