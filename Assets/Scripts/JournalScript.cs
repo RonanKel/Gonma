@@ -91,9 +91,6 @@ public class JournalScript : MonoBehaviour
             nameText.SetActive(true);
             nameText.GetComponent<TextMeshProUGUI>().text = level.fishname;
             
-            scientificNameText.SetActive(true);
-            scientificNameText.GetComponent<TextMeshProUGUI>().text = level.scientificFishname;
-            
             fishImage.SetActive(true);
             fishImage.GetComponent<Image>().sprite = level.fishSprite;
             if (level.angryFishSprite != null)
@@ -114,6 +111,8 @@ public class JournalScript : MonoBehaviour
                 trinketImage.SetActive(true);
                 trinketImage.GetComponent<Image>().sprite = level.trinketSprite;
                 fishImage.GetComponent<Image>().sprite = level.fishSprite;
+                scientificNameText.SetActive(true);
+            scientificNameText.GetComponent<TextMeshProUGUI>().text = level.scientificFishname;
             }
         }
         if (PlayerPrefs.HasKey(level_name + "award2")) {
