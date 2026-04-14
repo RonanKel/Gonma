@@ -83,6 +83,7 @@ public class NoteSpawnerScript : MonoBehaviour
             thisNote.transform.position = transform.position;
 
             NoteScript noteScript = thisNote.GetComponent<NoteScript>();
+            noteScript.spawnPos = transform.position;
             noteScript.speed = speed;
             noteScript.beatLinePos = beatLinePos;
             noteScript.spb = spb;
