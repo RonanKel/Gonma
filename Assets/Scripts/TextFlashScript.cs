@@ -8,6 +8,7 @@ public class TextFlashScript : MonoBehaviour
     private float startTime;
     [SerializeField] AnimationCurve curve;
     [SerializeField] double length;
+    bool fade = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -23,7 +24,7 @@ public class TextFlashScript : MonoBehaviour
     void Update()
     {
         double elapsed = Time.time - startTime;
-        if (elapsed < length)
+        if (!fade)
         {
             double completion = elapsed / length;
             text.color = new Color(text.color.r, text.color.g, text.color.b, curve.Evaluate((float)completion));
@@ -33,6 +34,11 @@ public class TextFlashScript : MonoBehaviour
             gameObject.SetActive(false);
         }
         
+    }
+
+    public void SetFade(bool fade_status)
+    {
+        fade = fade_status;
     }
 
 }

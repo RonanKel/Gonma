@@ -258,6 +258,8 @@ public class MusicManagerScript : MonoBehaviour
 
                         // Emit particles
                         perfectParticles.Emit(5);
+
+                        lines[i].noteSpawnerScript.noteHit.Invoke();
                     }
                     else if (err <= niceTime)
                     {
@@ -270,6 +272,7 @@ public class MusicManagerScript : MonoBehaviour
 
                         // Emit particles
                         otherParticles.Emit(5);
+                        lines[i].noteSpawnerScript.noteHit.Invoke();
                     }
                     else if (err <= poorTime)
                     {
@@ -282,6 +285,7 @@ public class MusicManagerScript : MonoBehaviour
 
                         // Emit particles
                         otherParticles.Emit(5);
+                        lines[i].noteSpawnerScript.noteHit.Invoke();
                     }
                     else
                     {

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.Events;
 
 public class NoteSpawnerScript : MonoBehaviour
 {
@@ -29,6 +30,8 @@ public class NoteSpawnerScript : MonoBehaviour
 
     public ParticleSystem perfectParticles;
     public ParticleSystem otherParticles;
+
+    public UnityEvent noteHit = new UnityEvent();
 
     // Start is called before the first frame update
     void Awake()

@@ -13790,6 +13790,21 @@ MonoBehaviour:
   color: {r: 1, g: 0.52156866, b: 0.8588236, a: 1}
   perfectParticles: {fileID: 161840890}
   otherParticles: {fileID: 1522107423}
+  noteHit:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 755953347}
+        m_TargetAssemblyTypeName: TextFlashScript, Assembly-CSharp
+        m_MethodName: SetFade
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!4 &386827499
 Transform:
   m_ObjectHideFlags: 0
@@ -15894,8 +15909,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278255396
-  m_fontColor: {r: 0.14013886, g: 1, b: 0, a: 1}
+    rgba: 4294943595
+  m_fontColor: {r: 0.41960788, g: 0.6392157, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -18562,8 +18577,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278255396
-  m_fontColor: {r: 0.14013886, g: 1, b: 0, a: 1}
+    rgba: 4292577023
+  m_fontColor: {r: 1, g: 0.5254902, b: 0.8588236, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -19134,8 +19149,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278255396
-  m_fontColor: {r: 0.14013886, g: 1, b: 0, a: 1}
+    rgba: 4281121279
+  m_fontColor: {r: 1, g: 0.7254902, b: 0.17254902, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -52866,6 +52881,21 @@ MonoBehaviour:
   color: {r: 0.41960788, g: 0.63529414, b: 1, a: 1}
   perfectParticles: {fileID: 971472583}
   otherParticles: {fileID: 2013908958}
+  noteHit:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 617868058}
+        m_TargetAssemblyTypeName: TextFlashScript, Assembly-CSharp
+        m_MethodName: SetFade
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!4 &2004765064
 Transform:
   m_ObjectHideFlags: 0
@@ -58822,6 +58852,21 @@ MonoBehaviour:
   color: {r: 1, g: 0.7254902, b: 0.17254902, a: 1}
   perfectParticles: {fileID: 1235627084}
   otherParticles: {fileID: 264703418}
+  noteHit:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 805208288}
+        m_TargetAssemblyTypeName: TextFlashScript, Assembly-CSharp
+        m_MethodName: SetFade
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!4 &2105946384
 Transform:
   m_ObjectHideFlags: 0
