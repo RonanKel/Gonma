@@ -71,7 +71,7 @@ public class CatControllerScript : MonoBehaviour
             {
                 if (!alerted)
                 {
-                    uncast();
+                    Uncast();
                     unQTE();
                 }
                 
@@ -83,12 +83,12 @@ public class CatControllerScript : MonoBehaviour
                 musicManager.StartMusicGame();
                 onHook = true;
                 unQTE();
-                uncast();
+                Uncast();
             }
             else if (tCScript.done && !tCScript.result && alerted){
                 Debug.Log("It got away!");
                 unQTE();
-                uncast();
+                Uncast();
             }
             
 
@@ -118,7 +118,7 @@ public class CatControllerScript : MonoBehaviour
 
     }
 
-    void Cast()
+    public void Cast()
     {
         if (!casting)
         {
@@ -142,7 +142,7 @@ public class CatControllerScript : MonoBehaviour
         calcFishTime();
     }
 
-    public void uncast()
+    public void Uncast()
     {
         if (casting)
         {
@@ -156,6 +156,18 @@ public class CatControllerScript : MonoBehaviour
             pole.SetActive(false);
         }
 
+    }
+
+    public void ButtonCast()
+    {
+        if (!casting)
+        {
+            Cast();
+        }
+        else if (casting)
+        {
+            Uncast();
+        }
     }
 
     void QTE() {
