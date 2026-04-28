@@ -62,7 +62,7 @@ public class NoteSpawnerScript : MonoBehaviour
         thisNote = Instantiate(note, transform);
         NoteScript noteScript = thisNote.GetComponent<NoteScript>();
         noteScript.noteDone.AddListener(NoteDone);
-        noteScript.spawnPos = transform.position;
+        noteScript.spawnPos = transform;
         noteScript.type = type;
 
         if (type != 0) 
@@ -73,7 +73,7 @@ public class NoteSpawnerScript : MonoBehaviour
 
     }
 
-    public void PlayNote(Vector3 beatLinePos, float spb, float beatPos, int type)
+    public void PlayNote(Transform beatLinePos, float spb, float beatPos, int type)
     {
         if (inactiveNotesLists[type].Count >= 1)
         {
@@ -83,7 +83,7 @@ public class NoteSpawnerScript : MonoBehaviour
             thisNote.transform.position = transform.position;
 
             NoteScript noteScript = thisNote.GetComponent<NoteScript>();
-            noteScript.spawnPos = transform.position;
+            noteScript.spawnPos = transform;
             noteScript.speed = speed;
             noteScript.beatLinePos = beatLinePos;
             noteScript.spb = spb;

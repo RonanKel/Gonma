@@ -7,17 +7,13 @@ public class WavyNote : NoteScript
 
     private Vector3 direction;
 
-    void OnEnable()
-    {
-        direction = Vector3.Normalize(beatLinePos - spawnPos);
-    }
-
     override protected void CalculateMovement()
     {
         if (!mmScript.waiting)
         {
+            direction = Vector3.Normalize(beatLinePos.position - spawnPos.position);
             float ratio = (float)(mmScript.GetCurrentSongTime() - spawnTime) / (spb * beatsToTravel);
-            Vector3 basePos = Vector3.LerpUnclamped(spawnPos, beatLinePos, ratio);
+            Vector3 basePos = Vector3.LerpUnclamped(spawnPos.position, beatLinePos.position, ratio);
             
             float offset = amplitude * Mathf.Sin(ratio * Mathf.PI * frequency);
             //Debug.Log(offset.ToString());

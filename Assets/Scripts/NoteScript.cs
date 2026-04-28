@@ -7,8 +7,8 @@ public class NoteScript : MonoBehaviour
 {
 
     public float speed;
-    public Vector3 beatLinePos;
-    public Vector3 spawnPos;
+    public Transform beatLinePos;
+    public Transform spawnPos;
     public float spb;
     [SerializeField] LayerMask failBox;
     protected MusicManagerScript mmScript;
@@ -62,7 +62,7 @@ public class NoteScript : MonoBehaviour
         if (!mmScript.waiting)
         {
             float ratio = (float)(mmScript.GetCurrentSongTime() - spawnTime) / (spb * beatsToTravel);
-            transform.position = Vector3.LerpUnclamped(spawnPos, beatLinePos, ratio);
+            transform.position = Vector3.LerpUnclamped(spawnPos.position, beatLinePos.position, ratio);
         }
     }
 
@@ -81,7 +81,7 @@ public class NoteScript : MonoBehaviour
 
     public void BeDone()
     {
-        transform.position = spawnPos;
+        transform.position = spawnPos.position;
         err = 10000.0f;
         noteDone.Invoke(gameObject);
         
