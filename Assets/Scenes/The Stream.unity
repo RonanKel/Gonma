@@ -17898,17 +17898,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lines:
   - inputKey: q
-    beatLine: {fileID: 1914950348}
+    beatLine: {fileID: 1142561276}
     noteSpawner: {fileID: 2105946382}
     noteSpawnerScript: {fileID: 2105946383}
     noteText: {fileID: 857214003}
   - inputKey: w
-    beatLine: {fileID: 1474823380}
+    beatLine: {fileID: 1010098991}
     noteSpawner: {fileID: 2004765062}
     noteSpawnerScript: {fileID: 2004765063}
     noteText: {fileID: 1620269329}
   - inputKey: e
-    beatLine: {fileID: 1390368214}
+    beatLine: {fileID: 1444254848}
     noteSpawner: {fileID: 386827497}
     noteSpawnerScript: {fileID: 386827498}
     noteText: {fileID: 1765670582}
@@ -26534,6 +26534,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1010098992}
   - component: {fileID: 1010098993}
+  - component: {fileID: 1010098994}
   m_Layer: 3
   m_Name: Mask
   m_TagString: Untagged
@@ -26615,6 +26616,22 @@ SpriteMask:
   m_IsCustomRangeActive: 0
   m_SpriteSortPoint: 0
   m_MaskSource: 0
+--- !u!114 &1010098994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1010098991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be129a8ade8853845a9f8a9c228c9ca2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HitStopMovePrototype
+  timeUntilDrop: 30
+  start: {x: 0, y: 0, z: 0}
+  end: {x: 0, y: -20, z: 0}
+  totalTime: 2
 --- !u!1 &1024896709
 GameObject:
   m_ObjectHideFlags: 0
@@ -27958,6 +27975,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1142561277}
   - component: {fileID: 1142561278}
+  - component: {fileID: 1142561279}
   m_Layer: 3
   m_Name: Mask
   m_TagString: Untagged
@@ -28039,6 +28057,22 @@ SpriteMask:
   m_IsCustomRangeActive: 0
   m_SpriteSortPoint: 0
   m_MaskSource: 0
+--- !u!114 &1142561279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1142561276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be129a8ade8853845a9f8a9c228c9ca2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HitStopMovePrototype
+  timeUntilDrop: 10
+  start: {x: 0, y: 0, z: 0}
+  end: {x: 0, y: -15, z: 0}
+  totalTime: 2
 --- !u!1 &1158805075
 GameObject:
   m_ObjectHideFlags: 0
@@ -35816,7 +35850,6 @@ GameObject:
   - component: {fileID: 1390368218}
   - component: {fileID: 1390368217}
   - component: {fileID: 1390368219}
-  - component: {fileID: 1390368220}
   m_Layer: 3
   m_Name: MagentaBeatLine
   m_TagString: Untagged
@@ -35975,19 +36008,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!114 &1390368220
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1390368214}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5c3a8a004ff5a046862fe02cbcfc7f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  timeUntilDrop: 10
 --- !u!1 &1395234092
 GameObject:
   m_ObjectHideFlags: 0
@@ -36702,7 +36722,6 @@ GameObject:
   - component: {fileID: 1474823384}
   - component: {fileID: 1474823383}
   - component: {fileID: 1474823385}
-  - component: {fileID: 1474823386}
   m_Layer: 3
   m_Name: TealBeatLine
   m_TagString: Untagged
@@ -36861,19 +36880,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!114 &1474823386
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1474823380}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5c3a8a004ff5a046862fe02cbcfc7f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BeatLineMovePrototype
-  timeUntilDrop: 30
 --- !u!1 &1488433321
 GameObject:
   m_ObjectHideFlags: 0
