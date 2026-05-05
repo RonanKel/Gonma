@@ -7,12 +7,15 @@ public class DialogueManager : MonoBehaviour
     public static DialogueManager Instance;
     private DialogueData CD;
     private int Index;
+    private float skipbuffer = .3f;
+    private bool canSkip = false;
     private bool SkipRequest = false;
 
     private bool startingDialogue = false;
 
     [SerializeField] float typingSpeed;
     private Coroutine typingCoroutine;
+    private Coroutine skipBufferCoroutine;
     // public static event Action OnDialogueEnded;
     public UnityEvent OnStartDialogueEnded = new UnityEvent();
     public UnityEvent OnDialogueEnded = new UnityEvent();
@@ -28,7 +31,7 @@ public class DialogueManager : MonoBehaviour
     void Update(){
 
         // Speedy dialogue
-        if (Input.GetKeyDown(KeyCode.Space) && CD != null)
+        if (Input.GetKeyDown(KeyCode.Space) && CD != null && canSkip)
         {
             if (typingCoroutine != null)
             {
@@ -46,8 +49,16 @@ public class DialogueManager : MonoBehaviour
         startingDialogue = start;
         CD = dialogue;
         Index = 0;
+        skipBufferCoroutine = StartCoroutine(SkipBufferRoutine(skipbuffer));
         DialogueUI.Instance.ShowDialogueUI();
         DisplayCurrentLine();
+    }
+
+    IEnumerator SkipBufferRoutine(float seconds)
+    {
+        canSkip = false;
+        yield return new WaitForSeconds(seconds);
+        canSkip = true;
     }
 
     public void NextLine()
@@ -101,7 +112,7 @@ public class DialogueManager : MonoBehaviour
         if (startingDialogue) {
             startingDialogue = false;
             OnStartDialogueEnded.Invoke();
-            Debug.Log("ASLDKJHBASD");
+            // Debug.Log("ASLDKJHBASD");
         }else
         {
             GameObject fish = GameObject.Find("Fish");
