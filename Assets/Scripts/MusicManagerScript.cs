@@ -310,7 +310,13 @@ public class MusicManagerScript : MonoBehaviour
                 if (lines[i].beatMap.Count > 0 && bSongPos >= lines[i].beatMap.Peek().beatPos + (delay * bps))
                 {
                     curr = lines[i].beatMap.ExtractMin();
-                    lines[i].noteSpawnerScript.PlayNote(lines[i].beatLine.transform.position, spb, (float)bSongPos, curr.type);
+                    NoteScript note = lines[i].noteSpawnerScript.PlayNote(lines[i].beatLine.transform.position, spb, (float)bSongPos, curr.type);
+                    if (note != null && curr.type == 2)
+                    {
+                        HookNoteScript hookNote = note.gameObject.GetComponent<HookNoteScript>();
+                        hookNote.newLine = lines[2];
+                    }
+
                 }
             }
         }

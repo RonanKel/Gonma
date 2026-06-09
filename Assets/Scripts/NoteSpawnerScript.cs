@@ -76,7 +76,7 @@ public class NoteSpawnerScript : MonoBehaviour
 
     }
 
-    public void PlayNote(Vector3 beatLinePos, float spb, float beatPos, int type)
+    public NoteScript PlayNote(Vector3 beatLinePos, float spb, float beatPos, int type)
     {
         if (inactiveNotesLists[type].Count >= 1)
         {
@@ -86,7 +86,7 @@ public class NoteSpawnerScript : MonoBehaviour
             thisNote.transform.position = transform.position;
 
             NoteScript noteScript = thisNote.GetComponent<NoteScript>();
-            noteScript.speed = speed;
+
             noteScript.beatLinePos = beatLinePos;
             noteScript.spb = spb;
             noteScript.beatPos = beatPos;
@@ -94,10 +94,12 @@ public class NoteSpawnerScript : MonoBehaviour
             noteScript.failTime = failTime;
             noteScript.err = 1000f;
             noteScript.start.Invoke();
+            return noteScript;
         }
         else
         {
             Debug.Log("Note enough notes to go around, all currently active. Cannot spawn new Note");
+            return null;
         }
         
     }

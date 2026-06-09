@@ -13783,6 +13783,7 @@ MonoBehaviour:
   notePrefabs:
   - {fileID: 4513937415968605467, guid: 315761ae4d95a462581601d940f353cc, type: 3}
   - {fileID: 842622904818638807, guid: b4f48c1b7e6944da588c334574b570a3, type: 3}
+  - {fileID: 842622904818638807, guid: 44869c3c547554946b47487336800470, type: 3}
   music: {fileID: 748165351}
   noteCount: 10
   failTime: 0.5
@@ -18033,7 +18034,7 @@ MonoBehaviour:
   music: {fileID: 748165350}
   bpm: 90
   levels:
-  - {fileID: 11400000, guid: 69dd9ecb6574b794da888a4f2cf0ee96, type: 2}
+  - {fileID: 11400000, guid: 5c3228d3ef5c069408726836beba6b96, type: 2}
   singingCat: {fileID: 21300000, guid: bad444f8127c34293965852db327f776, type: 3}
   standingCat: {fileID: 21300000, guid: 4a1821c4421b5494094d3b6d0f9f1eed, type: 3}
   catSpriteRenderer: {fileID: 817575377}
@@ -27783,11 +27784,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2aa93c6373fa5437bb1b8d71dda80c9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  songName: BarTest
-  notes:
-  - beatPos: 0
-    beatLine: 0
-    type: 0
+  songName: HookTest
+  notes: []
 --- !u!4 &1101064662
 Transform:
   m_ObjectHideFlags: 0
@@ -52862,6 +52860,7 @@ MonoBehaviour:
   notePrefabs:
   - {fileID: 4513937415968605467, guid: 13f2500ccb7674ce6bd54251da12e66a, type: 3}
   - {fileID: 842622904818638807, guid: b4f48c1b7e6944da588c334574b570a3, type: 3}
+  - {fileID: 842622904818638807, guid: 44869c3c547554946b47487336800470, type: 3}
   music: {fileID: 748165351}
   noteCount: 10
   failTime: 0.5
@@ -58833,6 +58832,7 @@ MonoBehaviour:
   notePrefabs:
   - {fileID: 4513937415968605467, guid: cb5741aa9fbe94fa09eb5ae5d90f6d2a, type: 3}
   - {fileID: 842622904818638807, guid: b4f48c1b7e6944da588c334574b570a3, type: 3}
+  - {fileID: 842622904818638807, guid: 44869c3c547554946b47487336800470, type: 3}
   music: {fileID: 748165351}
   noteCount: 10
   failTime: 0.5

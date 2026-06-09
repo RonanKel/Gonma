@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using TMPro;
+using UnityEditor.UI;
 public class NoteScript : MonoBehaviour
 {
 
-    public float speed;
     public Vector3 beatLinePos;
     public Vector3 spawnPos;
     public float spb;
-    [SerializeField] LayerMask failBox;
+    
     protected MusicManagerScript mmScript;
     private SFXManager sfxScript;
 
@@ -35,7 +35,7 @@ public class NoteScript : MonoBehaviour
     public bool isDone = false;
 
     // Start is called before the first frame update
-    void Start()
+    protected void Start()
     {
         mmScript = GameObject.Find("RhythmRobot").GetComponent<MusicManagerScript>();
         sfxScript = GameObject.Find("SFXManager").GetComponent<SFXManager>();
@@ -44,12 +44,18 @@ public class NoteScript : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    protected void Update()
     {
         GetErr();
         CalculateMovement();
         CheckFail();
     }    
+
+    protected void JumpNote(Vector3 _spawnPos, Vector3 _beatlinePos)
+    {
+        spawnPos = _spawnPos;
+        beatLinePos = _beatlinePos;
+    }
 
     void GetErr()
     {
