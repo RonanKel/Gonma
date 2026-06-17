@@ -315,6 +315,7 @@ public class MusicManagerScript : MonoBehaviour
                     {
                         HookNoteScript hookNote = note.gameObject.GetComponent<HookNoteScript>();
                         hookNote.newLine = lines[2];
+                        hookNote.hookData = curr.data;
                     }
 
                 }
@@ -569,7 +570,25 @@ public class MusicManagerScript : MonoBehaviour
             string[] data = line.Split();
 
             Note note = new Note(float.Parse(data[0]) - 1, int.Parse(data[2]));
+
+            Dictionary<float, Line> dictionaryData = new Dictionary<float, Line>();
+            for (int i = 3; i < data.Length; i += 2)
+            {
+                Line value = null;
+                if (i+1 < data.Length)
+                {
+                    int intData = int.Parse(data[i + 1]);
+                    if (intData >= 0)
+                    {
+                        value = lines[intData];
+                    }
+                }
+                dictionaryData[float.Parse(data[i])] = value;
+            }
+            note.data = dictionaryData;
             lines[int.Parse(data[1])].beatMap.Insert(note);
+
+
         }
 
         winningScore = (int)(noteCount * 1.2);

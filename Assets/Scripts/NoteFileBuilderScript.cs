@@ -11,6 +11,8 @@ public class NoteProperties
     public float beatPos;
     public int beatLine;
     public int type;
+    public List<float> timeData;
+    public List<int> lineData;
 }
 
 public class NoteFileBuilderScript : MonoBehaviour
@@ -43,7 +45,19 @@ public class NoteFileBuilderScript : MonoBehaviour
         StreamWriter writer = new StreamWriter(filePath, true);
 
         foreach (NoteProperties note in notes) {
-            writer.WriteLine(note.beatPos + " " + note.beatLine + " " + note.type);
+            string data = "";
+            for (int i = 0; i < note.timeData.Count; i++)
+            {
+                if (note.timeData[i] != null) {
+                    data += " " + note.timeData[i];
+                    if (note.lineData != null)
+                    {
+                        data += " " + note.lineData[i];
+                    }
+                }
+                
+            }
+            writer.WriteLine(note.beatPos + " " + note.beatLine + " " + note.type + data);
         }
 
         writer.Close();

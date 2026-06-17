@@ -107,6 +107,8 @@ namespace SongFormatScript
         public float beatPos;
 
         public int type;
+
+        public Dictionary<float, Line> data = new Dictionary<float, Line>();
         
         public Note(float thisBeatPos, int thisType)
         {
