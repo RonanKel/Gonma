@@ -9,9 +9,31 @@ public class HookNoteScript : NoteScript
     public Line newLine;
     int i = 0;
 
+    [SerializeField] GameObject hookSpriteUp;
+    [SerializeField] GameObject hookSpriteDown;
+
+    private Animator animator;
+    private string myAnimation;
+
     private void Start()
     {
         base.Start();
+        if (hookData[hookData.Keys.ToList<float>()[0]].noteSpawner.transform.position.y > transform.position.y)
+        {
+            hookSpriteUp.SetActive(true);
+            animator = hookSpriteUp.GetComponent<Animator>();
+            myAnimation = "hook_up_animation";
+            hookSpriteDown.SetActive(false);
+        } else
+        {
+            hookSpriteUp.SetActive(false);
+            animator = hookSpriteDown.GetComponent<Animator>();
+            myAnimation = "hook_animation";
+            hookSpriteDown.SetActive(true);
+        }
+
+
+
     }
 
     private void Update()
@@ -25,6 +47,12 @@ public class HookNoteScript : NoteScript
             float nextJumpTime = keys[i];
             Debug.Log(timeInBeats);
             Debug.Log(nextJumpTime);
+
+            if (timeInBeats > nextJumpTime)
+            {
+                animator.Play(myAnimation);
+            }
+
             if (timeInBeats > nextJumpTime)
             {
                 Debug.Log("JUMPING NOW");
